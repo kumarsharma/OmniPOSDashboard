@@ -32,6 +32,10 @@
     loginBtn.layer.borderColor = [[UIColor greenColor] CGColor];
     loginBtn.layer.borderWidth = 1.3;
     [loginBtn setBackgroundColor:[UIColor darkGrayColor]];
+    
+    UIView *fview = [OPViewSupplier footerViewForApp];
+    fview.frame = CGRectMake(0, self.view.frame.size.height-276, fview.frame.size.width, fview.frame.size.height);
+    [self.view addSubview:fview];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

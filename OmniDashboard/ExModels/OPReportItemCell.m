@@ -22,6 +22,17 @@
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+        [self setupSubviews];
+        
+    }
+    return self;
+}
+
 - (void)setupSubviews
 {
 //    self.contentView.backgroundColor = [UIColor grayColor];

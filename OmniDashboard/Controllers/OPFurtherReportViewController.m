@@ -178,6 +178,34 @@
     return @"";
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(self.saleSummary && (self.isItemSaleMode || self.isCategorySaleMode))
+    {
+        return 30;
+    }
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(self.saleSummary && (self.isItemSaleMode || self.isCategorySaleMode))
+    {
+        OPReportItemCell *cell = [[OPReportItemCell alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 30)];
+        cell.titleLabel.text = @"Item";
+        cell.countField.text = @"Qty";
+        cell.totalAmountLabel.text = @"Amount";
+        if(self.isItemSaleMode)
+            cell.titleLabel.text = @"Item";
+        else
+            cell.titleLabel.text = @"Category";
+        
+        return cell;
+    }
+    return nil;
+}
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

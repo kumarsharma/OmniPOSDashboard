@@ -234,6 +234,39 @@
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(self.saleSummary)
+    {
+        if(section == 1 || section == 2)
+        {
+            return 30;
+        }
+    }
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(self.saleSummary)
+    {
+        if(section == 1 || section == 2)
+        {
+            OPReportItemCell *cell = [[OPReportItemCell alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 30)];
+            cell.titleLabel.text = @"Item";
+            cell.countField.text = @"Qty";
+            cell.totalAmountLabel.text = @"Amount";
+            if(section == 1)
+                cell.titleLabel.text = @"Item";
+            else
+                cell.titleLabel.text = @"Category";
+            
+            return cell;
+        }
+    }
+    return nil;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 //    return 1;
