@@ -12,7 +12,7 @@
 {
     
 }
-@property (nonatomic, strong) NSArray *rows;
+@property (nonatomic, strong) NSMutableArray *rows;
 @property (nonatomic, assign) OPReportType reportType;
 @property (nonatomic, strong) NSString *sectionTitle;
 @end

@@ -19,8 +19,11 @@
 #import "DSBarChart.h"
 #import "ODSettingsTableViewController.h"
 #import "CompanyInfo.h"
+#import "OPCategoryItem.h"
 
 @interface EXMenuViewController ()
+
+@property (nonatomic, strong) UIRefreshControl *refreshController;
 
 @end
 
@@ -34,6 +37,7 @@
 @synthesize saleSummary;
 @synthesize middleBarItem;
 @synthesize rangeType;
+@synthesize refreshController;
 
 - (void)viewDidLoad
 {
@@ -62,6 +66,18 @@
         self.navigationItem.rightBarButtonItem = settingsBtn;
     }   
     [self fetchReports];
+    
+    self.refreshController = [[UIRefreshControl alloc] init];
+    [self.refreshController addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshController];
+}
+
+#pragma mark - Handle Refresh Method
+
+-(void)handleRefresh : (id)sender
+{
+    [self fetchReports];
+    [self.refreshController endRefreshing];
 }
 
 - (void)settingsAction
@@ -267,6 +283,50 @@
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if(self.saleSummary)
+    {
+        if(section == 1 || section == 2)
+        {
+            return 20;
+        }
+    }
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if(self.saleSummary)
+    {
+        if(section == 1)
+        {
+            UIView *vv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 20)];
+            OPReportItemCell *cell = [[OPReportItemCell alloc] initWithFrame:CGRectMake(0, -10, self.tableView.frame.size.width, 20)];
+            cell.titleLabel.text = @"TOTAL";
+            cell.countField.text = [NSString stringWithFormat:@"%0.2f", self.saleSummary.itemCountTotals];
+            cell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", self.saleSummary.itemTotals];
+            cell.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+            cell.countField.font = [UIFont boldSystemFontOfSize:14];
+            cell.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
+            [vv addSubview:cell];
+            return vv;
+        }
+        else
+        {
+            OPReportItemCell *cell = [[OPReportItemCell alloc] initWithFrame:CGRectMake(0, -10, self.tableView.frame.size.width, 20)];
+            cell.titleLabel.text = @"TOTAL";
+            cell.countField.text = [NSString stringWithFormat:@"%0.2f", self.saleSummary.categoryCountTotals];
+            cell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", self.saleSummary.categoryTotals];
+            cell.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+            cell.countField.font = [UIFont boldSystemFontOfSize:14];
+            cell.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
+            return cell;
+        }
+    }
+    return nil;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 //    return 1;
@@ -324,17 +384,15 @@
     else if(indexPath.section==1 || indexPath.section==2)
     {
         OPReportItemCell *rcell = (OPReportItemCell *)cell;
-        NSDictionary *dict = nil;
+        OPCategoryItem *catItem = nil;
         if(indexPath.section == 1)
-            dict = [self.saleSummary.itemBreakDown.rows objectAtIndex:indexPath.row];
+            catItem = [self.saleSummary.itemBreakDown.rows objectAtIndex:indexPath.row];
         else
-            dict = [self.saleSummary.categoryBreakDown.rows objectAtIndex:indexPath.row];
+            catItem = [self.saleSummary.categoryBreakDown.rows objectAtIndex:indexPath.row];
         
-        NSString *key = dict.allKeys.firstObject;
-        NSArray *texts = [key componentsSeparatedByString:@"X"];
-        rcell.titleLabel.text = [texts objectAtIndex:0];
-        rcell.countField.text = [texts objectAtIndex:1];
-        rcell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict valueForKey:key] floatValue]];
+        rcell.titleLabel.text = catItem.name;
+        rcell.countField.text = [NSString stringWithFormat:@"%0.2f", catItem.qty];
+        rcell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", catItem.amount];
         
         if([rcell.titleLabel.text hasPrefix:@"TOTAL"])
         {

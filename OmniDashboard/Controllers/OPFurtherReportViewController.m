@@ -11,8 +11,10 @@
 #import "OPReportItemCell.h"
 #import "OPDataFetchHelper.h"
 #import "NSString+SBJSON.h"
+#import "OPCategoryItem.h"
 
 @interface OPFurtherReportViewController ()
+@property (nonatomic, strong) UIRefreshControl *refreshController;
 
 @end
 
@@ -24,6 +26,7 @@
 @synthesize saleSummary;
 @synthesize middleBarItem;
 @synthesize rangeType;
+@synthesize refreshController;
 
 - (void)viewDidLoad
 {
@@ -70,6 +73,18 @@
     self.toolbarItems = [NSArray arrayWithObjects:prevDayBtn, space, dateBtn, space2, nextDayBtn, nil];
     self.date1 = [NSDate date];
     self.date2 = self.date1;*/
+    
+    self.refreshController = [[UIRefreshControl alloc] init];
+    [self.refreshController addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshController];
+}
+
+#pragma mark - Handle Refresh Method
+
+-(void)handleRefresh : (id)sender
+{
+    [self fetchReports];
+    [self.refreshController endRefreshing];
 }
 
 - (void)dateBtnAction
@@ -257,17 +272,17 @@
     }
     else if(self.isItemSaleMode || self.isCategorySaleMode)
     {
-        NSDictionary *dict = nil;
+        OPCategoryItem *catItem = nil;
         if(self.isItemSaleMode)
-            dict = [self.saleSummary.itemBreakDown.rows objectAtIndex:indexPath.row];
+            catItem = [self.saleSummary.itemBreakDown.rows objectAtIndex:indexPath.row];
         else
-            dict = [self.saleSummary.categoryBreakDown.rows objectAtIndex:indexPath.row];
+            catItem = [self.saleSummary.categoryBreakDown.rows objectAtIndex:indexPath.row];
         
-        NSString *key = dict.allKeys.firstObject;
-        NSArray *texts = [key componentsSeparatedByString:@"X"];
-        cell.titleLabel.text = [texts objectAtIndex:0];
-        cell.countField.text = [texts objectAtIndex:1];
-        cell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict valueForKey:key] floatValue]];
+        cell.titleLabel.text = catItem.name;
+        cell.countField.text = [NSString stringWithFormat:@"%0.2f", catItem.qty];
+        cell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", catItem.amount];
+        
+        
         if([cell.titleLabel.text hasPrefix:@"TOTAL"])
         {
             cell.titleLabel.font = [UIFont boldSystemFontOfSize:14];

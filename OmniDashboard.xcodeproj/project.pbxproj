@@ -101,6 +101,7 @@
 		CE2EA8F422795014001DB320 /* AAChartView.html in Resources */ = {isa = PBXBuildFile; fileRef = CE2EA8F322795014001DB320 /* AAChartView.html */; };
 		CE2EA8FB22798EA7001DB320 /* omnipos_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2EA8FA22798EA6001DB320 /* omnipos_logo.png */; };
 		CE2EA8FE227991D9001DB320 /* OPViewSupplier.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2EA8FD227991D9001DB320 /* OPViewSupplier.m */; };
+		CE2EA9012279E965001DB320 /* OPCategoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2EA9002279E965001DB320 /* OPCategoryItem.m */; };
 		CE7030BC22754FA200381474 /* OPSaleSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7030BB22754FA200381474 /* OPSaleSummary.m */; };
 		CE7030BF227552D200381474 /* OPReportSection.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7030BE227552D200381474 /* OPReportSection.m */; };
 		CE782B28227690CA00C39913 /* RangePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B24227690C900C39913 /* RangePickerViewController.m */; };
@@ -336,6 +337,8 @@
 		CE2EA8FA22798EA6001DB320 /* omnipos_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = omnipos_logo.png; sourceTree = "<group>"; };
 		CE2EA8FC227991D9001DB320 /* OPViewSupplier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPViewSupplier.h; sourceTree = "<group>"; };
 		CE2EA8FD227991D9001DB320 /* OPViewSupplier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPViewSupplier.m; sourceTree = "<group>"; };
+		CE2EA8FF2279E965001DB320 /* OPCategoryItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPCategoryItem.h; sourceTree = "<group>"; };
+		CE2EA9002279E965001DB320 /* OPCategoryItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPCategoryItem.m; sourceTree = "<group>"; };
 		CE7030BA22754FA200381474 /* OPSaleSummary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPSaleSummary.h; sourceTree = "<group>"; };
 		CE7030BB22754FA200381474 /* OPSaleSummary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPSaleSummary.m; sourceTree = "<group>"; };
 		CE7030BD227552D200381474 /* OPReportSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPReportSection.h; sourceTree = "<group>"; };
@@ -548,6 +551,8 @@
 				CE782B30227716A400C39913 /* OPReportItemCell.m */,
 				CEB5171E2278B470003AE3C9 /* OPReportSummaryCell.h */,
 				CEB5171F2278B470003AE3C9 /* OPReportSummaryCell.m */,
+				CE2EA8FF2279E965001DB320 /* OPCategoryItem.h */,
+				CE2EA9002279E965001DB320 /* OPCategoryItem.m */,
 			);
 			path = ExModels;
 			sourceTree = "<group>";
@@ -1202,6 +1207,7 @@
 				CE782B29227690CA00C39913 /* RangePickerCell.m in Sources */,
 				18BFD8301742AE6D009822B7 /* EXMenuViewController.m in Sources */,
 				18F4ED131743B72F0088ACC7 /* UserInfo.m in Sources */,
+				CE2EA9012279E965001DB320 /* OPCategoryItem.m in Sources */,
 				18F4ED161743B9380088ACC7 /* OPManagedObjectHolder.m in Sources */,
 				187C265517A0F0A1002FF6E3 /* ItemSoldReport.m in Sources */,
 				1848DD221965A96800E14F29 /* DDTTYLogger.m in Sources */,

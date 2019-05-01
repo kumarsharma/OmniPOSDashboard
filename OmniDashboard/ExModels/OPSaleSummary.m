@@ -8,6 +8,7 @@
 
 #import "OPSaleSummary.h"
 #import "OPReportSection.h"
+#import "OPCategoryItem.h"
 
 @implementation OPSaleSummary
 @synthesize itemBreakDown, categoryBreakDown, summaryBreakDown;
@@ -61,21 +62,35 @@
     {
         NSArray *values = [itemGroups valueForKey:key];
         float totals = 0, totalQty=0;
+        NSString *cid = @"";
         for(NSDictionary *itemDict in values){
             
             totalQty+=[[itemDict valueForKey:@"Qty"] floatValue];
             totals+=[[itemDict valueForKey:@"Amount"] floatValue];
+            if(cid.length<=0)
+                cid = [itemDict valueForKey:@"ItemID"]; 
         }
         self.itemTotals+=totals;
         self.itemCountTotals+=totalQty;
-        NSDictionary *indvItem = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%0.2f", totals] forKey:[NSString stringWithFormat:@"%@ X %0.2f", key, totalQty]];
-        [itemSolds addObject:indvItem];
+        
+        OPCategoryItem *citem = [[OPCategoryItem alloc] init];
+        citem.uid = cid;
+        citem.name = key;
+        citem.qty = totalQty;
+        citem.amount = totals;
+        [itemSolds addObject:citem];
     }
     
     //for total last row
+    /*
     NSDictionary *totalItem = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%0.2f", self.itemTotals] forKey:[NSString stringWithFormat:@"%@ X %0.2f", @"TOTAL", self.itemCountTotals]];
     [itemSolds addObject:totalItem];
+     */
     
+    NSSortDescriptor *firstDescriptor = [[NSSortDescriptor alloc] initWithKey:@"amount" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:firstDescriptor, nil];    
+    [itemSolds sortUsingDescriptors:sortDescriptors];
+
     itemSection.rows = itemSolds;
     self.itemBreakDown=itemSection;
     
@@ -87,19 +102,31 @@
     {
         NSArray *values = [categoryGroups valueForKey:key];
         float totals = 0, totalQty=0;
+        NSString *cid = @"";
         for(NSDictionary *itemDict in values){
             
             totalQty+=[[itemDict valueForKey:@"Qty"] floatValue];
             totals+=[[itemDict valueForKey:@"Amount"] floatValue];
+            if(cid.length<=0)
+                cid = [itemDict valueForKey:@"CategoryID"]; 
         }
         self.categoryTotals+=totals;
         self.categoryCountTotals+=totalQty;
-        NSDictionary *indvItem = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%0.2f", totals] forKey:[NSString stringWithFormat:@"%@ X %0.2f", key, totalQty]];
-        [catSolds addObject:indvItem];
+        OPCategoryItem *citem = [[OPCategoryItem alloc] init];
+        citem.uid = cid;
+        citem.name = key;
+        citem.qty = totalQty;
+        citem.amount = totals;
+        [catSolds addObject:citem];
     }
     //for total last row
+    /*
     NSDictionary *totalCats = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%0.2f", self.categoryTotals] forKey:[NSString stringWithFormat:@"%@ X %0.2f", @"TOTAL", self.categoryCountTotals]];
-    [catSolds addObject:totalCats];
+     [catSolds addObject:totalCats];*/
+    
+    firstDescriptor = [[NSSortDescriptor alloc] initWithKey:@"amount" ascending:NO];
+    sortDescriptors = [NSArray arrayWithObjects:firstDescriptor, nil];    
+    [catSolds sortUsingDescriptors:sortDescriptors];
     
     catSection.rows = catSolds;
     self.categoryBreakDown = catSection;
