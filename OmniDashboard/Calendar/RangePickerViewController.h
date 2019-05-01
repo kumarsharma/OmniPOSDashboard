@@ -1,0 +1,23 @@
+//
+//  RangePickerViewController.h
+//  FSCalendar
+//
+//  Created by dingwenchao on 5/8/16.
+//  Copyright © 2016 Wenchao Ding. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@protocol  RangeDatePickerDelegate<NSObject>
+
+@optional
+- (void)didSelectDate1:(NSDate *)date1 andDate2:(NSDate *)date2;
+
+@end
+@interface RangePickerViewController : UIViewController
+{
+    __weak id<RangeDatePickerDelegate> delegate_;
+}
+
+@property (nonatomic, weak) id<RangeDatePickerDelegate> delegate; 
+@end

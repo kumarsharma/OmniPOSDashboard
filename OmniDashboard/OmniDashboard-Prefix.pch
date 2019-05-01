@@ -1,0 +1,35 @@
+//
+// Prefix header for all source files of the 'ExTunes' target in the 'ExTunes' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "NetworkConfig.h"
+    #import "EXAppDelegate.h"
+    #import "KSConstants.h"
+    #import "DDLog.h"
+    #import "AAGlobalMacro.h"
+
+
+#if TARGET_IPHONE_SIMULATOR
+#import "DDTTYLogger.h"
+#else
+#import "DDASLLogger.h"
+#endif
+
+#define kDEBUG_PRODUCTION_SERVER_MODE 1
+
+#if DEBUG
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#else
+static const int ddLogLevel = LOG_LEVEL_INFO;
+#endif
+
+#endif

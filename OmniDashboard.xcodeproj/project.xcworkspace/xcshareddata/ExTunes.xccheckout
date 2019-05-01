@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CAC92329-5C8B-4280-9955-0F1A3B5AC285</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ExTunes</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3BB25A79ED27B0A80117EE3A03F6BA8AD6C3308E</key>
+		<string>https://github.com/omnipos/OmniSales.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ExTunes/ExTunes.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3BB25A79ED27B0A80117EE3A03F6BA8AD6C3308E</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/omnipos/OmniSales.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3BB25A79ED27B0A80117EE3A03F6BA8AD6C3308E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3BB25A79ED27B0A80117EE3A03F6BA8AD6C3308E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ExTunes</string>
+		</dict>
+	</array>
+</dict>
+</plist>

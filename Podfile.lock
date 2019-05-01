@@ -1,0 +1,15 @@
+PODS:
+  - AAChartKit (2.1.6)
+  - FSCalendar (2.8.0)
+
+DEPENDENCIES:
+  - AAChartKit
+  - FSCalendar
+
+SPEC CHECKSUMS:
+  AAChartKit: adc0da2830cfc7dd8e9a0a706413eec9598e004d
+  FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
+
+PODFILE CHECKSUM: 6c6ff279c531473c9477ef1bcfc57ab11f6ec5a3
+
+COCOAPODS: 1.4.0
