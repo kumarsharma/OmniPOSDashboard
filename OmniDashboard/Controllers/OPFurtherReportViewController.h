@@ -10,11 +10,17 @@
 #import "OPSaleSummary.h"
 #import "EXMenuViewController.h"
 
-@interface OPFurtherReportViewController : EXMenuViewController
+@interface OPFurtherReportViewController : UITableViewController<RangeDatePickerDelegate, UIActionSheetDelegate>
 {
     
 }
 
 @property (nonatomic, weak) EXMenuViewController *parentController;
 @property (nonatomic, assign) BOOL isSaleSummaryMode, isItemSaleMode, isCategorySaleMode;
+
+@property (nonatomic, strong) LoadingIndicatorView *indicatorView;
+@property (nonatomic, strong) NSDate *date1, *date2;
+@property (nonatomic, strong) OPSaleSummary *saleSummary;
+@property (nonatomic, strong) UIBarButtonItem *middleBarItem;
+@property (nonatomic, strong) NSString *rangeType; 
 @end

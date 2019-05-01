@@ -23,4 +23,10 @@
 + (NSString *)getYYYyMmDdDateFormat:(NSDate*)date;
 + (NSDate *)getNextDayByCount:(NSInteger)nextCount fromDate:(NSDate *)fromDate;
 + (int)daysBetweenFirstDate:(NSDate *)dt1 secndDate:(NSDate *)dt2;
++ (NSDate *)getCurrentWeeksBeginingDate;
++ (NSDate *)getFirstDayOfCurrentMonth;
++ (NSString *)getDayMonthYearString:(NSDate*)date;
++(NSInteger)getDayDiffBetweenDate1:(NSDate *)date1 andDate2:(NSDate *)date2;
++ (NSDate *)getNextWeekByCount:(NSInteger)nextCount fromDate:(NSDate *)fromDate;
++ (NSDate *)getNextMonthByCount:(NSInteger)nextCount fromDate:(NSDate *)fromDate;
 @end

@@ -17,6 +17,8 @@
 #import "OPReportSummaryCell.h"
 #import "OPFurtherReportViewController.h"
 #import "DSBarChart.h"
+#import "ODSettingsTableViewController.h"
+#import "CompanyInfo.h"
 
 @interface EXMenuViewController ()
 
@@ -31,6 +33,7 @@
 @synthesize date1, date2;
 @synthesize saleSummary;
 @synthesize middleBarItem;
+@synthesize rangeType;
 
 - (void)viewDidLoad
 {
@@ -42,7 +45,7 @@
 //    self.navigationController.toolbar.tintColor = [UIColor whiteColor];
     UIBarButtonItem *prevDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(prevDayBtnAction)];
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *dateBtn = [[UIBarButtonItem alloc] initWithTitle:[KSDateUtil getYYYyMmDdDateFormat:[NSDate date]] style:UIBarButtonItemStyleDone target:self action:@selector(dateBtnAction)];
+    UIBarButtonItem *dateBtn = [[UIBarButtonItem alloc] initWithTitle:[KSDateUtil getDayMonthYearString:[NSDate date]] style:UIBarButtonItemStyleDone target:self action:@selector(dateBtnAction)];
     self.middleBarItem = dateBtn;
     self.middleBarItem.tintColor = [UIColor whiteColor];
     
@@ -51,9 +54,141 @@
     self.toolbarItems = [NSArray arrayWithObjects:prevDayBtn, space, dateBtn, space2, nextDayBtn, nil];
     self.date1 = [NSDate date];
     self.date2 = self.date1;
+    
+    EXAppDelegate *app = [EXAppDelegate sharedAppDelegate];
+    if(app.company.allLocations.count<=1)
+    {
+        UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"user4"] style:UIBarButtonItemStyleDone target:self action:@selector(settingsAction)];
+        self.navigationItem.rightBarButtonItem = settingsBtn;
+    }   
+    [self fetchReports];
+}
+
+- (void)settingsAction
+{
+    ODSettingsTableViewController *setVc = [[ODSettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:setVc animated:YES];
 }
 
 - (void)dateBtnAction
+{
+    UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Today", @"This Week", @"This Month", @"Custom", nil];
+    [actionsheet showFromToolbar:self.navigationController.toolbar];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex<4)
+    {
+        NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
+        self.rangeType = title;
+        if([self.rangeType isEqualToString:@"Today"] || [self.rangeType isEqualToString:@"This Week"] || [self.rangeType isEqualToString:@"This Month"])
+        {
+            if([self.rangeType isEqualToString:@"Today"])
+            {
+                self.date1 = [NSDate date];
+                self.date2 = self.date1;
+            }
+            else if([self.rangeType isEqualToString:@"This Week"])
+            {
+                self.date1 = [KSDateUtil getCurrentWeeksBeginingDate];
+                self.date2 = [NSDate date];
+            }
+            else if([self.rangeType isEqualToString:@"This Month"])
+            {
+                self.date1 = [KSDateUtil getFirstDayOfCurrentMonth];
+                self.date2 = [NSDate date];
+            }
+            
+            [self fetchReports];
+            [self updateDateLabel];
+        }
+        else
+        {
+            [self showDateView];
+        }
+    }
+}
+
+- (void)nextDatBtnAction
+{
+    if([self.rangeType isEqualToString:@"Today"])
+    {
+        self.date1 = [KSDateUtil getNextDayByCount:1 fromDate:self.date1];
+        self.date2 = self.date1;
+    }
+    else if([self.rangeType isEqualToString:@"This Week"])
+    {
+        self.date1 = [KSDateUtil getNextWeekByCount:1 fromDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:6 fromDate:self.date1];
+    }
+    else if([self.rangeType isEqualToString:@"This Month"])
+    {
+        self.date1 = [KSDateUtil getNextMonthByCount:1 fromDate:self.date1];
+        NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:days.length fromDate:self.date1];
+    }
+    else
+    {
+        int dayToAdd = (int)[KSDateUtil getDayDiffBetweenDate1:self.date1 andDate2:self.date2]+1;
+        self.date1 = [KSDateUtil getNextDayByCount:dayToAdd fromDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:dayToAdd fromDate:self.date2];
+    }
+    
+    [self fetchReports];
+    [self updateDateLabel];
+}
+
+- (void)prevDayBtnAction
+{
+    if([self.rangeType isEqualToString:@"Today"])
+    {
+        self.date1 = [KSDateUtil getNextDayByCount:-1 fromDate:self.date1];
+        self.date2 = self.date1;
+    }
+    else if([self.rangeType isEqualToString:@"This Week"])
+    {
+        self.date1 = [KSDateUtil getNextWeekByCount:-1 fromDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:6 fromDate:self.date1];
+    }
+    else if([self.rangeType isEqualToString:@"This Month"])
+    {
+        self.date1 = [KSDateUtil getNextMonthByCount:-1 fromDate:self.date1];
+        NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.date1];
+    }
+    else
+    {
+        int dayToReduce = (int)[KSDateUtil getDayDiffBetweenDate1:self.date1 andDate2:self.date2]+1;
+        self.date1 = [KSDateUtil getNextDayByCount:dayToReduce*-1 fromDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:dayToReduce*-1 fromDate:self.date2];
+    }
+    [self fetchReports];
+    [self updateDateLabel];
+}
+
+- (void)updateDateLabel
+{
+    if([self.rangeType isEqualToString:@"Todayz"])
+        [self.middleBarItem setTitle:@"Today"];
+    else if([self.rangeType isEqualToString:@"This Weekz"])
+        [self.middleBarItem setTitle:@"This Week"];
+    else if([self.rangeType isEqualToString:@"This Monthz"])
+        [self.middleBarItem setTitle:@"This Month"];
+    else
+    {
+        if([self.date1 compare:self.date2] == NSOrderedSame)
+        {
+            [self.middleBarItem setTitle:[KSDateUtil getDayMonthYearString:self.date1]];
+        }
+        else
+        {
+            [self.middleBarItem setTitle:[NSString stringWithFormat:@"%@-%@", [KSDateUtil getDayMonthYearString:self.date1], [KSDateUtil getDayMonthYearString:self.date2]]];
+        }
+    }
+}
+
+- (void)showDateView
 {
     RangePickerViewController *vc = [[RangePickerViewController alloc] init];
     vc.delegate = self;
@@ -61,38 +196,16 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
-- (void)nextDatBtnAction
+- (void)viewDidAppear:(BOOL)animated
 {
-    self.date1 = [KSDateUtil getNextDayByCount:1 fromDate:self.date1];
-    self.date2 = [KSDateUtil getNextDayByCount:1 fromDate:self.date2];
-    [self fetchReports];
-    [self updateDateLabel];
-}
-
-- (void)prevDayBtnAction
-{
-    self.date1 = [KSDateUtil getNextDayByCount:-1 fromDate:self.date1];
-    self.date2 = [KSDateUtil getNextDayByCount:-1 fromDate:self.date2];
-    [self fetchReports];
-    [self updateDateLabel];
-}
-
-- (void)updateDateLabel
-{
-    if([self.date1 compare:self.date2] == NSOrderedSame)
-    {
-        [self.middleBarItem setTitle:[KSDateUtil getYYYyMmDdDateFormat:self.date1]];
-    }
-    else
-    {
-        [self.middleBarItem setTitle:[NSString stringWithFormat:@"%@-%@", [KSDateUtil getYYYyMmDdDateFormat:self.date1], [KSDateUtil getYYYyMmDdDateFormat:self.date2]]];
-    }
+    [super viewDidAppear:animated];
+//    [self fetchReports];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self fetchReports];
+    self.navigationController.toolbarHidden = NO;
 }
 
 #pragma mark - Table view data source
@@ -109,14 +222,16 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if(section==0)
-        return @"Sale Summary";
-    else if(section==1)
-        return @"Items";
-    else if(section==2)
-        return @"Categories";
-    else
-        return @"";
+    if(self.saleSummary)
+    {
+        if(section==0)
+            return @"Sale Summary";
+        else if(section==1)
+            return @"Items";
+        else if(section==2)
+            return @"Categories";
+    }
+    return nil;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -128,7 +243,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section==0)
-        return 1;
+    {
+        if(self.saleSummary)
+            return 1;
+        else
+            return 0;
+    }
     else if(section==1)
         return self.saleSummary.itemBreakDown.rows.count;
     else if(section==2)
@@ -182,6 +302,19 @@
         rcell.titleLabel.text = [texts objectAtIndex:0];
         rcell.countField.text = [texts objectAtIndex:1];
         rcell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict valueForKey:key] floatValue]];
+        
+        if([rcell.titleLabel.text hasPrefix:@"TOTAL"])
+        {
+            rcell.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+            rcell.countField.font = [UIFont boldSystemFontOfSize:14];
+            rcell.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
+        }
+        else
+        {
+            rcell.titleLabel.font = [UIFont systemFontOfSize:14];
+            rcell.countField.font = [UIFont systemFontOfSize:14];
+            rcell.totalAmountLabel.font = [UIFont systemFontOfSize:14];
+        }
     }
     
     return cell;
@@ -229,6 +362,13 @@
 {    
     [self startAnimating];
     
+    if(self.saleSummary)
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    [self performSelector:@selector(loadReportLately) withObject:nil afterDelay:0.1];
+}
+
+- (void)loadReportLately
+{
     [OPDataFetchHelper fetchSalesSummaryItemWiseFromDate:self.date1 toDate:self.date2 withExecutionBlock:^(BOOL success, Response *response){
         
         if(success)
@@ -254,10 +394,10 @@
     stmt = [stmt stringByReplacingOccurrencesOfString:@"<string xmlns=\"http://tempuri.org/\">" withString:@""];
     stmt = [stmt stringByReplacingOccurrencesOfString:@"</string>" withString:@""];
     NSDictionary *dict = [stmt JSONValue];
+    BOOL didFoundSales = NO;
     if(dict){
         
         id val = [[dict valueForKey:@"ItemTransactions"] valueForKey:@"Transaction"];
-        
         NSArray *statements = nil;
         if([val isKindOfClass:[NSArray class]])
             statements = val;
@@ -265,20 +405,24 @@
             statements = [NSArray arrayWithObject:val];
         
         if(statements.count){
-            
+            didFoundSales=YES;
             OPSaleSummary *sm = [[OPSaleSummary alloc] init];
             [sm parseFromRawItems:statements];
             self.saleSummary = sm;
             [self.tableView reloadData];
-        }else{
-            
-            OPSaleSummary *sm = [[OPSaleSummary alloc] init];
-            [sm parseFromRawItems:[NSArray array]];
-            self.saleSummary = sm;
-            [self.tableView reloadData];
+            self.tableView.tableHeaderView=nil;
         }
-    }else{
+    }
+    
+    if(!didFoundSales){
         
+        self.saleSummary = nil;
+        [self.tableView reloadData];
+        UILabel *label = [[UILabel alloc] initWithFrame:self.tableView.frame];
+        label.text = @"No Sales!";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont italicSystemFontOfSize:17];
+        self.tableView.tableHeaderView=label;
     }
 }
 
@@ -290,26 +434,12 @@
 
 - (void)startAnimating
 {
-    if(nil == self.indicatorView)
-    {
-        DGActivityIndicatorView *activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeBallClipRotate tintColor:[UIColor blackColor]];
-        CGFloat width = 400;
-        CGFloat height = 400;
-        
-        activityIndicatorView.frame = CGRectMake(200, 200, width, height);
-        
-        [self.view addSubview:activityIndicatorView];
-        self.indicatorView = activityIndicatorView;
-    }
-    self.indicatorView.center = self.view.center;
-    [self.indicatorView startAnimating];
-    self.navigationController.view.userInteractionEnabled = NO;
+    self.indicatorView = [LoadingIndicatorView showLoadingIndicatorInView:self.view withMessage:nil];
 }
 
 - (void)stopAnimating
 {
-    self.navigationController.view.userInteractionEnabled = YES;
-    [self.indicatorView stopAnimating];
+    [LoadingIndicatorView removeLoadingIndicator:self.indicatorView];
 }
 
 - (void)showErrorMessage

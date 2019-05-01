@@ -9,6 +9,7 @@
 #import "ODSettingsTableViewController.h"
 #import "StatusView.h"
 #import "OPTermsViewController.h"
+#import "OPViewSupplier.h"
 
 @interface ODSettingsTableViewController ()
 
@@ -19,18 +20,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Settings";
-    
+    self.navigationController.toolbarHidden = YES;
 //    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelBtnAction)];
 //    self.navigationItem.leftBarButtonItem = cancelBtn;
     
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 110)];
     UIButton *logoutBUtton = [UIButton buttonWithType:UIButtonTypeCustom];
-    logoutBUtton.frame = CGRectMake(10, 160, self.tableView.frame.size.width-20, 45);
+    logoutBUtton.frame = CGRectMake(10, 40, self.tableView.frame.size.width-20, 45);
     logoutBUtton.backgroundColor = [UIColor redColor];
     [logoutBUtton setTitle:@"Sign Out" forState:UIControlStateNormal];
     [logoutBUtton addTarget:self action:@selector(logoutBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [footerView addSubview:logoutBUtton];
-    self.tableView.tableFooterView = footerView;
+    self.tableView.tableHeaderView = footerView;
+
+    self.tableView.tableFooterView = [OPViewSupplier footerViewForApp];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

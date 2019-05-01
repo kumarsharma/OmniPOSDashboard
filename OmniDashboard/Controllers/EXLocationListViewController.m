@@ -11,6 +11,7 @@
 #import "RestaurantInfo.h"
 #import "EXMenuViewController.h"
 #import "ODSettingsTableViewController.h"
+#import "OPViewSupplier.h"
 
 @interface EXLocationListViewController ()
 
@@ -22,17 +23,10 @@
 {
     [super viewDidLoad];
     self.title = @"Locations";
-    
-    UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
-    versionLabel.textAlignment = NSTextAlignmentCenter;
-    versionLabel.textColor = [UIColor darkGrayColor];
-    versionLabel.text = @"Omni Dashboard. Version 1.1";
-    self.tableView.tableFooterView = versionLabel;
-    
+    self.tableView.tableFooterView = [OPViewSupplier footerViewForApp];
     UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"user4"] style:UIBarButtonItemStyleDone target:self action:@selector(settingsAction)];
     self.navigationItem.rightBarButtonItem = settingsBtn;
 }
-
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];

@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EXPinViewController : UIViewController
+@interface EXPinViewController : UIViewController<UITextFieldDelegate>
 {
     IBOutlet UIView *loginBgView;
-    IBOutlet UITextField *txtPIN;
+    UITextField *txtPIN;
     IBOutlet UIButton *loginBtn;
+    IBOutlet UITableView *tableView;
 }
 
 - (IBAction)loginBtnAction:(id)sender;

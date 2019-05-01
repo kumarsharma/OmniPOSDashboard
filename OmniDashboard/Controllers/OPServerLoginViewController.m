@@ -20,6 +20,7 @@
 #import "Reachability.h"
 #import "NSString+Extension.h"
 #import "CompanyInfo.h"
+#import "OPViewSupplier.h"
 
 @interface OPServerLoginViewController ()
 
@@ -46,9 +47,7 @@
         self.title = @"Switch Company";
     }
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.frame];
-    imageView.image = [UIImage imageNamed:@"bg"];
-    self.tableView.backgroundView = imageView;
+    self.tableView.tableFooterView = [OPViewSupplier footerViewForApp];
 }
 
 - (void)cancelAction
@@ -69,21 +68,11 @@
 {
     UIView *btnView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     btnView.backgroundColor = [UIColor clearColor];
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(190, 10, 117, 42);
-    [btn setTitle:@"Submit" forState:UIControlStateNormal];
-    [btn setTitleColor:self.buttonColor forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor darkTextColor] forState:UIControlStateHighlighted];    
-    btn.titleLabel.textColor = [UIColor blueColor];
-    [btn setBackgroundImage:[UIImage imageNamed:@"blank_gray_medium_btn"] forState:UIControlStateNormal];
+    UIButton *btn = [OPViewSupplier footerButton];
+    btn.frame = CGRectMake(50, 10, 217, 42);
+    [btn setTitle:@"Sign In" forState:UIControlStateNormal];    
     [btn addTarget:self action:@selector(fetchRestaurantInfo) forControlEvents:UIControlEventTouchUpInside];
     [btnView addSubview:btn];
-    
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        btnView.frame = CGRectMake(0, 0, self.view.frame.size.width, 65);
-        btn.frame = CGRectMake(90, 4, 133, 42);
-    }
     
     return btnView;
 }
@@ -124,16 +113,12 @@
             tf.borderStyle = UITextBorderStyleNone;
             tf.font = [UIFont systemFontOfSize:17];
             tf.returnKeyType = UIReturnKeyNext;
-            
             tf.clearButtonMode = UITextFieldViewModeWhileEditing;
             tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
             tf.delegate = self;
             tf.autocapitalizationType = UITextAutocapitalizationTypeNone;
             self.userNameTxtField = tf;
-            
-            [cell.contentView addSubview:self.userNameTxtField];
-            
-           
+            [cell.contentView addSubview:self.userNameTxtField];            
         }
         
         if(uname.length > 0)
@@ -177,7 +162,6 @@
             tf.keyboardType = UIKeyboardTypeEmailAddress;
             self.baseURLTxtField = tf;
             self.baseURLTxtField.placeholder = @"Company Code";
-            [tf becomeFirstResponder];
         } 
         [cell.contentView addSubview:self.baseURLTxtField];
     }
@@ -210,7 +194,7 @@
         }
     }
     
-    return NO;
+    return YES;
 }
 
 #pragma mark - Remote fetch
@@ -246,7 +230,7 @@
         [self.passwordTxtField resignFirstResponder];
         [self.baseURLTxtField resignFirstResponder];
         
-        [self showIndicatorView:@"Signing in, please wait..."];
+        self.indicatorView = [LoadingIndicatorView showLoadingIndicatorInView:self.view withMessage:@""];
         
         [CompanyInfo signInUsingUsername:self.userNameTxtField.text andPassword:self.passwordTxtField.text withCompanyCode:self.baseURLTxtField.text withExecutionBlock:^(BOOL success, Response *response)
          {
@@ -269,6 +253,7 @@
     NSLog(@"Login Response: %@", response.responseString);
     [NetworkConfig setUserName:self.userNameTxtField.text withPassword:self.passwordTxtField.text];    
     NSString *failedReason = [response.responseString contentForTag:@"RestInfo"];
+    [LoadingIndicatorView removeLoadingIndicator:self.indicatorView];
     if(failedReason == nil)
     {
         CompanyInfo *comp = (CompanyInfo *)[CompanyInfo parseXml:response.responseData];
@@ -299,7 +284,7 @@
 - (void)errorAlertWithReason:(NSString *)reason
 {
     [self removeIndicatorView];
-
+    [LoadingIndicatorView removeLoadingIndicator:self.indicatorView];
     NSString *title = @"Invalid user name or password";
     NSString *msg = @"Please retry.";
     

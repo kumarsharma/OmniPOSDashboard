@@ -14,6 +14,8 @@
 #import "RestaurantInfo.h"
 #import "CompanyInfo.h"
 #import "EXLocationListViewController.h"
+#import "EXMenuViewController.h"
+#import "OPViewSupplier.h"
 
 @interface EXPinViewController ()
 
@@ -24,6 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [loginBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    loginBtn.layer.cornerRadius = 5;
+    loginBtn.layer.borderColor = [[UIColor greenColor] CGColor];
+    loginBtn.layer.borderWidth = 1.3;
+    [loginBtn setBackgroundColor:[UIColor darkGrayColor]];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -169,11 +177,31 @@
 
 - (void)showExList
 {
-    EXLocationListViewController *lst = [[EXLocationListViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lst]; //[[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"ExNavController"];    
-    [navController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
-    navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:navController animated:YES completion:nil];
+    EXAppDelegate *app = [EXAppDelegate sharedAppDelegate];
+    
+    if(app.company.allLocations.count>0)
+    {
+        if(app.company.allLocations.count>1)
+        {
+            EXLocationListViewController *lst = [[EXLocationListViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lst]; //[[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"ExNavController"];    
+            [navController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
+            navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+            [self presentViewController:navController animated:YES completion:nil];
+        }
+        else
+        {
+            RestaurantInfo *r = [app.company.allLocations objectAtIndex:0];
+            app.currentRestaurantId = r.restaurantId;
+            app.restaurant = r;
+            app.selectedLocationName = r.name;   
+            EXMenuViewController *mc = [[EXMenuViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mc];    
+            [navController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
+            navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+            [self presentViewController:navController animated:YES completion:nil];
+        }
+    }
 }
 
 - (void)switchLocationAction
@@ -191,4 +219,92 @@
     [self presentViewController:navController animated:YES completion:nil];
 }
 
+//tableview
+#pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 65;
+}
+
+//the login button is presented with section footer view
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *btnView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    btnView.backgroundColor = [UIColor clearColor];
+    UIButton *btn = [OPViewSupplier footerButton];
+    btn.frame = CGRectMake(50, 10, 217, 42);
+    [btn setTitle:@"Sign In" forState:UIControlStateNormal];    
+    [btn addTarget:self action:@selector(loginBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [btnView addSubview:btn];
+    return btnView;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    CellIdentifier = [NSString stringWithFormat:@"cell_%ld", (long)indexPath.row];
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    float textWidth = cell.frame.size.width+60;
+    
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        textWidth = cell.frame.size.width-42;
+        
+    if(indexPath.row == 0)
+    {
+        if(nil == txtPIN)
+        {
+            UITextField *tf  = [[UITextField alloc] initWithFrame:CGRectMake(25, 0, textWidth, cell.frame.size.height)];
+            tf.borderStyle = UITextBorderStyleNone;
+            tf.font = [UIFont systemFontOfSize:17];
+            tf.returnKeyType = UIReturnKeyDone;
+            tf.secureTextEntry = YES;
+            tf.clearButtonMode = UITextFieldViewModeWhileEditing;
+            tf.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+            tf.delegate = self;
+            tf.autocapitalizationType = UITextAutocapitalizationTypeNone;
+            txtPIN = tf;
+            [cell.contentView addSubview:txtPIN];
+            tf.textAlignment=NSTextAlignmentCenter;
+            [tf becomeFirstResponder];
+            tf.placeholder = @"Enter PIN";
+            tf.keyboardType = UIKeyboardTypeNumberPad;
+        }
+    }
+    
+    return cell;
+}
+
+#pragma mark - TextField delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField.text.length > 0)
+    {
+        if(textField == txtPIN)
+        {
+            [textField resignFirstResponder];
+            [self loginBtnAction:nil];
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 @end

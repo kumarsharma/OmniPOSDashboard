@@ -2,25 +2,28 @@
 
 #import "LoadingIndicatorView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "DGActivityIndicatorView.h"
 
 @interface LoadingIndicatorView ()
 @property(nonatomic, retain) UILabel	*messageLabel;
+@property (nonatomic, strong) DGActivityIndicatorView *activityIndicatorView;
 -(void)addSubviews;
 @end
 
 @implementation LoadingIndicatorView
 
 @synthesize messageLabel;
+@synthesize activityIndicatorView;
 
 -(id)initWithFrame:(CGRect)frame{
 		
 	if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-		frame = CGRectMake(0, 0, 160, 160);
+		frame = CGRectMake(0, 0, 80, 60);
 	else
-		frame = CGRectMake(0, 0, 160, 140);	
+		frame = CGRectMake(0, 0, 80, 60);	
 	
 	if((self = [super initWithFrame:frame])){
-		self.backgroundColor = [UIColor darkTextColor];
+		self.backgroundColor = [UIColor darkGrayColor];
 		self.layer.cornerRadius = 10;
 		self.alpha = 0.85;
 		[self addSubviews];
@@ -30,6 +33,20 @@
 
 -(void)addSubviews{
     
+    if(nil == self.activityIndicatorView)
+    {
+        DGActivityIndicatorView *ind = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeBallClipRotate tintColor:[UIColor whiteColor]];
+        CGFloat width = 400;
+        CGFloat height = 400;
+        self.activityIndicatorView = ind;
+        self.activityIndicatorView.frame = CGRectMake(10, 10, width, height);
+        
+        [self addSubview:self.activityIndicatorView];
+    }
+    self.activityIndicatorView.center = self.center;
+    [self.activityIndicatorView startAnimating];
+    
+    /*
     UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 	[indicatorView startAnimating];	
 	indicatorView.center = CGPointMake(self.frame.size.width/2, (self.frame.size.height/2 - 45));
@@ -48,7 +65,7 @@
 	lbl.textColor = [UIColor whiteColor];
 	[self addSubview:lbl];
 	[self addSubview:indicatorView];
-	self.messageLabel = lbl;
+	self.messageLabel = lbl;*/
 }
 
 -(void)updateStatusMessage:(NSString*)statusMessage{
@@ -88,6 +105,7 @@
 {
     if(liv)
     {
+        [liv.activityIndicatorView stopAnimating];
         if([[UIApplication sharedApplication] isIgnoringInteractionEvents])
         {
             [[UIApplication sharedApplication] endIgnoringInteractionEvents];

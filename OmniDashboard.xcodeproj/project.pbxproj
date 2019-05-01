@@ -99,6 +99,8 @@
 		18FB1D0C18F440CC00EF914E /* EXLocationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FB1D0B18F440CC00EF914E /* EXLocationListViewController.m */; };
 		1A26BB43AB941F65CBC2C544 /* libPods-OmniDashboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FBCC84890BE1CB8D9763EAE /* libPods-OmniDashboard.a */; };
 		CE2EA8F422795014001DB320 /* AAChartView.html in Resources */ = {isa = PBXBuildFile; fileRef = CE2EA8F322795014001DB320 /* AAChartView.html */; };
+		CE2EA8FB22798EA7001DB320 /* omnipos_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2EA8FA22798EA6001DB320 /* omnipos_logo.png */; };
+		CE2EA8FE227991D9001DB320 /* OPViewSupplier.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2EA8FD227991D9001DB320 /* OPViewSupplier.m */; };
 		CE7030BC22754FA200381474 /* OPSaleSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7030BB22754FA200381474 /* OPSaleSummary.m */; };
 		CE7030BF227552D200381474 /* OPReportSection.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7030BE227552D200381474 /* OPReportSection.m */; };
 		CE782B28227690CA00C39913 /* RangePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B24227690C900C39913 /* RangePickerViewController.m */; };
@@ -331,6 +333,9 @@
 		18FB1D0A18F440CC00EF914E /* EXLocationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXLocationListViewController.h; sourceTree = "<group>"; };
 		18FB1D0B18F440CC00EF914E /* EXLocationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXLocationListViewController.m; sourceTree = "<group>"; };
 		CE2EA8F322795014001DB320 /* AAChartView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AAChartView.html; sourceTree = "<group>"; };
+		CE2EA8FA22798EA6001DB320 /* omnipos_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = omnipos_logo.png; sourceTree = "<group>"; };
+		CE2EA8FC227991D9001DB320 /* OPViewSupplier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPViewSupplier.h; sourceTree = "<group>"; };
+		CE2EA8FD227991D9001DB320 /* OPViewSupplier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPViewSupplier.m; sourceTree = "<group>"; };
 		CE7030BA22754FA200381474 /* OPSaleSummary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPSaleSummary.h; sourceTree = "<group>"; };
 		CE7030BB22754FA200381474 /* OPSaleSummary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPSaleSummary.m; sourceTree = "<group>"; };
 		CE7030BD227552D200381474 /* OPReportSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPReportSection.h; sourceTree = "<group>"; };
@@ -514,6 +519,7 @@
 		18BFD8191742A62C009822B7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CE2EA8FA22798EA6001DB320 /* omnipos_logo.png */,
 				CEFB3872209366D0004CAFE0 /* setting-icon.png */,
 				CE782B32227729D000C39913 /* user.png */,
 				CE782B3B2277338F00C39913 /* user4.png */,
@@ -837,6 +843,8 @@
 				CEFB386720930421004CAFE0 /* ADUtils.m */,
 				CEFB386A2093044E004CAFE0 /* OPXMLReader.h */,
 				CEFB38692093044E004CAFE0 /* OPXMLReader.m */,
+				CE2EA8FC227991D9001DB320 /* OPViewSupplier.h */,
+				CE2EA8FD227991D9001DB320 /* OPViewSupplier.m */,
 			);
 			path = KSTools;
 			sourceTree = "<group>";
@@ -1011,6 +1019,7 @@
 				CE2EA8F422795014001DB320 /* AAChartView.html in Resources */,
 				18E4EFCE1740CD3D004AAF7D /* Default@2x.png in Resources */,
 				18E4EFD01740CD3D004AAF7D /* Default-568h@2x.png in Resources */,
+				CE2EA8FB22798EA7001DB320 /* omnipos_logo.png in Resources */,
 				CE782B3C2277338F00C39913 /* user4.png in Resources */,
 				CE782B33227729D000C39913 /* user.png in Resources */,
 				18E4EFD31740CD3D004AAF7D /* MainStoryboard.storyboard in Resources */,
@@ -1128,6 +1137,7 @@
 				CE782B9D22773B5200C39913 /* DGActivityIndicatorNineDotsAnimation.m in Sources */,
 				18E4F0701740CFC3004AAF7D /* SBJSON.m in Sources */,
 				1848DD201965A96800E14F29 /* DDFileLogger.m in Sources */,
+				CE2EA8FE227991D9001DB320 /* OPViewSupplier.m in Sources */,
 				18FB1D0918F4395E00EF914E /* CompanyInfo.m in Sources */,
 				CE782B9122773B5200C39913 /* DGActivityIndicatorBallBeatAnimation.m in Sources */,
 				CE782BA122773B5200C39913 /* DGActivityIndicatorBallRotateAnimation.m in Sources */,
