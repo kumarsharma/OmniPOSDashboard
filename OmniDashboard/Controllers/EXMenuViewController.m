@@ -76,8 +76,8 @@
 
 -(void)handleRefresh : (id)sender
 {
-    [self fetchReports];
     [self.refreshController endRefreshing];
+    [self fetchReports];
 }
 
 - (void)settingsAction
@@ -206,7 +206,7 @@
 
 - (void)showDateView
 {
-    RangePickerViewController *vc = [[RangePickerViewController alloc] init];
+    RangePickerViewController *vc = [[RangePickerViewController alloc] initWithDate1:self.date1 Date2:self.date2];
     vc.delegate = self;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];
@@ -268,15 +268,19 @@
     {
         if(section == 1 || section == 2)
         {
-            OPReportItemCell *cell = [[OPReportItemCell alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 30)];
+            OPReportItemCell *cell = [[OPReportItemCell alloc] initWithFrame:CGRectMake(0, 65, self.tableView.frame.size.width, 30)];
             cell.titleLabel.text = @"Item";
             cell.countField.text = @"Qty";
             cell.totalAmountLabel.text = @"Amount";
             if(section == 1)
+            {
                 cell.titleLabel.text = @"Item";
+            }
             else
+            {
                 cell.titleLabel.text = @"Category";
-            
+            }
+
             return cell;
         }
     }
@@ -289,7 +293,7 @@
     {
         if(section == 1 || section == 2)
         {
-            return 20;
+            return 40;
         }
     }
     return 0;
@@ -301,20 +305,19 @@
     {
         if(section == 1)
         {
-            UIView *vv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 20)];
-            OPReportItemCell *cell = [[OPReportItemCell alloc] initWithFrame:CGRectMake(0, -10, self.tableView.frame.size.width, 20)];
+            OPReportItemCell *cell = [[OPReportItemCell alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 20)];
             cell.titleLabel.text = @"TOTAL";
             cell.countField.text = [NSString stringWithFormat:@"%0.2f", self.saleSummary.itemCountTotals];
             cell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", self.saleSummary.itemTotals];
             cell.titleLabel.font = [UIFont boldSystemFontOfSize:14];
             cell.countField.font = [UIFont boldSystemFontOfSize:14];
+
             cell.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
-            [vv addSubview:cell];
-            return vv;
+            return cell;
         }
         else
         {
-            OPReportItemCell *cell = [[OPReportItemCell alloc] initWithFrame:CGRectMake(0, -10, self.tableView.frame.size.width, 20)];
+            OPReportItemCell *cell = [[OPReportItemCell alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 20)];
             cell.titleLabel.text = @"TOTAL";
             cell.countField.text = [NSString stringWithFormat:@"%0.2f", self.saleSummary.categoryCountTotals];
             cell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", self.saleSummary.categoryTotals];

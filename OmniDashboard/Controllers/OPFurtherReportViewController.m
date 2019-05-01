@@ -83,8 +83,8 @@
 
 -(void)handleRefresh : (id)sender
 {
-    [self fetchReports];
     [self.refreshController endRefreshing];
+    [self fetchReports];
 }
 
 - (void)dateBtnAction
@@ -220,6 +220,48 @@
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if(self.saleSummary)
+    {
+        if(self.isItemSaleMode || self.isCategorySaleMode)
+        {
+            return 40;
+        }
+    }
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if(self.saleSummary)
+    {
+        if(self.isItemSaleMode)
+        {
+            OPReportItemCell *cell = [[OPReportItemCell alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 20)];
+            cell.titleLabel.text = @"TOTAL";
+            cell.countField.text = [NSString stringWithFormat:@"%0.2f", self.saleSummary.itemCountTotals];
+            cell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", self.saleSummary.itemTotals];
+            cell.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+            cell.countField.font = [UIFont boldSystemFontOfSize:14];
+            
+            cell.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
+            return cell;
+        }
+        else if(self.isCategorySaleMode)
+        {
+            OPReportItemCell *cell = [[OPReportItemCell alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 20)];
+            cell.titleLabel.text = @"TOTAL";
+            cell.countField.text = [NSString stringWithFormat:@"%0.2f", self.saleSummary.categoryCountTotals];
+            cell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", self.saleSummary.categoryTotals];
+            cell.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+            cell.countField.font = [UIFont boldSystemFontOfSize:14];
+            cell.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
+            return cell;
+        }
+    }
+    return nil;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

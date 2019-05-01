@@ -19,5 +19,6 @@
     __weak id<RangeDatePickerDelegate> delegate_;
 }
 
-@property (nonatomic, weak) id<RangeDatePickerDelegate> delegate; 
+@property (nonatomic, weak) id<RangeDatePickerDelegate> delegate;
+- (id)initWithDate1:(NSDate *)date_1 Date2:(NSDate *)date_2;
 @end

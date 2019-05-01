@@ -31,7 +31,19 @@
 @implementation RangePickerViewController
 @synthesize delegate;
 
-- (instancetype)init
+- (id)initWithDate1:(NSDate *)date_1 Date2:(NSDate *)date_2
+{
+    self = [super init];
+    if (self) {
+        self.title = @"FSCalendar";
+        self.date1=date_1;
+        self.date2 = date_2;
+    }
+    return self;
+}
+
+
+- (id)init
 {
     self = [super init];
     if (self) {
@@ -72,7 +84,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Select date/date range";
+    self.title = @"Select date range";
     UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneBtnAction)];
     self.navigationItem.rightBarButtonItem = btnDone;
     
