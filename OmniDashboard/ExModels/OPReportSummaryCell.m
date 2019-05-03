@@ -12,8 +12,9 @@
 
 @implementation OPReportSummaryCell
 @synthesize grossSaleLabel, salesLabel, avgSalesLabel;
-@synthesize chartView;
 @synthesize saleSummary;
+@synthesize webview;
+@synthesize chartView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -54,26 +55,59 @@
     [self.contentView addSubview:self.grossSaleLabel];
     [self.contentView addSubview:self.salesLabel];
     [self.contentView addSubview:self.avgSalesLabel];
+
+    self.chartView = [[UIView alloc] initWithFrame:CGRectMake(1, labelHeight+5, self.frame.size.width, 210)];        
+    WKWebView *webview = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.chartView.frame.size.width, 180)];
+    webview.UIDelegate = self;
+    [webview setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.chartView addSubview:webview];
+    
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(webview);
+    [self.chartView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[webview]|" options:0 metrics:nil views:viewsDictionary]];
+    [self.chartView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[webview]|" options:0 metrics:nil views:viewsDictionary]];
+    
+    self.webview = webview;
+    NSString *resourcesPath = [[NSBundle mainBundle] resourcePath];
+    NSString *htmlPath = [resourcesPath stringByAppendingString:@"/cw.html"];
+    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:htmlPath]]];
+    [self.contentView addSubview:self.chartView];    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    
 }
 
 - (void)reloadViews
 {
-    if(self.chartView)
-        [self.chartView removeFromSuperview];
-    float labelHeight = 60;
-    NSArray *vals = [NSArray arrayWithObjects:
-                     [NSNumber numberWithFloat:self.saleSummary.totalCash],
-                     [NSNumber numberWithInt:self.saleSummary.totalCard],
-                     [NSNumber numberWithInt:self.saleSummary.totalVoucher],
-                     [NSNumber numberWithInt:self.saleSummary.totalOnAccount],
-                     [NSNumber numberWithInt:self.saleSummary.totalMix],
-                     nil];
-    NSArray *refs = [NSArray arrayWithObjects:@"Cash", @"Card", @"Voucher", @"On A/c", @"Others", nil];
-
-    DSBarChart *chrt = [[DSBarChart alloc] initWithFrame:CGRectMake(1, labelHeight+20, self.frame.size.width, 200) color:[UIColor blackColor] references:refs andValues:vals];
-    chrt.backgroundColor = [UIColor clearColor];
-    self.chartView = chrt;
-    [self.contentView addSubview:chrt];
+    NSArray* labels = [NSMutableArray arrayWithArray:@[@"Cash",@"Card",@"Voucher",@"On A/c", @"Others"]];
+    NSMutableArray* datasets = [NSMutableArray array];
+    for(NSInteger i = 1; i <= 1; i++) {
+        CWBarDataSet* ds = nil;
+        
+        if(i==1)
+            ds = [[CWBarDataSet alloc] initWithData:@[@(self.saleSummary.totalCash),@(self.saleSummary.totalCard),@(self.saleSummary.totalVoucher),@(self.saleSummary.totalOnAccount),@(self.saleSummary.totalMix)]];
+        
+        /*
+        else if(i==2)
+            ds = [[CWBarDataSet alloc] initWithData:@[@(self.saleSummary.totalCard)]];
+        else if(i==3)
+            ds = [[CWBarDataSet alloc] initWithData:@[@(self.saleSummary.totalVoucher)]];
+        else if(i==4)
+            ds = [[CWBarDataSet alloc] initWithData:@[@(self.saleSummary.totalOnAccount)]];
+        else if(i==5)
+            ds = [[CWBarDataSet alloc] initWithData:@[@(self.saleSummary.totalMix)]];*/
+        
+        ds.label = [NSString stringWithFormat:@"Label %ld",i];
+        CWColor* c1 = [[CWColors sharedColors] pickColor];
+        CWColor* c2 = [c1 colorWithAlphaComponent:1.0f];
+        ds.fillColor = c2;
+        ds.strokeColor = c1;
+        [datasets addObject:ds];
+    }    
+    CWBarChartData* bcd = [[CWBarChartData alloc] initWithLabels:labels andDataSet:datasets];
+    CWBarChart* bc = [[CWBarChart alloc] initWithWebView:self.webview name:@"BarChart1" width:300 height:200 data:bcd options:nil];
+    [bc addChart];
 }
 
 - (UILabel *)createLabelWithRect:(CGRect)rect text:(NSString *)text bgColor:(UIColor *)color font:(UIFont*)font
@@ -88,5 +122,8 @@
     return label;
 }
 
+- (NSInteger) random:(NSInteger) max {
+    return (NSInteger)arc4random_uniform((u_int32_t)max);
+}
 
 @end

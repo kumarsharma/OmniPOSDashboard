@@ -24,7 +24,7 @@
     [super viewDidLoad];
     self.title = @"Locations";
     self.tableView.tableFooterView = [OPViewSupplier footerViewForApp];
-    UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"user4"] style:UIBarButtonItemStyleDone target:self action:@selector(settingsAction)];
+    UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"avatar"] style:UIBarButtonItemStyleDone target:self action:@selector(settingsAction)];
     self.navigationItem.rightBarButtonItem = settingsBtn;
 }
 - (void)viewWillAppear:(BOOL)animated{

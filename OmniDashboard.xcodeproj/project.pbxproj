@@ -102,15 +102,23 @@
 		CE2EA8FB22798EA7001DB320 /* omnipos_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2EA8FA22798EA6001DB320 /* omnipos_logo.png */; };
 		CE2EA8FE227991D9001DB320 /* OPViewSupplier.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2EA8FD227991D9001DB320 /* OPViewSupplier.m */; };
 		CE2EA9012279E965001DB320 /* OPCategoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2EA9002279E965001DB320 /* OPCategoryItem.m */; };
+		CE34FD3D227C6D880000D944 /* Chart.min.js in Resources */ = {isa = PBXBuildFile; fileRef = CE34FD38227C6D880000D944 /* Chart.min.js */; };
+		CE34FD3E227C6D880000D944 /* cw.js in Resources */ = {isa = PBXBuildFile; fileRef = CE34FD39227C6D880000D944 /* cw.js */; };
+		CE34FD3F227C6D880000D944 /* datasets.js in Resources */ = {isa = PBXBuildFile; fileRef = CE34FD3A227C6D880000D944 /* datasets.js */; };
+		CE34FD40227C6D880000D944 /* Chart.js in Resources */ = {isa = PBXBuildFile; fileRef = CE34FD3B227C6D880000D944 /* Chart.js */; };
+		CE34FD41227C6D880000D944 /* cw.html in Resources */ = {isa = PBXBuildFile; fileRef = CE34FD3C227C6D880000D944 /* cw.html */; };
+		CE34FD43227C743D0000D944 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = CE34FD42227C743D0000D944 /* avatar.png */; };
+		CE34FD47227C76050000D944 /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = CE34FD46227C76040000D944 /* arrow_left.png */; };
+		CE34FD49227C76A10000D944 /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = CE34FD48227C76A10000D944 /* arrow_right.png */; };
+		CE34FD4B227C86B20000D944 /* arrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = CE34FD4A227C86B20000D944 /* arrowLeft.png */; };
+		CE34FD4D227C886A0000D944 /* arrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = CE34FD4C227C886A0000D944 /* arrowRight.png */; };
 		CE7030BC22754FA200381474 /* OPSaleSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7030BB22754FA200381474 /* OPSaleSummary.m */; };
 		CE7030BF227552D200381474 /* OPReportSection.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7030BE227552D200381474 /* OPReportSection.m */; };
 		CE782B28227690CA00C39913 /* RangePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B24227690C900C39913 /* RangePickerViewController.m */; };
 		CE782B29227690CA00C39913 /* RangePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B27227690CA00C39913 /* RangePickerCell.m */; };
 		CE782B2C227690EF00C39913 /* FSCalendarExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B2B227690EF00C39913 /* FSCalendarExtensions.m */; };
 		CE782B31227716A400C39913 /* OPReportItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B30227716A400C39913 /* OPReportItemCell.m */; };
-		CE782B33227729D000C39913 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = CE782B32227729D000C39913 /* user.png */; };
 		CE782B3622772D0100C39913 /* OPTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B3522772D0100C39913 /* OPTermsViewController.m */; };
-		CE782B3C2277338F00C39913 /* user4.png in Resources */ = {isa = PBXBuildFile; fileRef = CE782B3B2277338F00C39913 /* user4.png */; };
 		CE782B4A22773B3E00C39913 /* DGActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B4922773B3E00C39913 /* DGActivityIndicatorView.m */; };
 		CE782B9022773B5200C39913 /* DGActivityIndicatorBallGridPulseAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B4C22773B4F00C39913 /* DGActivityIndicatorBallGridPulseAnimation.m */; };
 		CE782B9122773B5200C39913 /* DGActivityIndicatorBallBeatAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B4E22773B4F00C39913 /* DGActivityIndicatorBallBeatAnimation.m */; };
@@ -146,8 +154,32 @@
 		CE782BAF22773B5200C39913 /* DGActivityIndicatorRotatingSquaresAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B8B22773B5200C39913 /* DGActivityIndicatorRotatingSquaresAnimation.m */; };
 		CE782BB022773B5200C39913 /* DGActivityIndicatorTriplePulseAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B8C22773B5200C39913 /* DGActivityIndicatorTriplePulseAnimation.m */; };
 		CE782BB122773B5200C39913 /* DGActivityIndicatorLineScalePartyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B8E22773B5200C39913 /* DGActivityIndicatorLineScalePartyAnimation.m */; };
+		CE7F25A0227C655200EF0F89 /* CWData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F2594227C655100EF0F89 /* CWData.m */; };
+		CE7F25A1227C655200EF0F89 /* CWObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F2595227C655100EF0F89 /* CWObject.m */; };
+		CE7F25A2227C655200EF0F89 /* CWSegmentData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F2596227C655100EF0F89 /* CWSegmentData.m */; };
+		CE7F25A3227C655200EF0F89 /* CWBoolean.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F259A227C655100EF0F89 /* CWBoolean.m */; };
+		CE7F25A4227C655200EF0F89 /* CWColors.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F259B227C655100EF0F89 /* CWColors.m */; };
+		CE7F25A5227C655200EF0F89 /* CWChart.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F259C227C655100EF0F89 /* CWChart.m */; };
+		CE7F25A6227C655200EF0F89 /* CWGlobalOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F259F227C655200EF0F89 /* CWGlobalOptions.m */; };
+		CE7F25AE227C656900EF0F89 /* CWLabelledData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25A8227C656800EF0F89 /* CWLabelledData.m */; };
+		CE7F25AF227C656900EF0F89 /* CWDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25A9227C656800EF0F89 /* CWDataSet.m */; };
+		CE7F25B0227C656900EF0F89 /* CWPointDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25AB227C656900EF0F89 /* CWPointDataSet.m */; };
+		CE7F25B8227C658100EF0F89 /* CWLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25B4227C658100EF0F89 /* CWLineChartData.m */; };
+		CE7F25B9227C658100EF0F89 /* CWLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25B5227C658100EF0F89 /* CWLineChart.m */; };
+		CE7F25BA227C658100EF0F89 /* CWLineChartOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25B7227C658100EF0F89 /* CWLineChartOptions.m */; };
+		CE7F25C4227C659700EF0F89 /* CWBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25BF227C659700EF0F89 /* CWBarChart.m */; };
+		CE7F25C5227C659700EF0F89 /* CWBarChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25C0227C659700EF0F89 /* CWBarChartData.m */; };
+		CE7F25C6227C659700EF0F89 /* CWBarDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25C1227C659700EF0F89 /* CWBarDataSet.m */; };
+		CE7F25C7227C659700EF0F89 /* CWBarChartOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25C2227C659700EF0F89 /* CWBarChartOptions.m */; };
+		CE7F25CF227C65AF00EF0F89 /* CWPieChartOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25C9227C65AF00EF0F89 /* CWPieChartOptions.m */; };
+		CE7F25D0227C65AF00EF0F89 /* CWDoughnutChart.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25CC227C65AF00EF0F89 /* CWDoughnutChart.m */; };
+		CE7F25D1227C65AF00EF0F89 /* CWPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25CD227C65AF00EF0F89 /* CWPieChart.m */; };
+		CE7F25D7227C66AB00EF0F89 /* CWPolarAreaChartOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25D5227C66AB00EF0F89 /* CWPolarAreaChartOptions.m */; };
+		CE7F25D8227C66AB00EF0F89 /* CWPolarAreaChart.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25D6227C66AB00EF0F89 /* CWPolarAreaChart.m */; };
+		CE7F25E0227C66E100EF0F89 /* CWRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25DB227C66E000EF0F89 /* CWRadarChart.m */; };
+		CE7F25E1227C66E100EF0F89 /* CWRadarChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25DC227C66E000EF0F89 /* CWRadarChartData.m */; };
+		CE7F25E2227C66E100EF0F89 /* CWRadarChartOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25DF227C66E100EF0F89 /* CWRadarChartOptions.m */; };
 		CEB517202278B470003AE3C9 /* OPReportSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB5171F2278B470003AE3C9 /* OPReportSummaryCell.m */; };
-		CEB517242278B646003AE3C9 /* DSBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB517232278B646003AE3C9 /* DSBarChart.m */; };
 		CEB517272278C992003AE3C9 /* OPFurtherReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB517262278C992003AE3C9 /* OPFurtherReportViewController.m */; };
 		CEFB386820930421004CAFE0 /* ADUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFB386720930421004CAFE0 /* ADUtils.m */; };
 		CEFB386B2093044F004CAFE0 /* OPXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFB38692093044E004CAFE0 /* OPXMLReader.m */; };
@@ -339,6 +371,16 @@
 		CE2EA8FD227991D9001DB320 /* OPViewSupplier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPViewSupplier.m; sourceTree = "<group>"; };
 		CE2EA8FF2279E965001DB320 /* OPCategoryItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPCategoryItem.h; sourceTree = "<group>"; };
 		CE2EA9002279E965001DB320 /* OPCategoryItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPCategoryItem.m; sourceTree = "<group>"; };
+		CE34FD38227C6D880000D944 /* Chart.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Chart.min.js; sourceTree = "<group>"; };
+		CE34FD39227C6D880000D944 /* cw.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cw.js; sourceTree = "<group>"; };
+		CE34FD3A227C6D880000D944 /* datasets.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = datasets.js; sourceTree = "<group>"; };
+		CE34FD3B227C6D880000D944 /* Chart.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Chart.js; sourceTree = "<group>"; };
+		CE34FD3C227C6D880000D944 /* cw.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = cw.html; sourceTree = "<group>"; };
+		CE34FD42227C743D0000D944 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
+		CE34FD46227C76040000D944 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
+		CE34FD48227C76A10000D944 /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
+		CE34FD4A227C86B20000D944 /* arrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowLeft.png; sourceTree = "<group>"; };
+		CE34FD4C227C886A0000D944 /* arrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowRight.png; sourceTree = "<group>"; };
 		CE7030BA22754FA200381474 /* OPSaleSummary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPSaleSummary.h; sourceTree = "<group>"; };
 		CE7030BB22754FA200381474 /* OPSaleSummary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPSaleSummary.m; sourceTree = "<group>"; };
 		CE7030BD227552D200381474 /* OPReportSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPReportSection.h; sourceTree = "<group>"; };
@@ -351,10 +393,8 @@
 		CE782B2B227690EF00C39913 /* FSCalendarExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarExtensions.m; sourceTree = "<group>"; };
 		CE782B2F227716A400C39913 /* OPReportItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPReportItemCell.h; sourceTree = "<group>"; };
 		CE782B30227716A400C39913 /* OPReportItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPReportItemCell.m; sourceTree = "<group>"; };
-		CE782B32227729D000C39913 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		CE782B3422772D0100C39913 /* OPTermsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTermsViewController.h; sourceTree = "<group>"; };
 		CE782B3522772D0100C39913 /* OPTermsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPTermsViewController.m; sourceTree = "<group>"; };
-		CE782B3B2277338F00C39913 /* user4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user4.png; sourceTree = "<group>"; };
 		CE782B4722773B3E00C39913 /* DGActivityIndicatorAnimationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DGActivityIndicatorAnimationProtocol.h; sourceTree = "<group>"; };
 		CE782B4822773B3E00C39913 /* DGActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DGActivityIndicatorView.h; sourceTree = "<group>"; };
 		CE782B4922773B3E00C39913 /* DGActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DGActivityIndicatorView.m; sourceTree = "<group>"; };
@@ -426,10 +466,60 @@
 		CE782B8D22773B5200C39913 /* DGActivityIndicatorBallScaleMultipleAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DGActivityIndicatorBallScaleMultipleAnimation.h; sourceTree = "<group>"; };
 		CE782B8E22773B5200C39913 /* DGActivityIndicatorLineScalePartyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DGActivityIndicatorLineScalePartyAnimation.m; sourceTree = "<group>"; };
 		CE782B8F22773B5200C39913 /* DGActivityIndicatorRotatingSandglassAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DGActivityIndicatorRotatingSandglassAnimation.h; sourceTree = "<group>"; };
+		CE7F258F227C653A00EF0F89 /* CWTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWTypes.h; sourceTree = "<group>"; };
+		CE7F2590227C653A00EF0F89 /* CW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CW.h; sourceTree = "<group>"; };
+		CE7F2592227C655100EF0F89 /* CWChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWChart.h; sourceTree = "<group>"; };
+		CE7F2593227C655100EF0F89 /* CWBoolean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWBoolean.h; sourceTree = "<group>"; };
+		CE7F2594227C655100EF0F89 /* CWData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWData.m; sourceTree = "<group>"; };
+		CE7F2595227C655100EF0F89 /* CWObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWObject.m; sourceTree = "<group>"; };
+		CE7F2596227C655100EF0F89 /* CWSegmentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWSegmentData.m; sourceTree = "<group>"; };
+		CE7F2597227C655100EF0F89 /* CWSegmentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWSegmentData.h; sourceTree = "<group>"; };
+		CE7F2598227C655100EF0F89 /* CWColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWColors.h; sourceTree = "<group>"; };
+		CE7F2599227C655100EF0F89 /* CWGlobalOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWGlobalOptions.h; sourceTree = "<group>"; };
+		CE7F259A227C655100EF0F89 /* CWBoolean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWBoolean.m; sourceTree = "<group>"; };
+		CE7F259B227C655100EF0F89 /* CWColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWColors.m; sourceTree = "<group>"; };
+		CE7F259C227C655100EF0F89 /* CWChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWChart.m; sourceTree = "<group>"; };
+		CE7F259D227C655200EF0F89 /* CWObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWObject.h; sourceTree = "<group>"; };
+		CE7F259E227C655200EF0F89 /* CWData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWData.h; sourceTree = "<group>"; };
+		CE7F259F227C655200EF0F89 /* CWGlobalOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWGlobalOptions.m; sourceTree = "<group>"; };
+		CE7F25A8227C656800EF0F89 /* CWLabelledData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLabelledData.m; sourceTree = "<group>"; };
+		CE7F25A9227C656800EF0F89 /* CWDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDataSet.m; sourceTree = "<group>"; };
+		CE7F25AA227C656800EF0F89 /* CWPointDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWPointDataSet.h; sourceTree = "<group>"; };
+		CE7F25AB227C656900EF0F89 /* CWPointDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWPointDataSet.m; sourceTree = "<group>"; };
+		CE7F25AC227C656900EF0F89 /* CWLabelledData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLabelledData.h; sourceTree = "<group>"; };
+		CE7F25AD227C656900EF0F89 /* CWDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDataSet.h; sourceTree = "<group>"; };
+		CE7F25B2227C658100EF0F89 /* CWLineChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLineChartData.h; sourceTree = "<group>"; };
+		CE7F25B3227C658100EF0F89 /* CWLineChartOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLineChartOptions.h; sourceTree = "<group>"; };
+		CE7F25B4227C658100EF0F89 /* CWLineChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLineChartData.m; sourceTree = "<group>"; };
+		CE7F25B5227C658100EF0F89 /* CWLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLineChart.m; sourceTree = "<group>"; };
+		CE7F25B6227C658100EF0F89 /* CWLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLineChart.h; sourceTree = "<group>"; };
+		CE7F25B7227C658100EF0F89 /* CWLineChartOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLineChartOptions.m; sourceTree = "<group>"; };
+		CE7F25BC227C659700EF0F89 /* CWBarChartOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWBarChartOptions.h; sourceTree = "<group>"; };
+		CE7F25BD227C659700EF0F89 /* CWBarChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWBarChartData.h; sourceTree = "<group>"; };
+		CE7F25BE227C659700EF0F89 /* CWBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWBarChart.h; sourceTree = "<group>"; };
+		CE7F25BF227C659700EF0F89 /* CWBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWBarChart.m; sourceTree = "<group>"; };
+		CE7F25C0227C659700EF0F89 /* CWBarChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWBarChartData.m; sourceTree = "<group>"; };
+		CE7F25C1227C659700EF0F89 /* CWBarDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWBarDataSet.m; sourceTree = "<group>"; };
+		CE7F25C2227C659700EF0F89 /* CWBarChartOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWBarChartOptions.m; sourceTree = "<group>"; };
+		CE7F25C3227C659700EF0F89 /* CWBarDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWBarDataSet.h; sourceTree = "<group>"; };
+		CE7F25C9227C65AF00EF0F89 /* CWPieChartOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWPieChartOptions.m; sourceTree = "<group>"; };
+		CE7F25CA227C65AF00EF0F89 /* CWDoughnutChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDoughnutChart.h; sourceTree = "<group>"; };
+		CE7F25CB227C65AF00EF0F89 /* CWPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWPieChart.h; sourceTree = "<group>"; };
+		CE7F25CC227C65AF00EF0F89 /* CWDoughnutChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDoughnutChart.m; sourceTree = "<group>"; };
+		CE7F25CD227C65AF00EF0F89 /* CWPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWPieChart.m; sourceTree = "<group>"; };
+		CE7F25CE227C65AF00EF0F89 /* CWPieChartOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWPieChartOptions.h; sourceTree = "<group>"; };
+		CE7F25D3227C66AB00EF0F89 /* CWPolarAreaChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWPolarAreaChart.h; sourceTree = "<group>"; };
+		CE7F25D4227C66AB00EF0F89 /* CWPolarAreaChartOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWPolarAreaChartOptions.h; sourceTree = "<group>"; };
+		CE7F25D5227C66AB00EF0F89 /* CWPolarAreaChartOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWPolarAreaChartOptions.m; sourceTree = "<group>"; };
+		CE7F25D6227C66AB00EF0F89 /* CWPolarAreaChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWPolarAreaChart.m; sourceTree = "<group>"; };
+		CE7F25DA227C66E000EF0F89 /* CWRadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWRadarChart.h; sourceTree = "<group>"; };
+		CE7F25DB227C66E000EF0F89 /* CWRadarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWRadarChart.m; sourceTree = "<group>"; };
+		CE7F25DC227C66E000EF0F89 /* CWRadarChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWRadarChartData.m; sourceTree = "<group>"; };
+		CE7F25DD227C66E000EF0F89 /* CWRadarChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWRadarChartData.h; sourceTree = "<group>"; };
+		CE7F25DE227C66E100EF0F89 /* CWRadarChartOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWRadarChartOptions.h; sourceTree = "<group>"; };
+		CE7F25DF227C66E100EF0F89 /* CWRadarChartOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWRadarChartOptions.m; sourceTree = "<group>"; };
 		CEB5171E2278B470003AE3C9 /* OPReportSummaryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPReportSummaryCell.h; sourceTree = "<group>"; };
 		CEB5171F2278B470003AE3C9 /* OPReportSummaryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPReportSummaryCell.m; sourceTree = "<group>"; };
-		CEB517222278B646003AE3C9 /* DSBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSBarChart.h; sourceTree = "<group>"; };
-		CEB517232278B646003AE3C9 /* DSBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSBarChart.m; sourceTree = "<group>"; };
 		CEB517252278C992003AE3C9 /* OPFurtherReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPFurtherReportViewController.h; sourceTree = "<group>"; };
 		CEB517262278C992003AE3C9 /* OPFurtherReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPFurtherReportViewController.m; sourceTree = "<group>"; };
 		CEFB386620930421004CAFE0 /* ADUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADUtils.h; sourceTree = "<group>"; };
@@ -522,10 +612,13 @@
 		18BFD8191742A62C009822B7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CE34FD4C227C886A0000D944 /* arrowRight.png */,
 				CE2EA8FA22798EA6001DB320 /* omnipos_logo.png */,
 				CEFB3872209366D0004CAFE0 /* setting-icon.png */,
-				CE782B32227729D000C39913 /* user.png */,
-				CE782B3B2277338F00C39913 /* user4.png */,
+				CE34FD42227C743D0000D944 /* avatar.png */,
+				CE34FD46227C76040000D944 /* arrow_left.png */,
+				CE34FD48227C76A10000D944 /* arrow_right.png */,
+				CE34FD4A227C86B20000D944 /* arrowLeft.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -641,6 +734,11 @@
 				18E4EFCB1740CD3D004AAF7D /* Default.png */,
 				18E4EFCD1740CD3D004AAF7D /* Default@2x.png */,
 				18E4EFCF1740CD3D004AAF7D /* Default-568h@2x.png */,
+				CE34FD3B227C6D880000D944 /* Chart.js */,
+				CE34FD38227C6D880000D944 /* Chart.min.js */,
+				CE34FD3C227C6D880000D944 /* cw.html */,
+				CE34FD39227C6D880000D944 /* cw.js */,
+				CE34FD3A227C6D880000D944 /* datasets.js */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -940,11 +1038,133 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
+		CE7F2583227C64ED00EF0F89 /* CW */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F2590227C653A00EF0F89 /* CW.h */,
+				CE7F258F227C653A00EF0F89 /* CWTypes.h */,
+				CE7F25D9227C66D500EF0F89 /* Radar */,
+				CE7F25D2227C669D00EF0F89 /* Polar */,
+				CE7F25C8227C65A100EF0F89 /* PieChart */,
+				CE7F25BB227C658B00EF0F89 /* BarChart */,
+				CE7F25B1227C657600EF0F89 /* LineChart */,
+				CE7F25A7227C655A00EF0F89 /* DataSets */,
+				CE7F2591227C654500EF0F89 /* Core */,
+				CE7F2584227C651D00EF0F89 /* Assets */,
+			);
+			path = CW;
+			sourceTree = "<group>";
+		};
+		CE7F2584227C651D00EF0F89 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		CE7F2591227C654500EF0F89 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F2593227C655100EF0F89 /* CWBoolean.h */,
+				CE7F259A227C655100EF0F89 /* CWBoolean.m */,
+				CE7F2592227C655100EF0F89 /* CWChart.h */,
+				CE7F259C227C655100EF0F89 /* CWChart.m */,
+				CE7F2598227C655100EF0F89 /* CWColors.h */,
+				CE7F259B227C655100EF0F89 /* CWColors.m */,
+				CE7F259E227C655200EF0F89 /* CWData.h */,
+				CE7F2594227C655100EF0F89 /* CWData.m */,
+				CE7F2599227C655100EF0F89 /* CWGlobalOptions.h */,
+				CE7F259F227C655200EF0F89 /* CWGlobalOptions.m */,
+				CE7F259D227C655200EF0F89 /* CWObject.h */,
+				CE7F2595227C655100EF0F89 /* CWObject.m */,
+				CE7F2597227C655100EF0F89 /* CWSegmentData.h */,
+				CE7F2596227C655100EF0F89 /* CWSegmentData.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		CE7F25A7227C655A00EF0F89 /* DataSets */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F25AD227C656900EF0F89 /* CWDataSet.h */,
+				CE7F25A9227C656800EF0F89 /* CWDataSet.m */,
+				CE7F25AC227C656900EF0F89 /* CWLabelledData.h */,
+				CE7F25A8227C656800EF0F89 /* CWLabelledData.m */,
+				CE7F25AA227C656800EF0F89 /* CWPointDataSet.h */,
+				CE7F25AB227C656900EF0F89 /* CWPointDataSet.m */,
+			);
+			path = DataSets;
+			sourceTree = "<group>";
+		};
+		CE7F25B1227C657600EF0F89 /* LineChart */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F25B6227C658100EF0F89 /* CWLineChart.h */,
+				CE7F25B5227C658100EF0F89 /* CWLineChart.m */,
+				CE7F25B2227C658100EF0F89 /* CWLineChartData.h */,
+				CE7F25B4227C658100EF0F89 /* CWLineChartData.m */,
+				CE7F25B3227C658100EF0F89 /* CWLineChartOptions.h */,
+				CE7F25B7227C658100EF0F89 /* CWLineChartOptions.m */,
+			);
+			path = LineChart;
+			sourceTree = "<group>";
+		};
+		CE7F25BB227C658B00EF0F89 /* BarChart */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F25BE227C659700EF0F89 /* CWBarChart.h */,
+				CE7F25BF227C659700EF0F89 /* CWBarChart.m */,
+				CE7F25BD227C659700EF0F89 /* CWBarChartData.h */,
+				CE7F25C0227C659700EF0F89 /* CWBarChartData.m */,
+				CE7F25BC227C659700EF0F89 /* CWBarChartOptions.h */,
+				CE7F25C2227C659700EF0F89 /* CWBarChartOptions.m */,
+				CE7F25C3227C659700EF0F89 /* CWBarDataSet.h */,
+				CE7F25C1227C659700EF0F89 /* CWBarDataSet.m */,
+			);
+			path = BarChart;
+			sourceTree = "<group>";
+		};
+		CE7F25C8227C65A100EF0F89 /* PieChart */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F25CA227C65AF00EF0F89 /* CWDoughnutChart.h */,
+				CE7F25CC227C65AF00EF0F89 /* CWDoughnutChart.m */,
+				CE7F25CB227C65AF00EF0F89 /* CWPieChart.h */,
+				CE7F25CD227C65AF00EF0F89 /* CWPieChart.m */,
+				CE7F25CE227C65AF00EF0F89 /* CWPieChartOptions.h */,
+				CE7F25C9227C65AF00EF0F89 /* CWPieChartOptions.m */,
+			);
+			path = PieChart;
+			sourceTree = "<group>";
+		};
+		CE7F25D2227C669D00EF0F89 /* Polar */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F25D3227C66AB00EF0F89 /* CWPolarAreaChart.h */,
+				CE7F25D6227C66AB00EF0F89 /* CWPolarAreaChart.m */,
+				CE7F25D4227C66AB00EF0F89 /* CWPolarAreaChartOptions.h */,
+				CE7F25D5227C66AB00EF0F89 /* CWPolarAreaChartOptions.m */,
+			);
+			path = Polar;
+			sourceTree = "<group>";
+		};
+		CE7F25D9227C66D500EF0F89 /* Radar */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F25DA227C66E000EF0F89 /* CWRadarChart.h */,
+				CE7F25DB227C66E000EF0F89 /* CWRadarChart.m */,
+				CE7F25DD227C66E000EF0F89 /* CWRadarChartData.h */,
+				CE7F25DC227C66E000EF0F89 /* CWRadarChartData.m */,
+				CE7F25DE227C66E100EF0F89 /* CWRadarChartOptions.h */,
+				CE7F25DF227C66E100EF0F89 /* CWRadarChartOptions.m */,
+			);
+			path = Radar;
+			sourceTree = "<group>";
+		};
 		CEB517212278B631003AE3C9 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
-				CEB517222278B646003AE3C9 /* DSBarChart.h */,
-				CEB517232278B646003AE3C9 /* DSBarChart.m */,
+				CE7F2583227C64ED00EF0F89 /* CW */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -1020,21 +1240,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				18E4EFC41740CD3D004AAF7D /* InfoPlist.strings in Resources */,
+				CE34FD3F227C6D880000D944 /* datasets.js in Resources */,
 				18E4EFCC1740CD3D004AAF7D /* Default.png in Resources */,
 				CE2EA8F422795014001DB320 /* AAChartView.html in Resources */,
 				18E4EFCE1740CD3D004AAF7D /* Default@2x.png in Resources */,
+				CE34FD47227C76050000D944 /* arrow_left.png in Resources */,
 				18E4EFD01740CD3D004AAF7D /* Default-568h@2x.png in Resources */,
 				CE2EA8FB22798EA7001DB320 /* omnipos_logo.png in Resources */,
-				CE782B3C2277338F00C39913 /* user4.png in Resources */,
-				CE782B33227729D000C39913 /* user.png in Resources */,
+				CE34FD3E227C6D880000D944 /* cw.js in Resources */,
+				CE34FD40227C6D880000D944 /* Chart.js in Resources */,
+				CE34FD3D227C6D880000D944 /* Chart.min.js in Resources */,
+				CE34FD49227C76A10000D944 /* arrow_right.png in Resources */,
+				CE34FD43227C743D0000D944 /* avatar.png in Resources */,
+				CE34FD41227C6D880000D944 /* cw.html in Resources */,
 				18E4EFD31740CD3D004AAF7D /* MainStoryboard.storyboard in Resources */,
 				1848DD251965A96800E14F29 /* README.txt in Resources */,
 				CEFB3873209366D1004CAFE0 /* setting-icon.png in Resources */,
 				1848DD261965A96800E14F29 /* LICENSE.txt in Resources */,
+				CE34FD4D227C886A0000D944 /* arrowRight.png in Resources */,
 				CEFB387820937A66004CAFE0 /* Images.xcassets in Resources */,
 				188864011A49CDFB0068DCD0 /* left_arrow.png in Resources */,
 				188864031A49CDFB0068DCD0 /* right_arrow.png in Resources */,
 				188864041A49CDFB0068DCD0 /* right_arrow@2x.png in Resources */,
+				CE34FD4B227C86B20000D944 /* arrowLeft.png in Resources */,
 				188864021A49CDFB0068DCD0 /* left_arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1103,6 +1331,7 @@
 				18E4EFC61740CD3D004AAF7D /* main.m in Sources */,
 				18E4EFCA1740CD3D004AAF7D /* EXAppDelegate.m in Sources */,
 				18E4EFD61740CD3D004AAF7D /* EXPinViewController.m in Sources */,
+				CE7F25E0227C66E100EF0F89 /* CWRadarChart.m in Sources */,
 				18E4EFE51740CFB1004AAF7D /* OPServerLoginViewController.m in Sources */,
 				1848DD1E1965A96800E14F29 /* DDAbstractDatabaseLogger.m in Sources */,
 				CE782B9622773B5200C39913 /* DGActivityIndicatorBallPulseAnimation.m in Sources */,
@@ -1112,24 +1341,32 @@
 				18E4F0601740CFC3004AAF7D /* OPReportInfo.m in Sources */,
 				1848DD231965A96800E14F29 /* ContextFilterLogFormatter.m in Sources */,
 				CE782BA422773B5200C39913 /* DGActivityIndicatorBallSpinFadeLoader.m in Sources */,
+				CE7F25AE227C656900EF0F89 /* CWLabelledData.m in Sources */,
 				18E4F0611740CFC3004AAF7D /* NetworkConfig.m in Sources */,
 				CEB517202278B470003AE3C9 /* OPReportSummaryCell.m in Sources */,
 				18E4F0621740CFC3004AAF7D /* NSMutableURLRequest+Responses.m in Sources */,
+				CE7F25E1227C66E100EF0F89 /* CWRadarChartData.m in Sources */,
+				CE7F25C5227C659700EF0F89 /* CWBarChartData.m in Sources */,
 				CE782BAE22773B5200C39913 /* DGActivityIndicatorBallClipRotateAnimation.m in Sources */,
 				18E4F0631740CFC3004AAF7D /* NSMutableURLRequest+ResponseType.m in Sources */,
 				18E4F0641740CFC3004AAF7D /* OPConnection.m in Sources */,
 				CE782BA922773B5200C39913 /* DGActivityIndicatorFiveDotsAnimation.m in Sources */,
 				18E4F0651740CFC3004AAF7D /* OPConnectionDelegate.m in Sources */,
+				CE7F25B0227C656900EF0F89 /* CWPointDataSet.m in Sources */,
 				18E4F0661740CFC3004AAF7D /* OPOperation.m in Sources */,
 				CEFB386B2093044F004CAFE0 /* OPXMLReader.m in Sources */,
 				18E4F0671740CFC3004AAF7D /* OPOperationManager.m in Sources */,
+				CE7F25D7227C66AB00EF0F89 /* CWPolarAreaChartOptions.m in Sources */,
 				18E4F0681740CFC3004AAF7D /* Response.m in Sources */,
+				CE7F25D1227C65AF00EF0F89 /* CWPieChart.m in Sources */,
 				CE782B9B22773B5200C39913 /* DGActivityIndicatorBallClipRotatePulseAnimation.m in Sources */,
 				CE782B9222773B5200C39913 /* DGActivityIndicatorLineScalePulseOutRapidAnimation.m in Sources */,
+				CE7F25B8227C658100EF0F89 /* CWLineChartData.m in Sources */,
 				18E4F0691740CFC3004AAF7D /* NSObject+PropertySupport.m in Sources */,
 				18E4F06A1740CFC3004AAF7D /* NSString+InflectionSupport.m in Sources */,
 				CE782BA022773B5200C39913 /* DGActivityIndicatorBallScaleRippleAnimation.m in Sources */,
 				CE782B4A22773B3E00C39913 /* DGActivityIndicatorView.m in Sources */,
+				CE7F25A0227C655200EF0F89 /* CWData.m in Sources */,
 				18E4F06B1740CFC3004AAF7D /* NSData+Additions.m in Sources */,
 				18E4F06C1740CFC3004AAF7D /* NSString+GSub.m in Sources */,
 				18E4F06D1740CFC3004AAF7D /* ObjectiveResourceDateFormatter.m in Sources */,
@@ -1147,13 +1384,17 @@
 				CE782B9122773B5200C39913 /* DGActivityIndicatorBallBeatAnimation.m in Sources */,
 				CE782BA122773B5200C39913 /* DGActivityIndicatorBallRotateAnimation.m in Sources */,
 				CE782BA822773B5200C39913 /* DGActivityIndicatorBallClipRotateMultipleAnimation.m in Sources */,
+				CE7F25A5227C655200EF0F89 /* CWChart.m in Sources */,
 				CE782B9322773B5200C39913 /* DGActivityIndicatorRotatingTrigonAnimation.m in Sources */,
 				1848DD241965A96800E14F29 /* DispatchQueueLogFormatter.m in Sources */,
 				CE7030BC22754FA200381474 /* OPSaleSummary.m in Sources */,
 				CE782BAD22773B5200C39913 /* DGActivityIndicatorBallPulseSyncAnimation.m in Sources */,
+				CE7F25A6227C655200EF0F89 /* CWGlobalOptions.m in Sources */,
+				CE7F25C6227C659700EF0F89 /* CWBarDataSet.m in Sources */,
 				188864001A49CDFB0068DCD0 /* CKCalendarView.m in Sources */,
 				CE782BAB22773B5200C39913 /* DGActivityIndicatorTripleRingsAnimation.m in Sources */,
 				18E4F0711740CFC3004AAF7D /* NSArray+JSONSerializableSupport.m in Sources */,
+				CE7F25D8227C66AB00EF0F89 /* CWPolarAreaChart.m in Sources */,
 				CE782BAF22773B5200C39913 /* DGActivityIndicatorRotatingSquaresAnimation.m in Sources */,
 				CE782B3622772D0100C39913 /* OPTermsViewController.m in Sources */,
 				18E4F0721740CFC3004AAF7D /* NSDictionary+JSONSerializableSupport.m in Sources */,
@@ -1164,13 +1405,15 @@
 				CEB517272278C992003AE3C9 /* OPFurtherReportViewController.m in Sources */,
 				18E4F0751740CFC3004AAF7D /* NSDictionary+KeyTranslation.m in Sources */,
 				18E4F0761740CFC3004AAF7D /* NSObject+Serialize.m in Sources */,
-				CEB517242278B646003AE3C9 /* DSBarChart.m in Sources */,
 				18E4F0771740CFC3004AAF7D /* NSString+Serialize.m in Sources */,
 				CE782B9E22773B5200C39913 /* DGActivityIndicatorRotatingSandglassAnimation.m in Sources */,
+				CE7F25E2227C66E100EF0F89 /* CWRadarChartOptions.m in Sources */,
 				18E4F0781740CFC3004AAF7D /* FromXMLElementDelegate.m in Sources */,
+				CE7F25A2227C655200EF0F89 /* CWSegmentData.m in Sources */,
 				CE782B9F22773B5200C39913 /* DGActivityIndicatorTriangleSkewSpinAnimation.m in Sources */,
 				18E4F0791740CFC3004AAF7D /* NSArray+XMLSerializableSupport.m in Sources */,
 				18E4F07A1740CFC3004AAF7D /* NSDate+XMLSerializableSupport.m in Sources */,
+				CE7F25D0227C65AF00EF0F89 /* CWDoughnutChart.m in Sources */,
 				18E4F07B1740CFC3004AAF7D /* NSDictionary+XMLSerializableSupport.m in Sources */,
 				CE782B9822773B5200C39913 /* DGActivityIndicatorLineScalePulseOutAnimation.m in Sources */,
 				18E4F07C1740CFC3004AAF7D /* NSManagedObject+XMLSerializableSupport.m in Sources */,
@@ -1180,11 +1423,14 @@
 				CE782B9522773B5200C39913 /* DGActivityIndicatorBallZigZagAnimation.m in Sources */,
 				CE7030BF227552D200381474 /* OPReportSection.m in Sources */,
 				18E4F07F1740CFC3004AAF7D /* NSObject+XMLSerializableSupport.m in Sources */,
+				CE7F25A3227C655200EF0F89 /* CWBoolean.m in Sources */,
 				18E4F0801740CFC3004AAF7D /* NSString+XMLSerializableSupport.m in Sources */,
 				18E4F0821740CFC3004AAF7D /* OPRemoteXMLParserDelegate.m in Sources */,
+				CE7F25BA227C658100EF0F89 /* CWLineChartOptions.m in Sources */,
 				18E4F0831740CFC3004AAF7D /* OPXMLParserDelegate.m in Sources */,
 				CE782BA522773B5200C39913 /* DGActivityIndicatorThreeDotsAnimation.m in Sources */,
 				18E4F0AC1740CFE4004AAF7D /* CustomPickerView.m in Sources */,
+				CE7F25A1227C655200EF0F89 /* CWObject.m in Sources */,
 				CE782BAC22773B5200C39913 /* DGActivityIndicatorAnimation.m in Sources */,
 				18E4F0AD1740CFE4004AAF7D /* KSDateUtil.m in Sources */,
 				18E4F0B11740CFE4004AAF7D /* KSObjectStore.m in Sources */,
@@ -1195,8 +1441,10 @@
 				CE782B2C227690EF00C39913 /* FSCalendarExtensions.m in Sources */,
 				18E4F0B61740CFE4004AAF7D /* NSString+Extension.m in Sources */,
 				18E4F0B81740CFE4004AAF7D /* StatusView.m in Sources */,
+				CE7F25C7227C659700EF0F89 /* CWBarChartOptions.m in Sources */,
 				CE782BB122773B5200C39913 /* DGActivityIndicatorLineScalePartyAnimation.m in Sources */,
 				CE782B9A22773B5200C39913 /* DGActivityIndicatorBallZigZagDeflectAnimation.m in Sources */,
+				CE7F25B9227C658100EF0F89 /* CWLineChart.m in Sources */,
 				CEFB386820930421004CAFE0 /* ADUtils.m in Sources */,
 				18E4F0B91740CFE4004AAF7D /* ULButton.m in Sources */,
 				CE782BB022773B5200C39913 /* DGActivityIndicatorTriplePulseAnimation.m in Sources */,
@@ -1209,11 +1457,15 @@
 				18F4ED131743B72F0088ACC7 /* UserInfo.m in Sources */,
 				CE2EA9012279E965001DB320 /* OPCategoryItem.m in Sources */,
 				18F4ED161743B9380088ACC7 /* OPManagedObjectHolder.m in Sources */,
+				CE7F25C4227C659700EF0F89 /* CWBarChart.m in Sources */,
+				CE7F25CF227C65AF00EF0F89 /* CWPieChartOptions.m in Sources */,
 				187C265517A0F0A1002FF6E3 /* ItemSoldReport.m in Sources */,
 				1848DD221965A96800E14F29 /* DDTTYLogger.m in Sources */,
 				CEFB387620936C55004CAFE0 /* ODSettingsTableViewController.m in Sources */,
+				CE7F25AF227C656900EF0F89 /* CWDataSet.m in Sources */,
 				CE782B9722773B5200C39913 /* DGActivityIndicatorDoubleBounceAnimation.m in Sources */,
 				187C265817A0F0DE002FF6E3 /* SubCategory.m in Sources */,
+				CE7F25A4227C655200EF0F89 /* CWColors.m in Sources */,
 				187C265B17A0F2BC002FF6E3 /* Product.m in Sources */,
 				187C265E17A11B90002FF6E3 /* AllReport.m in Sources */,
 				18E0402717A225E30021B77E /* KSTextField.m in Sources */,

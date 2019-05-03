@@ -16,7 +16,6 @@
 #import "OPReportItemCell.h"
 #import "OPReportSummaryCell.h"
 #import "OPFurtherReportViewController.h"
-#import "DSBarChart.h"
 #import "ODSettingsTableViewController.h"
 #import "CompanyInfo.h"
 #import "OPCategoryItem.h"
@@ -46,23 +45,25 @@
     
     self.navigationController.toolbarHidden = NO;
     self.navigationController.toolbar.barStyle = UIBarStyleBlackOpaque;
-//    self.navigationController.toolbar.tintColor = [UIColor whiteColor];
-    UIBarButtonItem *prevDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(prevDayBtnAction)];
+    
+    UIBarButtonItem *prevDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrowLeft"] style:UIBarButtonItemStyleDone target:self action:@selector(prevDayBtnAction)];
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     UIBarButtonItem *dateBtn = [[UIBarButtonItem alloc] initWithTitle:[KSDateUtil getDayMonthYearString:[NSDate date]] style:UIBarButtonItemStyleDone target:self action:@selector(dateBtnAction)];
     self.middleBarItem = dateBtn;
     self.middleBarItem.tintColor = [UIColor whiteColor];
     
     UIBarButtonItem *space2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-     UIBarButtonItem *nextDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"right_arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(nextDatBtnAction)];
-    self.toolbarItems = [NSArray arrayWithObjects:prevDayBtn, space, dateBtn, space2, nextDayBtn, nil];
+    UIBarButtonItem *space3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    UIBarButtonItem *space4 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    UIBarButtonItem *nextDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrowRight"] style:UIBarButtonItemStyleDone target:self action:@selector(nextDatBtnAction)];
+    self.toolbarItems = [NSArray arrayWithObjects:prevDayBtn, space, space2, dateBtn, space3, space4, nextDayBtn, nil];
     self.date1 = [NSDate date];
     self.date2 = self.date1;
     
     EXAppDelegate *app = [EXAppDelegate sharedAppDelegate];
     if(app.company.allLocations.count<=1)
     {
-        UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"user4"] style:UIBarButtonItemStyleDone target:self action:@selector(settingsAction)];
+        UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"avatar"] style:UIBarButtonItemStyleDone target:self action:@selector(settingsAction)];
         self.navigationItem.rightBarButtonItem = settingsBtn;
     }   
     [self fetchReports];
@@ -209,6 +210,7 @@
     RangePickerViewController *vc = [[RangePickerViewController alloc] initWithDate1:self.date1 Date2:self.date2];
     vc.delegate = self;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
     [self presentViewController:nav animated:YES completion:nil];
 }
 

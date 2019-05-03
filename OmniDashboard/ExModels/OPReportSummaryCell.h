@@ -7,17 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DSBarChart.h"
+#import "CW.h"
 
 @class OPSaleSummary;
-@interface OPReportSummaryCell : UITableViewCell
+@interface OPReportSummaryCell : UITableViewCell<UIWebViewDelegate, WKUIDelegate>
 {
     
 }
 
 @property (nonatomic, strong) UILabel *grossSaleLabel, *salesLabel, *avgSalesLabel;
-@property (nonatomic, strong) DSBarChart *chartView;
 @property (nonatomic, strong) OPSaleSummary *saleSummary;
+@property (nonatomic, strong) WKWebView *webview;
+@property  (nonatomic, strong) UIView *chartView;
 - (void)reloadViews;
 @end
 
