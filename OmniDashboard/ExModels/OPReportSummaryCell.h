@@ -10,7 +10,7 @@
 #import "CW.h"
 
 @class OPSaleSummary;
-@interface OPReportSummaryCell : UITableViewCell<UIWebViewDelegate, WKUIDelegate>
+@interface OPReportSummaryCell : UITableViewCell<UIWebViewDelegate>
 {
     
 }

@@ -21,6 +21,9 @@
 #import "OPCategoryItem.h"
 
 @interface EXMenuViewController ()
+{
+    BOOL isFirstTimeLoaded;
+}
 
 @property (nonatomic, strong) UIRefreshControl *refreshController;
 
@@ -42,21 +45,20 @@
 {
     [super viewDidLoad];
     self.title = [EXAppDelegate sharedAppDelegate].selectedLocationName;
+    isFirstTimeLoaded = NO;
     
     self.navigationController.toolbarHidden = NO;
     self.navigationController.toolbar.barStyle = UIBarStyleBlackOpaque;
     
-    UIBarButtonItem *prevDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrowLeft"] style:UIBarButtonItemStyleDone target:self action:@selector(prevDayBtnAction)];
+    UIBarButtonItem *prevDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left-arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(prevDayBtnAction)];
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     UIBarButtonItem *dateBtn = [[UIBarButtonItem alloc] initWithTitle:[KSDateUtil getDayMonthYearString:[NSDate date]] style:UIBarButtonItemStyleDone target:self action:@selector(dateBtnAction)];
+    
     self.middleBarItem = dateBtn;
     self.middleBarItem.tintColor = [UIColor whiteColor];
-    
     UIBarButtonItem *space2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *space3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *space4 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *nextDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrowRight"] style:UIBarButtonItemStyleDone target:self action:@selector(nextDatBtnAction)];
-    self.toolbarItems = [NSArray arrayWithObjects:prevDayBtn, space, space2, dateBtn, space3, space4, nextDayBtn, nil];
+    UIBarButtonItem *nextDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"right-arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(nextDatBtnAction)];
+    self.toolbarItems = [NSArray arrayWithObjects:prevDayBtn, space, dateBtn, space2, nextDayBtn, nil];
     self.date1 = [NSDate date];
     self.date2 = self.date1;
     
@@ -507,6 +509,11 @@
             self.saleSummary = sm;
             [self.tableView reloadData];
             self.tableView.tableHeaderView=nil;
+            if(!isFirstTimeLoaded)
+            {
+                isFirstTimeLoaded = YES;
+                [self performSelector:@selector(reloadTableForFirstTime) withObject:nil afterDelay:1];
+            }
         }
     }
     
@@ -522,6 +529,10 @@
     }
 }
 
+- (void)reloadTableForFirstTime
+{
+    [self.tableView reloadData];
+}
 
 - (void)loadInWebViewTheHtmlString:(NSString *)htmlContent
 {

@@ -73,11 +73,6 @@
     [self.contentView addSubview:self.chartView];    
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    
-}
-
 - (void)reloadViews
 {
     NSArray* labels = [NSMutableArray arrayWithArray:@[@"Cash",@"Card",@"Voucher",@"On A/c", @"Others"]];
