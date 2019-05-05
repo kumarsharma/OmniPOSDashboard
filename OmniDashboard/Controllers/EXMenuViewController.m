@@ -40,12 +40,19 @@
 @synthesize middleBarItem;
 @synthesize rangeType;
 @synthesize refreshController;
+@synthesize tableView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = [EXAppDelegate sharedAppDelegate].selectedLocationName;
+    self.viewTitleLabel.text = [EXAppDelegate sharedAppDelegate].selectedLocationName;
     isFirstTimeLoaded = NO;
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topBarView.frame.size.height+self.topBarView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-(self.topBarView.frame.size.height+self.topBarView.frame.origin.y)) style:UITableViewStyleGrouped];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    self.tableView.backgroundColor = [UIColor clearColor];
     
     self.navigationController.toolbarHidden = NO;
     self.navigationController.toolbar.barStyle = UIBarStyleBlackOpaque;
@@ -65,8 +72,8 @@
     EXAppDelegate *app = [EXAppDelegate sharedAppDelegate];
     if(app.company.allLocations.count<=1)
     {
-        UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"avatar"] style:UIBarButtonItemStyleDone target:self action:@selector(settingsAction)];
-        self.navigationItem.rightBarButtonItem = settingsBtn;
+//        UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"avatar"] style:UIBarButtonItemStyleDone target:self action:@selector(settingsAction)];
+//        self.navigationItem.rightBarButtonItem = settingsBtn;
     }   
     [self fetchReports];
     
@@ -81,12 +88,6 @@
 {
     [self.refreshController endRefreshing];
     [self fetchReports];
-}
-
-- (void)settingsAction
-{
-    ODSettingsTableViewController *setVc = [[ODSettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [self.navigationController pushViewController:setVc animated:YES];
 }
 
 - (void)dateBtnAction
@@ -422,7 +423,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    OPFurtherReportViewController *frvc = [[OPFurtherReportViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    OPFurtherReportViewController *frvc = [[OPFurtherReportViewController alloc] init];
     if(indexPath.section==0)
     {
         frvc.isSaleSummaryMode = YES;

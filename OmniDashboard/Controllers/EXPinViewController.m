@@ -16,6 +16,7 @@
 #import "EXLocationListViewController.h"
 #import "EXMenuViewController.h"
 #import "OPViewSupplier.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface EXPinViewController ()
 
@@ -36,6 +37,13 @@
     UIView *fview = [OPViewSupplier footerViewForApp];
     fview.frame = CGRectMake(0, self.view.frame.size.height-276, fview.frame.size.width, fview.frame.size.height);
     [self.view addSubview:fview];
+    self.viewTitleLabel.text = self.title;
+    [self hideSettingsButton];
+    [self hideBackButton];
+    [self.view addSubview:pinView];
+    [self.view addSubview:forgotPinBtn];
+    pinView.center = self.view.center;
+    forgotPinBtn.frame = CGRectMake(forgotPinBtn.frame.origin.x, pinView.frame.size.height+pinView.frame.origin.y+5, forgotPinBtn.frame.size.width, forgotPinBtn.frame.size.height);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -140,6 +148,7 @@
     [txtPIN becomeFirstResponder];
     self.title = [[EXAppDelegate sharedAppDelegate] company].companyName;
     loginBgView.layer.cornerRadius = 3;
+    self.viewTitleLabel.text = self.title;
 }
 
 - (void)didReceiveMemoryWarning
@@ -154,7 +163,7 @@
 {
     //present service login view only when the restaurantInfo or menus are empty
     //Generally it appears only once after the first installation of the app
-    OPServerLoginViewController *serverLoginVc = [[OPServerLoginViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    OPServerLoginViewController *serverLoginVc = [[OPServerLoginViewController alloc] init];
     serverLoginVc.isSignIn = YES;
     serverLoginVc.buttonColor = [loginBtn titleColorForState:UIControlStateNormal];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:serverLoginVc];
@@ -187,7 +196,7 @@
     {
         if(app.company.allLocations.count>1)
         {
-            EXLocationListViewController *lst = [[EXLocationListViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            EXLocationListViewController *lst = [[EXLocationListViewController alloc] init];
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lst]; //[[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"ExNavController"];    
             [navController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
             navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -199,7 +208,7 @@
             app.currentRestaurantId = r.restaurantId;
             app.restaurant = r;
             app.selectedLocationName = r.name;   
-            EXMenuViewController *mc = [[EXMenuViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            EXMenuViewController *mc = [[EXMenuViewController alloc] init];
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mc];    
             [navController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
             navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -215,7 +224,7 @@
 
 - (void)switchToLocation
 {
-    OPServerLoginViewController *serverLoginVc = [[OPServerLoginViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    OPServerLoginViewController *serverLoginVc = [[OPServerLoginViewController alloc] init];
     serverLoginVc.isSignIn = NO;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:serverLoginVc];
     [navController.navigationBar setBarStyle:UIBarStyleBlack];
@@ -310,5 +319,30 @@
     }
     
     return NO;
+}
+
+- (IBAction)loginNumberBtnAction:(id)sender
+{
+    AudioServicesPlaySystemSound(0x450);
+    
+    UIButton *pinButton = (UIButton *)sender;
+    NSString *textContent = txtPIN.text;
+    if(!textContent)
+        textContent = @"";
+    textContent = [NSString stringWithFormat:@"%@%d", textContent, (int)pinButton.tag];
+    txtPIN.text = textContent;    
+    if(txtPIN.text.length==4)
+    {
+        [self loginBtnAction:nil];
+    }
+}
+
+- (IBAction)loginClearBtnAction:(id)sender
+{
+    NSString *textContent = txtPIN.text;
+    if(textContent.length > 0)
+    {
+        txtPIN.text = [textContent substringToIndex:textContent.length-1];
+    }
 }
 @end

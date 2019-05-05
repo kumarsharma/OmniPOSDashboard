@@ -9,15 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "OPSaleSummary.h"
 #import "EXMenuViewController.h"
+#import "OPViewController.h"
 
-@interface OPFurtherReportViewController : UITableViewController<RangeDatePickerDelegate, UIActionSheetDelegate>
+@interface OPFurtherReportViewController : OPViewController<RangeDatePickerDelegate, UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     
 }
 
 @property (nonatomic, weak) EXMenuViewController *parentController;
 @property (nonatomic, assign) BOOL isSaleSummaryMode, isItemSaleMode, isCategorySaleMode;
-
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) LoadingIndicatorView *indicatorView;
 @property (nonatomic, strong) NSDate *date1, *date2;
 @property (nonatomic, strong) OPSaleSummary *saleSummary;

@@ -27,6 +27,7 @@
 @synthesize middleBarItem;
 @synthesize rangeType;
 @synthesize refreshController;
+@synthesize tableView;
 
 - (void)viewDidLoad
 {
@@ -39,9 +40,16 @@
     else if(isCategorySaleMode)
         self.title = @"Category Sales";
     
+    self.viewTitleLabel.text = self.title;
     self.date1 = self.parentController.date1;
     self.date2=self.parentController.date2;
     self.saleSummary = self.parentController.saleSummary;
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topBarView.frame.size.height+self.topBarView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-(self.topBarView.frame.size.height+self.topBarView.frame.origin.y)) style:UITableViewStyleGrouped];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    self.tableView.backgroundColor = [UIColor clearColor];
     
     self.navigationController.toolbarHidden = NO;
     self.navigationController.toolbar.barStyle = UIBarStyleBlackOpaque;

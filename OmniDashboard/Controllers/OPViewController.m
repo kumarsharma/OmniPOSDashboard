@@ -18,7 +18,7 @@
 @synthesize logoImageView = logoImageView_;
 @synthesize versionLabel = versionLabel_;
 @synthesize viewTitleLabel;
-@synthesize backButton, settingsBtn;
+@synthesize backButton, settingsBtn, doneBtn, cancelBtn;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,6 +39,15 @@
     [super viewWillAppear:animated];
 }
 
+- (void)hideBackButton
+{
+    self.backButton.hidden = YES;
+}
+
+- (void)hideSettingsButton
+{
+    self.settingsBtn.hidden = YES;
+}
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
@@ -50,12 +59,12 @@
     if(nil == self.viewTitleLabel)
     {
         UILabel *lbl = [[UILabel alloc] init];
-        CGRect lframe = CGRectMake(0, 21, self.view.frame.size.width, 21);
+        CGRect lframe = CGRectMake(75, -5, 180, 33);
         lbl.font = [UIFont systemFontOfSize:17];
         lbl.frame = lframe;
         lbl.textAlignment = NSTextAlignmentCenter;
         lbl.backgroundColor = [UIColor clearColor];
-        lbl.textColor = [UIColor darkGrayColor];
+        lbl.textColor = [UIColor whiteColor];
         lbl.adjustsFontSizeToFitWidth = YES;
         self.viewTitleLabel = lbl;
         [self.topBarView addSubview:lbl];
@@ -67,9 +76,9 @@
     if(!self.backButton)
     {
         UIButton *backOrMainMenu = [UIButton buttonWithType:UIButtonTypeCustom];
-        backOrMainMenu.frame = CGRectMake(1, 19, 61, 23);
-        [backOrMainMenu setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-        [backOrMainMenu setBackgroundImage:[UIImage imageNamed:@"back_hl"] forState:UIControlStateHighlighted];
+        backOrMainMenu.frame = CGRectMake(5, 20, 32, 23);
+        [backOrMainMenu setBackgroundImage:[UIImage imageNamed:@"back_iphone_hl"] forState:UIControlStateNormal];
+        [backOrMainMenu setBackgroundImage:[UIImage imageNamed:@"back_iphone"] forState:UIControlStateHighlighted];
         [self.topBarView addSubview:backOrMainMenu];
         self.backButton = backOrMainMenu;
         [backOrMainMenu addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
@@ -81,18 +90,49 @@
     if(!self.settingsBtn)
     {
         UIButton *userBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        userBtn.frame = CGRectMake(self.topBarView.frame.size.width-35, 19, 29, 23);
-        [userBtn setBackgroundImage:[UIImage imageNamed:@"settings2"] forState:UIControlStateNormal];
-        [userBtn setBackgroundImage:[UIImage imageNamed:@"settings2_hl"] forState:UIControlStateHighlighted];
+        userBtn.frame = CGRectMake(self.topBarView.frame.size.width-35, 20, 29, 23);
+        [userBtn setBackgroundImage:[UIImage imageNamed:@"settings2_hl"] forState:UIControlStateNormal];
+        [userBtn setBackgroundImage:[UIImage imageNamed:@"settings2"] forState:UIControlStateHighlighted];
         [self.topBarView addSubview:userBtn];
         self.settingsBtn = userBtn;
         [userBtn addTarget:self action:@selector(settingsAction) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
+- (void)needDoneButton
+{
+    if(!self.doneBtn)
+    {
+        UIButton *userBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        userBtn.frame = CGRectMake(self.topBarView.frame.size.width-35, 20, 29, 23);
+        [userBtn setBackgroundImage:[UIImage imageNamed:@"done_iphone_hl"] forState:UIControlStateNormal];
+        [userBtn setBackgroundImage:[UIImage imageNamed:@"done_iphone"] forState:UIControlStateHighlighted];
+        [self.topBarView addSubview:userBtn];
+        self.doneBtn = userBtn;
+//        [userBtn addTarget:self action:@selector(settingsAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+- (void)needCancelButton
+{
+    if(!self.cancelBtn)
+    {
+        UIButton *userBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        userBtn.frame = CGRectMake(5, 20, 32, 23);
+        [userBtn setBackgroundImage:[UIImage imageNamed:@"cancel_iphone_hl"] forState:UIControlStateNormal];
+        [userBtn setBackgroundImage:[UIImage imageNamed:@"cancel_iphone"] forState:UIControlStateHighlighted];
+        [self.topBarView addSubview:userBtn];
+        self.cancelBtn = userBtn;
+        [userBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
 - (void)backAction
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if(self.navigationController.viewControllers.count>1)   
+        [self.navigationController popViewControllerAnimated:YES];
+    else
+        [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)settingsAction
@@ -106,15 +146,14 @@
 - (void)initializeSubViews
 {
     UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 65, self.view.bounds.size.width, self.view.bounds.size.height-65)];
-    UIImageView *lImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5,0, 111, 23)];
-
+    UIImageView *lImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,-5, 75, 33)];
     UIImageView *topBgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
     lImageView.image = [UIImage imageNamed:@"omnipos_logo"];
     UIView *tView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, 44)];
     self.view.backgroundColor = [UIColor darkGrayColor];
     bgImageView.image = [UIImage imageNamed:@"bg_iphone"];
     topBgImageView.image = [UIImage imageNamed:@"bg_line_iphone"];
-    tView.backgroundColor = [UIColor lightTextColor];
+    tView.backgroundColor = [UIColor darkGrayColor];
     self.backImageView = bgImageView;
     self.topBarView = tView;
     self.logoImageView = lImageView;

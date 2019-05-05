@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPViewController.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface OPTermsViewController : UIViewController
+@interface OPTermsViewController : OPViewController
 
 @end
 
-NS_ASSUME_NONNULL_END

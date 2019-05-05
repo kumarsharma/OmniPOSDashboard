@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPViewController.h"
 
-@interface EXLocationListViewController : UITableViewController
+@interface EXLocationListViewController : OPViewController<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) UITableView *tableView;
 @end

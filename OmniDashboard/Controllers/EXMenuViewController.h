@@ -10,11 +10,13 @@
 #import "RangePickerViewController.h"
 #import "OPSaleSummary.h"
 #import "LoadingIndicatorView.h"
+#import "OPViewController.h"
 
-@interface EXMenuViewController : UITableViewController<RangeDatePickerDelegate, UIActionSheetDelegate>
+@interface EXMenuViewController : OPViewController<RangeDatePickerDelegate, UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource>
 {
     
 }
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *exList;
 @property (nonatomic, strong) LoadingIndicatorView *indicatorView;
 @property (nonatomic, strong) NSDate *date1, *date2;

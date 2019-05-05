@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPViewController.h"
 
 @protocol  RangeDatePickerDelegate<NSObject>
 
@@ -14,7 +15,7 @@
 - (void)didSelectDate1:(NSDate *)date1 andDate2:(NSDate *)date2;
 
 @end
-@interface RangePickerViewController : UIViewController
+@interface RangePickerViewController : OPViewController
 {
     __weak id<RangeDatePickerDelegate> delegate_;
 }

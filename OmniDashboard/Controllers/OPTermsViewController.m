@@ -17,8 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Terms & Conditions";
+    self.viewTitleLabel.text = self.title;
     
-    UIWebView *webview = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, self.topBarView.frame.size.height+self.topBarView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-self.topBarView.frame.size.height)];
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.omniposweb.com/terms"]]];
     [self.view addSubview:webview];
 }

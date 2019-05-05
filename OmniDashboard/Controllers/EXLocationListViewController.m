@@ -22,7 +22,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Locations";
+    self.viewTitleLabel.text = @"Locations";
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topBarView.frame.size.height+self.topBarView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-(self.topBarView.frame.size.height+self.topBarView.frame.origin.y)) style:UITableViewStyleGrouped];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    
     self.tableView.tableFooterView = [OPViewSupplier footerViewForApp];
     UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"avatar"] style:UIBarButtonItemStyleDone target:self action:@selector(settingsAction)];
     self.navigationItem.rightBarButtonItem = settingsBtn;
@@ -44,7 +51,7 @@
 
 - (void)settingsAction
 {
-    ODSettingsTableViewController *setVc = [[ODSettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    ODSettingsTableViewController *setVc = [[ODSettingsTableViewController alloc] init];
 //    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setVc];
 //    [self presentViewController:navController animated:YES completion:nil];
     [self.navigationController pushViewController:setVc animated:YES];
@@ -96,9 +103,11 @@
     app.restaurant = r;
     app.selectedLocationName = r.name;
     
-    EXMenuViewController *mc = [[EXMenuViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    EXMenuViewController *mc = [[EXMenuViewController alloc] init];
     self.navigationController.hidesBottomBarWhenPushed = NO;
     [self.navigationController pushViewController:mc animated:YES];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

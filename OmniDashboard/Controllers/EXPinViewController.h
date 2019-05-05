@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPViewController.h"
 
-@interface EXPinViewController : UIViewController<UITextFieldDelegate>
+@interface EXPinViewController : OPViewController<UITextFieldDelegate>
 {
     IBOutlet UIView *loginBgView;
-    UITextField *txtPIN;
-    IBOutlet UIButton *loginBtn;
-    IBOutlet UITableView *tableView;
+    IBOutlet UITextField *txtPIN;
+    IBOutlet UIButton *loginBtn, *forgotPinBtn;
+    IBOutlet UIView *pinView;
 }
 
 - (IBAction)loginBtnAction:(id)sender;
 - (IBAction)changeLoginPin:(id)sender;
+- (IBAction)loginNumberBtnAction:(id)sender;
+- (IBAction)loginClearBtnAction:(id)sender;
 @end

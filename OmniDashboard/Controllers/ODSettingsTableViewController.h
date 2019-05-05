@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPViewController.h"
 
-@interface ODSettingsTableViewController : UITableViewController
+@interface ODSettingsTableViewController : OPViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) UITableView *tableView;
 @end

@@ -52,33 +52,13 @@
     return self;
 }
 
+/*
 - (void)loadView
 {
     UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     view.backgroundColor = [UIColor whiteColor];
     self.view = view;
-    
-    FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navigationController.navigationBar.frame), view.frame.size.width, view.frame.size.height - CGRectGetMaxY(self.navigationController.navigationBar.frame))];
-    calendar.dataSource = self;
-    calendar.delegate = self;
-    calendar.pagingEnabled = NO;
-    calendar.allowsMultipleSelection = YES;
-    calendar.rowHeight = 60;
-    calendar.placeholderType = FSCalendarPlaceholderTypeNone;
-    [view addSubview:calendar];
-    self.calendar = calendar;
-    
-    calendar.appearance.titleDefaultColor = [UIColor blackColor];
-    calendar.appearance.headerTitleColor = [UIColor blackColor];
-    calendar.appearance.titleFont = [UIFont systemFontOfSize:16];
-    calendar.weekdayHeight = 0;
-    
-    calendar.swipeToChooseGesture.enabled = YES;
-    
-    calendar.today = nil; // Hide the today circle
-    [calendar registerClass:[RangePickerCell class] forCellReuseIdentifier:@"cell"];
-    
-}
+}*/
 
 - (void)viewDidLoad
 {
@@ -100,6 +80,33 @@
     
     // For UITest
     self.calendar.accessibilityIdentifier = @"calendar";
+    [self hideBackButton];
+    [self hideSettingsButton];
+    [self needCancelButton];
+    [self needDoneButton];
+    [self.doneBtn addTarget:self action:@selector(doneBtnAction) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:self.calendar];
+    self.viewTitleLabel.text = self.title;
+    
+    FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, self.topBarView.frame.size.height+self.topBarView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-self.topBarView.frame.size.height)];
+    calendar.dataSource = self;
+    calendar.delegate = self;
+    calendar.pagingEnabled = NO;
+    calendar.allowsMultipleSelection = YES;
+    calendar.rowHeight = 60;
+    calendar.placeholderType = FSCalendarPlaceholderTypeNone;
+    [self.view addSubview:calendar];
+    self.calendar = calendar;
+    
+    calendar.appearance.titleDefaultColor = [UIColor blackColor];
+    calendar.appearance.headerTitleColor = [UIColor blackColor];
+    calendar.appearance.titleFont = [UIFont systemFontOfSize:16];
+    calendar.weekdayHeight = 0;
+    
+    calendar.swipeToChooseGesture.enabled = YES;
+    
+    calendar.today = nil; // Hide the today circle
+    [calendar registerClass:[RangePickerCell class] forCellReuseIdentifier:@"cell"];
 }
 
 - (void)cancelBtnAction

@@ -16,13 +16,20 @@
 @end
 
 @implementation ODSettingsTableViewController
+@synthesize tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Settings";
+    self.viewTitleLabel.text = @"Settings";
     self.navigationController.toolbarHidden = YES;
 //    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelBtnAction)];
 //    self.navigationItem.leftBarButtonItem = cancelBtn;
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topBarView.frame.size.height+self.topBarView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-(self.topBarView.frame.size.height+self.topBarView.frame.origin.y)) style:UITableViewStyleGrouped];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    
     
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 110)];
     UIButton *logoutBUtton = [UIButton buttonWithType:UIButtonTypeCustom];

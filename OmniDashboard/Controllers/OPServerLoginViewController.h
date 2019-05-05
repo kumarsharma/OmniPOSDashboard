@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface OPServerLoginViewController : UITableViewController<UITextFieldDelegate>
+#import "OPViewController.h"
+@interface OPServerLoginViewController : OPViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     
 }
 
 @property (nonatomic, assign) BOOL isSignIn;
 @property (nonatomic, strong) UIColor *buttonColor;
+@property (nonatomic, strong) UITableView *tableView;
 
 @end

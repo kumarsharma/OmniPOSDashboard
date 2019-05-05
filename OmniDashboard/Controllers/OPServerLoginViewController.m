@@ -34,20 +34,28 @@
 @synthesize indicatorView;
 @synthesize isSignIn;
 @synthesize buttonColor;
+@synthesize tableView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     if(self.isSignIn)
-        self.title = @"Signin";
+        self.title = @"Sign In";
     else
     {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelAction)];
         self.title = @"Switch Company";
     }
-    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topBarView.frame.size.height+self.topBarView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-(self.topBarView.frame.size.height+self.topBarView.frame.origin.y)) style:UITableViewStyleGrouped];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.viewTitleLabel.text = self.title;
     self.tableView.tableFooterView = [OPViewSupplier footerViewForApp];
+    [self hideBackButton];
+    [self hideSettingsButton];
 }
 
 - (void)cancelAction
