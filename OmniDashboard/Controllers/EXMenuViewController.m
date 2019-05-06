@@ -306,6 +306,10 @@
             cell.frame = CGRectMake(0, 30, self.tableView.frame.size.width, 30);
             [secView addSubview:label];
             [secView addSubview:cell];
+            
+            UITapGestureRecognizer *taptap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnHeaderView:)];
+            secView.tag = section;
+            [secView addGestureRecognizer:taptap];
             return secView;
         }
     }
@@ -504,6 +508,27 @@
 }
 
 #pragma mark - Table view delegate
+
+- (void)didTapOnHeaderView:(id)sender
+{
+    UITapGestureRecognizer *tap = (UITapGestureRecognizer *)sender;
+    OPFurtherReportViewController *frvc = [[OPFurtherReportViewController alloc] init];
+    if(tap.view.tag == 3)
+    {
+        frvc.isSaleSummaryMode = NO;
+        frvc.isItemSaleMode = NO;
+        frvc.isCategorySaleMode = YES;
+    }
+    else if(tap.view.tag == 2)
+    {
+        frvc.isSaleSummaryMode = NO;
+        frvc.isItemSaleMode = YES;
+        frvc.isCategorySaleMode = NO;
+    }
+    frvc.parentController = self;
+    [self.navigationController pushViewController:frvc animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {    

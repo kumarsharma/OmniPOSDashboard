@@ -113,11 +113,11 @@
 		CE34FD4B227C86B20000D944 /* arrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = CE34FD4A227C86B20000D944 /* arrowLeft.png */; };
 		CE34FD4D227C886A0000D944 /* arrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = CE34FD4C227C886A0000D944 /* arrowRight.png */; };
 		CE41708A228008D900DBF866 /* OPReportComparisonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE417089228008D900DBF866 /* OPReportComparisonCell.m */; };
-		CE417094228011B000DBF866 /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE417091228011B000DBF866 /* right-arrow.png */; };
 		CE417095228011B000DBF866 /* omnipos_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE417092228011B000DBF866 /* omnipos_logo.png */; };
-		CE417096228011B000DBF866 /* left-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE417093228011B000DBF866 /* left-arrow.png */; };
 		CE41709A2280264900DBF866 /* UnderLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4170992280264900DBF866 /* UnderLineLabel.m */; };
 		CE41709D2280309200DBF866 /* OPReportComparisonItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41709C2280309200DBF866 /* OPReportComparisonItemCell.m */; };
+		CE4170A02280419100DBF866 /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE41709E2280419100DBF866 /* right-arrow.png */; };
+		CE4170A12280419100DBF866 /* left-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE41709F2280419100DBF866 /* left-arrow.png */; };
 		CE5F3AF0227F23E200C57F93 /* logo_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5F3A8D227F23D800C57F93 /* logo_iphone@2x.png */; };
 		CE5F3AF1227F23E200C57F93 /* button_black_hl_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5F3A8E227F23D800C57F93 /* button_black_hl_iphone@2x.png */; };
 		CE5F3AF2227F23E200C57F93 /* button_grey_hl_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5F3A8F227F23D800C57F93 /* button_grey_hl_iphone@2x.png */; };
@@ -524,13 +524,13 @@
 		CE34FD4C227C886A0000D944 /* arrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowRight.png; sourceTree = "<group>"; };
 		CE417088228008D900DBF866 /* OPReportComparisonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPReportComparisonCell.h; sourceTree = "<group>"; };
 		CE417089228008D900DBF866 /* OPReportComparisonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPReportComparisonCell.m; sourceTree = "<group>"; };
-		CE417091228011B000DBF866 /* right-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-arrow.png"; sourceTree = "<group>"; };
 		CE417092228011B000DBF866 /* omnipos_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = omnipos_logo.png; sourceTree = "<group>"; };
-		CE417093228011B000DBF866 /* left-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-arrow.png"; sourceTree = "<group>"; };
 		CE4170982280264900DBF866 /* UnderLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnderLineLabel.h; sourceTree = "<group>"; };
 		CE4170992280264900DBF866 /* UnderLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnderLineLabel.m; sourceTree = "<group>"; };
 		CE41709B2280309200DBF866 /* OPReportComparisonItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPReportComparisonItemCell.h; sourceTree = "<group>"; };
 		CE41709C2280309200DBF866 /* OPReportComparisonItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPReportComparisonItemCell.m; sourceTree = "<group>"; };
+		CE41709E2280419100DBF866 /* right-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-arrow.png"; sourceTree = "<group>"; };
+		CE41709F2280419100DBF866 /* left-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-arrow.png"; sourceTree = "<group>"; };
 		CE5F3A8D227F23D800C57F93 /* logo_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_iphone@2x.png"; sourceTree = "<group>"; };
 		CE5F3A8E227F23D800C57F93 /* button_black_hl_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_black_hl_iphone@2x.png"; sourceTree = "<group>"; };
 		CE5F3A8F227F23D800C57F93 /* button_grey_hl_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_grey_hl_iphone@2x.png"; sourceTree = "<group>"; };
@@ -924,9 +924,9 @@
 				CEE72FF8227DA18C008FECC9 /* bg_iphone@3x.png */,
 				CE34FD4C227C886A0000D944 /* arrowRight.png */,
 				CE2EA8FA22798EA6001DB320 /* omnipos_logo2.png */,
-				CE417093228011B000DBF866 /* left-arrow.png */,
 				CE417092228011B000DBF866 /* omnipos_logo.png */,
-				CE417091228011B000DBF866 /* right-arrow.png */,
+				CE41709F2280419100DBF866 /* left-arrow.png */,
+				CE41709E2280419100DBF866 /* right-arrow.png */,
 				CEFB3872209366D0004CAFE0 /* setting-icon.png */,
 				CE34FD42227C743D0000D944 /* avatar.png */,
 				CE34FD46227C76040000D944 /* arrow_left.png */,
@@ -1696,7 +1696,7 @@
 				CE5F3B3E227F23E200C57F93 /* button_black_hl_iphone@3x.png in Resources */,
 				CE5F3B50227F23E200C57F93 /* button_grey_iphone@2x.png in Resources */,
 				CEE73012227DA59B008FECC9 /* back_iphone.png in Resources */,
-				CE417096228011B000DBF866 /* left-arrow.png in Resources */,
+				CE4170A12280419100DBF866 /* left-arrow.png in Resources */,
 				CE5F3B3C227F23E200C57F93 /* 5_iphone@2x.png in Resources */,
 				CE5F3B4D227F23E200C57F93 /* button_black_iphone.png in Resources */,
 				CE5F3B6B227F2C1800C57F93 /* cancel_iphone.png in Resources */,
@@ -1714,7 +1714,6 @@
 				CE2EA8F422795014001DB320 /* AAChartView.html in Resources */,
 				CE5F3AFE227F23E200C57F93 /* display_iphone@2x.png in Resources */,
 				CE5F3B22227F23E200C57F93 /* 5_iphone@3x.png in Resources */,
-				CE417094228011B000DBF866 /* right-arrow.png in Resources */,
 				CE5F3B4F227F23E200C57F93 /* 9_hl_iphone.png in Resources */,
 				CEE7300A227DA59B008FECC9 /* back_iphone@2x.png in Resources */,
 				18E4EFCE1740CD3D004AAF7D /* Default@2x.png in Resources */,
@@ -1803,6 +1802,7 @@
 				CE5F3B2D227F23E200C57F93 /* clear_hl_iphone@3x.png in Resources */,
 				CE5F3B5F227F2C0300C57F93 /* done_iphone_hl.png in Resources */,
 				CEE72FF9227DA18E008FECC9 /* bg_iphone@2x.png in Resources */,
+				CE4170A02280419100DBF866 /* right-arrow.png in Resources */,
 				CE5F3B6C227F2C1800C57F93 /* cancel_iphone_hl@2x.png in Resources */,
 				CE5F3B14227F23E200C57F93 /* 4_iphone@2x.png in Resources */,
 				CE5F3B31227F23E200C57F93 /* 2_iphone@2x.png in Resources */,
