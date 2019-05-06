@@ -59,7 +59,7 @@
     if(nil == self.viewTitleLabel)
     {
         UILabel *lbl = [[UILabel alloc] init];
-        CGRect lframe = CGRectMake(75, -5, 180, 33);
+        CGRect lframe = CGRectMake(80, -5, 175, 33);
         lbl.font = [UIFont systemFontOfSize:17];
         lbl.frame = lframe;
         lbl.textAlignment = NSTextAlignmentCenter;
@@ -76,7 +76,7 @@
     if(!self.backButton)
     {
         UIButton *backOrMainMenu = [UIButton buttonWithType:UIButtonTypeCustom];
-        backOrMainMenu.frame = CGRectMake(5, 20, 32, 23);
+        backOrMainMenu.frame = CGRectMake(5, 20, 25, 22);
         [backOrMainMenu setBackgroundImage:[UIImage imageNamed:@"back_iphone_hl"] forState:UIControlStateNormal];
         [backOrMainMenu setBackgroundImage:[UIImage imageNamed:@"back_iphone"] forState:UIControlStateHighlighted];
         [self.topBarView addSubview:backOrMainMenu];
@@ -90,7 +90,7 @@
     if(!self.settingsBtn)
     {
         UIButton *userBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        userBtn.frame = CGRectMake(self.topBarView.frame.size.width-35, 20, 29, 23);
+        userBtn.frame = CGRectMake(self.topBarView.frame.size.width-35, 20, 25, 22);
         [userBtn setBackgroundImage:[UIImage imageNamed:@"settings2_hl"] forState:UIControlStateNormal];
         [userBtn setBackgroundImage:[UIImage imageNamed:@"settings2"] forState:UIControlStateHighlighted];
         [self.topBarView addSubview:userBtn];
@@ -104,7 +104,7 @@
     if(!self.doneBtn)
     {
         UIButton *userBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        userBtn.frame = CGRectMake(self.topBarView.frame.size.width-35, 20, 29, 23);
+        userBtn.frame = CGRectMake(self.topBarView.frame.size.width-35, 20, 25, 22);
         [userBtn setBackgroundImage:[UIImage imageNamed:@"done_iphone_hl"] forState:UIControlStateNormal];
         [userBtn setBackgroundImage:[UIImage imageNamed:@"done_iphone"] forState:UIControlStateHighlighted];
         [self.topBarView addSubview:userBtn];
@@ -118,7 +118,7 @@
     if(!self.cancelBtn)
     {
         UIButton *userBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        userBtn.frame = CGRectMake(5, 20, 32, 23);
+        userBtn.frame = CGRectMake(5, 20, 25, 22);
         [userBtn setBackgroundImage:[UIImage imageNamed:@"cancel_iphone_hl"] forState:UIControlStateNormal];
         [userBtn setBackgroundImage:[UIImage imageNamed:@"cancel_iphone"] forState:UIControlStateHighlighted];
         [self.topBarView addSubview:userBtn];

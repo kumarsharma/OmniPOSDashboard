@@ -33,4 +33,5 @@ extern NSString *const CWCAsbestos;
 @property (nonatomic, strong) NSDictionary* colors;
 - (CWColor*) pickColor;
 + (CWColors*) sharedColors;
+- (CWColor*) rgba:(NSString*) string;
 @end

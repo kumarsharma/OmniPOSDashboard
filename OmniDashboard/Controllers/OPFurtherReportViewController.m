@@ -12,6 +12,7 @@
 #import "OPDataFetchHelper.h"
 #import "NSString+SBJSON.h"
 #import "OPCategoryItem.h"
+#import "OPReportComparisonItemCell.h"
 
 @interface OPFurtherReportViewController ()
 @property (nonatomic, strong) UIRefreshControl *refreshController;
@@ -19,11 +20,11 @@
 @end
 
 @implementation OPFurtherReportViewController
-@synthesize isSaleSummaryMode, isItemSaleMode, isCategorySaleMode;
+@synthesize isSaleSummaryMode, isItemSaleMode, isCategorySaleMode, isComparisonMode;
 @synthesize parentController;
 @synthesize indicatorView;
-@synthesize date1, date2;
-@synthesize saleSummary;
+@synthesize date1, date2, compareDate1, compareDate2;
+@synthesize saleSummary, saleSummary2;
 @synthesize middleBarItem;
 @synthesize rangeType;
 @synthesize refreshController;
@@ -39,11 +40,16 @@
         self.title = @"Item Sales";
     else if(isCategorySaleMode)
         self.title = @"Category Sales";
+    else if(isComparisonMode)
+        self.title = @"Sale Comparison";
     
     self.viewTitleLabel.text = self.title;
     self.date1 = self.parentController.date1;
     self.date2=self.parentController.date2;
+    self.compareDate1 = self.parentController.compareDate1;
+    self.compareDate2=self.parentController.compareDate2;
     self.saleSummary = self.parentController.saleSummary;
+    self.saleSummary2 = self.parentController.saleSummary2;
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topBarView.frame.size.height+self.topBarView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-(self.topBarView.frame.size.height+self.topBarView.frame.origin.y)) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
@@ -203,9 +209,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(self.saleSummary && (self.isItemSaleMode || self.isCategorySaleMode))
+    if(self.saleSummary && (self.isItemSaleMode || self.isCategorySaleMode || self.isComparisonMode))
     {
-        return 30;
+        if(self.isComparisonMode)
+            return 40;
+        else
+            return 30;
     }
     return 0;
 }
@@ -223,6 +232,29 @@
         else
             cell.titleLabel.text = @"Category";
         
+        return cell;
+    }
+    else if(self.saleSummary && self.isComparisonMode)
+    {
+        OPReportComparisonItemCell *cell = [[OPReportComparisonItemCell alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 30)];
+        cell.titleLabel.text = @"";
+        
+        NSString *firstDateTitle = nil;
+        if([self.date1 compare:self.date2] == NSOrderedSame)
+            firstDateTitle = [KSDateUtil getDayMonthYearString:self.date1];
+        else
+            firstDateTitle = [NSString stringWithFormat:@"%@-\n%@", [KSDateUtil getDayMonthYearString:self.date1], [KSDateUtil getDayMonthYearString:self.date2]];
+        
+        NSString *secondDateTitle = nil;
+        if([self.compareDate1 compare:self.compareDate2] == NSOrderedSame)
+            secondDateTitle = [KSDateUtil getDayMonthYearString:self.compareDate1];
+        else
+            secondDateTitle = [NSString stringWithFormat:@"%@-\n%@", [KSDateUtil getDayMonthYearString:self.compareDate1], [KSDateUtil getDayMonthYearString:self.compareDate2]];
+        
+        cell.totalAmountLabel1.text = secondDateTitle;
+        cell.totalAmountLabel2.text = firstDateTitle;
+        cell.totalAmountLabel1.font = [UIFont boldSystemFontOfSize:14.0];
+        cell.totalAmountLabel2.font = [UIFont boldSystemFontOfSize:14.0];
         return cell;
     }
     return nil;
@@ -278,7 +310,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(self.isSaleSummaryMode)
+    if(self.isSaleSummaryMode || self.isComparisonMode)
         return self.saleSummary.summaryBreakDown.rows.count;
     else if(self.isItemSaleMode)
         return self.saleSummary.itemBreakDown.rows.count;
@@ -292,58 +324,88 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    OPReportItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier2 = @"Cell2";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(nil == cell)
     {
-        cell = [[OPReportItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        if(self.isComparisonMode)
+            cell = [[OPReportComparisonItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier2];
+        else
+            cell = [[OPReportItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
     if(self.isSaleSummaryMode)
     {
+        OPReportItemCell *cell_d = (OPReportItemCell *)cell;
         NSDictionary *dict = [self.saleSummary.summaryBreakDown.rows objectAtIndex:indexPath.row];
         
         NSString *key = dict.allKeys.firstObject;
-        cell.titleLabel.text = key;
-        cell.countField.text = @"";
-        cell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict valueForKey:key] floatValue]];
-        if([cell.titleLabel.text hasPrefix:@"GROSS TOTAL"])
+        cell_d.titleLabel.text = key;
+        cell_d.countField.text = @"";
+        cell_d.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict valueForKey:key] floatValue]];
+        if([cell_d.titleLabel.text hasPrefix:@"GROSS TOTAL"])
         {
-            cell.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-            cell.countField.font = [UIFont boldSystemFontOfSize:14];
-            cell.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
+            cell_d.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+            cell_d.countField.font = [UIFont boldSystemFontOfSize:14];
+            cell_d.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
         }
         else
         {
-            cell.titleLabel.font = [UIFont systemFontOfSize:14];
-            cell.countField.font = [UIFont systemFontOfSize:14];
-            cell.totalAmountLabel.font = [UIFont systemFontOfSize:14];
+            cell_d.titleLabel.font = [UIFont systemFontOfSize:14];
+            cell_d.countField.font = [UIFont systemFontOfSize:14];
+            cell_d.totalAmountLabel.font = [UIFont systemFontOfSize:14];
+        }
+    }
+    else if(self.isComparisonMode)
+    {
+        OPReportComparisonItemCell *cell_d = (OPReportComparisonItemCell *)cell;
+        NSDictionary *dict = [self.saleSummary.summaryBreakDown.rows objectAtIndex:indexPath.row];
+        NSDictionary *dict2 = [self.saleSummary2.summaryBreakDown.rows objectAtIndex:indexPath.row];
+        
+        NSString *key = dict.allKeys.firstObject;
+        cell_d.titleLabel.text = key;
+        
+        cell_d.totalAmountLabel1.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict2 valueForKey:key] floatValue]];
+        cell_d.totalAmountLabel2.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict valueForKey:key] floatValue]];
+        if([cell_d.titleLabel.text hasPrefix:@"GROSS TOTAL"])
+        {
+            cell_d.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+            cell_d.totalAmountLabel1.font = [UIFont boldSystemFontOfSize:14];
+            cell_d.totalAmountLabel1.font = [UIFont boldSystemFontOfSize:14];
+        }
+        else
+        {
+            cell_d.titleLabel.font = [UIFont systemFontOfSize:14];
+            cell_d.totalAmountLabel1.font = [UIFont systemFontOfSize:14];
+            cell_d.totalAmountLabel1.font = [UIFont systemFontOfSize:14];
         }
     }
     else if(self.isItemSaleMode || self.isCategorySaleMode)
     {
+        OPReportItemCell *cell_d = (OPReportItemCell *)cell;
         OPCategoryItem *catItem = nil;
         if(self.isItemSaleMode)
             catItem = [self.saleSummary.itemBreakDown.rows objectAtIndex:indexPath.row];
         else
             catItem = [self.saleSummary.categoryBreakDown.rows objectAtIndex:indexPath.row];
         
-        cell.titleLabel.text = catItem.name;
-        cell.countField.text = [NSString stringWithFormat:@"%0.2f", catItem.qty];
-        cell.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", catItem.amount];
+        cell_d.titleLabel.text = catItem.name;
+        cell_d.countField.text = [NSString stringWithFormat:@"%0.2f", catItem.qty];
+        cell_d.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", catItem.amount];
         
         
-        if([cell.titleLabel.text hasPrefix:@"TOTAL"])
+        if([cell_d.titleLabel.text hasPrefix:@"TOTAL"])
         {
-            cell.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-            cell.countField.font = [UIFont boldSystemFontOfSize:14];
-            cell.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
+            cell_d.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+            cell_d.countField.font = [UIFont boldSystemFontOfSize:14];
+            cell_d.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
         }
         else
         {
-            cell.titleLabel.font = [UIFont systemFontOfSize:14];
-            cell.countField.font = [UIFont systemFontOfSize:14];
-            cell.totalAmountLabel.font = [UIFont systemFontOfSize:14];
+            cell_d.titleLabel.font = [UIFont systemFontOfSize:14];
+            cell_d.countField.font = [UIFont systemFontOfSize:14];
+            cell_d.totalAmountLabel.font = [UIFont systemFontOfSize:14];
         }
     }
     
@@ -420,8 +482,16 @@
             OPSaleSummary *sm = [[OPSaleSummary alloc] init];
             [sm parseFromRawItems:statements];
             self.saleSummary = sm;
-            [self.tableView reloadData];
-            self.tableView.tableHeaderView=nil;
+            
+            if(self.isComparisonMode)
+            {
+                [self fetchComparisonReports];
+            }
+            else
+            {
+                [self.tableView reloadData];
+                self.tableView.tableHeaderView=nil;
+            }
         }
     }
     
@@ -429,10 +499,11 @@
         
         self.saleSummary = nil;
         [self.tableView reloadData];
-        UILabel *label = [[UILabel alloc] initWithFrame:self.tableView.frame];
-        label.text = @"No Sales!";
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, self.tableView.frame.size.width-10, self.tableView.frame.size.height)];
+        label.text = @"No report is currently available for the selected date(s). Please pull down to refresh.";
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont italicSystemFontOfSize:17];
+        label.numberOfLines = 3;
         self.tableView.tableHeaderView=label;
     }
 }
@@ -451,14 +522,109 @@
 - (void)stopAnimating
 {
     [LoadingIndicatorView removeLoadingIndicator:self.indicatorView];
+    [self.refreshController endRefreshing];
 }
 
 - (void)showErrorMessage
 {
     [self stopAnimating];
-    NSString *title = [NSString stringWithFormat:@"Error in generating reports!"];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    NSString *title = [NSString stringWithFormat:@"Unable to Fetch Reports"];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:@"An error occurred. Your request could not be completed at this time. Please try again later." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Try again", nil];
     [alert show];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==1)
+    {
+        [self fetchReports];
+    }
+}
+
+//report comparison
+- (void)updateReportComparisonDates
+{
+    if([self.rangeType isEqualToString:@"Today"])
+    {
+        self.compareDate1 = [KSDateUtil getNextDayByCount:-1 fromDate:self.date1];
+        self.compareDate2 = self.date1;
+    }
+    else if([self.rangeType isEqualToString:@"This Week"])
+    {
+        self.compareDate1 = [KSDateUtil getNextWeekByCount:-1 fromDate:self.date1];
+        self.compareDate2 = [KSDateUtil getNextDayByCount:6 fromDate:self.date1];
+    }
+    else if([self.rangeType isEqualToString:@"This Month"])
+    {
+        self.compareDate1 = [KSDateUtil getNextMonthByCount:-1 fromDate:self.date1];
+        NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.date1];
+        self.compareDate2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.date1];
+    }
+    else
+    {
+        int dayToReduce = (int)[KSDateUtil getDayDiffBetweenDate1:self.date1 andDate2:self.date2]+1;
+        self.compareDate1 = [KSDateUtil getNextDayByCount:dayToReduce*-1 fromDate:self.date1];
+        self.compareDate2 = [KSDateUtil getNextDayByCount:dayToReduce*-1 fromDate:self.date2];
+    }
+}
+- (void)fetchComparisonReports
+{
+    [self startAnimating];
+    [self updateReportComparisonDates];
+    [self performSelector:@selector(loadComparisonReportLately) withObject:nil afterDelay:0.1];
+}
+
+- (void)loadComparisonReportLately
+{
+    [OPDataFetchHelper fetchSalesSummaryItemWiseFromDate:self.compareDate1 toDate:self.compareDate2 withExecutionBlock:^(BOOL success, Response *response){
+        
+        if(success)
+        {
+            [self performSelectorOnMainThread:@selector(didFetchComparisonReportsWithResponse:) withObject:response waitUntilDone:NO];
+        }
+        else
+        {
+            [self performSelectorOnMainThread:@selector(showErrorMessage2) withObject:nil waitUntilDone:NO];
+        }
+    }];
+}
+
+- (void)didFetchComparisonReportsWithResponse:(Response *)response
+{    
+    [self stopAnimating];
+    NSString *stmt = response.responseString;
+    stmt = [stmt stringByReplacingOccurrencesOfString:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>" withString:@""];
+    stmt = [stmt stringByReplacingOccurrencesOfString:@"<string xmlns=\"http://tempuri.org/\">" withString:@""];
+    stmt = [stmt stringByReplacingOccurrencesOfString:@"</string>" withString:@""];
+    NSDictionary *dict = [stmt JSONValue];
+    BOOL didFoundSales = NO;
+    if(dict){
+        
+        id val = [[dict valueForKey:@"ItemTransactions"] valueForKey:@"Transaction"];
+        NSArray *statements = nil;
+        if([val isKindOfClass:[NSArray class]])
+            statements = val;
+        else if([val isKindOfClass:[NSDictionary class]])
+            statements = [NSArray arrayWithObject:val];
+        
+        if(statements.count){
+            didFoundSales=YES;
+            OPSaleSummary *sm = [[OPSaleSummary alloc] init];
+            [sm parseFromRawItems:statements];
+            self.saleSummary2 = sm;
+            [self.tableView reloadData];
+            self.tableView.tableHeaderView=nil;
+        }
+    }
+    
+    if(!didFoundSales){
+        
+        self.saleSummary2 = nil;
+    }
+}
+
+- (void)showErrorMessage2
+{
+    [self stopAnimating];
+}
 @end

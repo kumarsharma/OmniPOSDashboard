@@ -17,11 +17,11 @@
 }
 
 @property (nonatomic, weak) EXMenuViewController *parentController;
-@property (nonatomic, assign) BOOL isSaleSummaryMode, isItemSaleMode, isCategorySaleMode;
+@property (nonatomic, assign) BOOL isSaleSummaryMode, isItemSaleMode, isCategorySaleMode, isComparisonMode;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) LoadingIndicatorView *indicatorView;
-@property (nonatomic, strong) NSDate *date1, *date2;
-@property (nonatomic, strong) OPSaleSummary *saleSummary;
+@property (nonatomic, strong) NSDate *date1, *date2, *compareDate1, *compareDate2;
+@property (nonatomic, strong) OPSaleSummary *saleSummary, *saleSummary2;
 @property (nonatomic, strong) UIBarButtonItem *middleBarItem;
 @property (nonatomic, strong) NSString *rangeType; 
 @end

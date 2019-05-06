@@ -11,7 +11,7 @@
 #import "OPSaleSummary.h"
 
 @implementation OPReportSummaryCell
-@synthesize grossSaleLabel, salesLabel, avgSalesLabel;
+@synthesize grossSaleLabel, salesLabel, avgSalesLabel, reportTitleLabel;
 @synthesize saleSummary;
 @synthesize webview;
 @synthesize chartView;
@@ -30,29 +30,36 @@
 
 - (void)setupSubviews
 {
-    //    self.contentView.backgroundColor = [UIColor grayColor];
-    //    self.contentView.layer.borderColor = [[UIColor darkGrayColor] CGColor];
-    //    self.contentView.layer.borderWidth = 1.0;
+    self.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_iphone"]];
+//    self.contentView.layer.borderColor = [[UIColor darkGrayColor] CGColor];
+//    self.contentView.layer.borderWidth = 1.0;
     
     NSInteger kGap = 3;
     float labelHeight = 60;
-
-    self.grossSaleLabel = [self  createLabelWithRect:CGRectMake(5, 0, self.frame.size.width/3, labelHeight) text:@"" bgColor:[UIColor clearColor] font:[UIFont systemFontOfSize:15.0]];
+    
+    self.reportTitleLabel = [self  createUnderlinedLabelWithRect:CGRectMake(5, 2, self.frame.size.width-10, 19) text:@"" bgColor:[UIColor clearColor] font:[UIFont italicSystemFontOfSize:17.0]];
+    self.reportTitleLabel.text = @"Sale Summary  ▶";
+    self.reportTitleLabel.textAlignment = NSTextAlignmentLeft;
+    
+    float nextY = 19;
+    self.grossSaleLabel = [self  createLabelWithRect:CGRectMake(5, nextY, self.frame.size.width/3, labelHeight) text:@"" bgColor:[UIColor clearColor] font:[UIFont systemFontOfSize:15.0]];
     self.grossSaleLabel.numberOfLines = 2;
     self.grossSaleLabel.adjustsFontSizeToFitWidth = YES;
     self.grossSaleLabel.textAlignment = NSTextAlignmentLeft;
     
     float posX = self.grossSaleLabel.frame.origin.x + self.grossSaleLabel.frame.size.width+kGap;
-    self.salesLabel = [self  createLabelWithRect:CGRectMake(posX, 0, self.frame.size.width/3, labelHeight) text:@"" bgColor:[UIColor clearColor] font:[UIFont systemFontOfSize:15.0]];
+    self.salesLabel = [self  createLabelWithRect:CGRectMake(posX, nextY, self.frame.size.width/3, labelHeight) text:@"" bgColor:[UIColor clearColor] font:[UIFont systemFontOfSize:15.0]];
     self.salesLabel.textAlignment = NSTextAlignmentCenter;
     self.salesLabel.adjustsFontSizeToFitWidth = YES;
     self.salesLabel.numberOfLines=2;
     posX = self.salesLabel.frame.origin.x + self.salesLabel.frame.size.width+kGap;
     
-    self.avgSalesLabel = [self  createLabelWithRect:CGRectMake(posX, 0, (self.frame.size.width/3)-15, labelHeight) text:@"" bgColor:[UIColor clearColor] font:[UIFont systemFontOfSize:15.0]];
+    self.avgSalesLabel = [self  createLabelWithRect:CGRectMake(posX, nextY, (self.frame.size.width/3)-15, labelHeight) text:@"" bgColor:[UIColor clearColor] font:[UIFont systemFontOfSize:15.0]];
     self.avgSalesLabel.adjustsFontSizeToFitWidth = YES;
     self.avgSalesLabel.textAlignment = NSTextAlignmentRight;
     self.avgSalesLabel.numberOfLines=2;
+    
+    [self.contentView addSubview:self.reportTitleLabel];
     [self.contentView addSubview:self.grossSaleLabel];
     [self.contentView addSubview:self.salesLabel];
     [self.contentView addSubview:self.avgSalesLabel];
@@ -65,7 +72,7 @@
     NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(webview);
     [self.chartView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[webview]|" options:0 metrics:nil views:viewsDictionary]];
     [self.chartView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[webview]|" options:0 metrics:nil views:viewsDictionary]];
-    
+    webview.scrollView.scrollEnabled = NO;
     self.webview = webview;
     NSString *resourcesPath = [[NSBundle mainBundle] resourcePath];
     NSString *htmlPath = [resourcesPath stringByAppendingString:@"/cw.html"];
@@ -112,6 +119,18 @@
 - (UILabel *)createLabelWithRect:(CGRect)rect text:(NSString *)text bgColor:(UIColor *)color font:(UIFont*)font
 {
     UILabel *label = [[UILabel alloc] initWithFrame:rect];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = font;
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor blackColor];
+    label.text = text;
+    
+    return label;
+}
+
+- (UnderLineLabel *)createUnderlinedLabelWithRect:(CGRect)rect text:(NSString *)text bgColor:(UIColor *)color font:(UIFont*)font
+{
+    UnderLineLabel *label = [[UnderLineLabel alloc] initWithFrame:rect];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = font;
     label.backgroundColor = [UIColor clearColor];

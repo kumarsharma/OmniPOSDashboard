@@ -33,7 +33,6 @@ NSString *const CWCAsbestos = @"asbestos";
 
 static CWColors* _sharedColors = nil;
 @interface CWColors ()
-- (CWColor*) rgba:(NSString*) string;
 - (NSInteger) random:(NSInteger) max;
 @end
 
