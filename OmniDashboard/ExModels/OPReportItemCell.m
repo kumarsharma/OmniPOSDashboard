@@ -43,7 +43,7 @@
     UIFont *font = [UIFont systemFontOfSize:14.0];
     self.titleLabel = [self  createLabelWithRect:CGRectMake(5, 0, 160, self.frame.size.height) text:@"" bgColor:[UIColor clearColor] font:font];
 //    self.titleLabel.minimumScaleFactor = 10;
-    self.titleLabel.adjustsFontSizeToFitWidth = YES;
+//    self.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.titleLabel.textAlignment = NSTextAlignmentRight;
     
     float posX = self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width+kGap;

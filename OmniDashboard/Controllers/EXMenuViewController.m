@@ -385,9 +385,18 @@
         //cell.textLabel.text = [NSString stringWithFormat:@"Gross Sale: %@%0.2f", @"$", self.saleSummary.grossSale];
         rcell.grossSaleLabel.text = [NSString stringWithFormat:@"%@%0.2f\nGross Sales", @"$", self.saleSummary.grossSale];
         rcell.salesLabel.text = [NSString stringWithFormat:@"%d\nSales", self.saleSummary.totalNoOfSale];
-        rcell.avgSalesLabel.text = [NSString stringWithFormat:@"%@%0.2f\nAverage Sale", @"$", self.saleSummary.averageSale];        
-        rcell.saleSummary = self.saleSummary;
-        [rcell reloadViews];
+        rcell.avgSalesLabel.text = [NSString stringWithFormat:@"%@%0.2f\nAverage Sale", @"$", self.saleSummary.averageSale];
+
+        if(!rcell.saleSummary || ![self.saleSummary isEqual:rcell.saleSummary])
+        {
+            rcell.saleSummary = self.saleSummary;
+            [rcell reloadViews];
+        }
+        else
+        {
+            [rcell.barChart removeChart];
+            [rcell.barChart addChart];
+        }
     }
     else if(indexPath.section==1 || indexPath.section==2)
     {

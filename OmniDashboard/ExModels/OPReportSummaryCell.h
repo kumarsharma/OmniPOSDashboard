@@ -19,6 +19,7 @@
 @property (nonatomic, strong) OPSaleSummary *saleSummary;
 @property (nonatomic, strong) WKWebView *webview;
 @property  (nonatomic, strong) UIView *chartView;
+@property (nonatomic, strong) CWBarChart* barChart;
 - (void)reloadViews;
 @end
 

@@ -15,10 +15,10 @@
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
 //    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 250)];
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 33)];
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 170, 100, 44)];
     imgView.image = [UIImage imageNamed:@"omnipos_logo"];
-    UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 194, 320, 50)];
+    UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 33)];
     versionLabel.textAlignment = NSTextAlignmentCenter;
     versionLabel.textColor = [UIColor blackColor];
     versionLabel.text = [NSString stringWithFormat:@"OmniPOS Dashboard. Version %@ (%@)", version, build];

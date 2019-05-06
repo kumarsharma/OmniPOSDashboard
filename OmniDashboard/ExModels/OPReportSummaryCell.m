@@ -15,6 +15,7 @@
 @synthesize saleSummary;
 @synthesize webview;
 @synthesize chartView;
+@synthesize barChart;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -58,7 +59,6 @@
 
     self.chartView = [[UIView alloc] initWithFrame:CGRectMake(1, labelHeight+5, self.frame.size.width, 210)];        
     WKWebView *webview = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.chartView.frame.size.width, 180)];
-    webview.UIDelegate = self;
     [webview setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.chartView addSubview:webview];
     
@@ -77,6 +77,7 @@
 {
     NSArray* labels = [NSMutableArray arrayWithArray:@[@"Cash",@"Card",@"Voucher",@"On A/c", @"Others"]];
     NSMutableArray* datasets = [NSMutableArray array];
+    
     for(NSInteger i = 1; i <= 1; i++) {
         CWBarDataSet* ds = nil;
         
@@ -102,6 +103,9 @@
     }    
     CWBarChartData* bcd = [[CWBarChartData alloc] initWithLabels:labels andDataSet:datasets];
     CWBarChart* bc = [[CWBarChart alloc] initWithWebView:self.webview name:@"BarChart1" width:300 height:200 data:bcd options:nil];
+    if(self.barChart)
+        [self.barChart removeChart];
+    self.barChart = bc;
     [bc addChart];
 }
 

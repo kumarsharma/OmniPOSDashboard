@@ -34,9 +34,6 @@
     loginBtn.layer.borderWidth = 1.3;
     [loginBtn setBackgroundColor:[UIColor darkGrayColor]];
     
-    UIView *fview = [OPViewSupplier footerViewForApp];
-    fview.frame = CGRectMake(0, self.view.frame.size.height-276, fview.frame.size.width, fview.frame.size.height);
-    [self.view addSubview:fview];
     self.viewTitleLabel.text = self.title;
     [self hideSettingsButton];
     [self hideBackButton];
@@ -44,6 +41,10 @@
     [self.view addSubview:forgotPinBtn];
     pinView.center = self.view.center;
     forgotPinBtn.frame = CGRectMake(forgotPinBtn.frame.origin.x, pinView.frame.size.height+pinView.frame.origin.y+5, forgotPinBtn.frame.size.width, forgotPinBtn.frame.size.height);
+    
+    UIView *fview = [OPViewSupplier footerViewForApp];
+    fview.frame = CGRectMake(0, forgotPinBtn.frame.size.height+forgotPinBtn.frame.origin.y+2, fview.frame.size.width, fview.frame.size.height);
+    [self.view addSubview:fview];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
