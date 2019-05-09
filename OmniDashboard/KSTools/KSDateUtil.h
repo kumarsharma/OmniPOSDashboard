@@ -29,4 +29,5 @@
 +(NSInteger)getDayDiffBetweenDate1:(NSDate *)date1 andDate2:(NSDate *)date2;
 + (NSDate *)getNextWeekByCount:(NSInteger)nextCount fromDate:(NSDate *)fromDate;
 + (NSDate *)getNextMonthByCount:(NSInteger)nextCount fromDate:(NSDate *)fromDate;
++ (NSDate *)getFirstDayOfMonthFromDate:(NSDate *)arbitraryDate;
 @end

@@ -237,6 +237,15 @@
     return firstDayOfMonthDate;
 }
 
++ (NSDate *)getFirstDayOfMonthFromDate:(NSDate *)arbitraryDate
+{
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comp = [gregorian components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:arbitraryDate];
+    [comp setDay:1];
+    NSDate *firstDayOfMonthDate = [gregorian dateFromComponents:comp];
+    return firstDayOfMonthDate;
+}
+
 + (NSString *)getDayMonthYearString:(NSDate*)date
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

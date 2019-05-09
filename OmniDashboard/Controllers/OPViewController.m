@@ -59,13 +59,13 @@
     if(nil == self.viewTitleLabel)
     {
         UILabel *lbl = [[UILabel alloc] init];
-        CGRect lframe = CGRectMake(80, -5, 175, 33);
-        lbl.font = [UIFont systemFontOfSize:17];
+        CGRect lframe = CGRectMake(35, 18, 245, 27);
+        lbl.font = [UIFont boldSystemFontOfSize:15];
         lbl.frame = lframe;
         lbl.textAlignment = NSTextAlignmentCenter;
         lbl.backgroundColor = [UIColor clearColor];
         lbl.textColor = [UIColor whiteColor];
-        lbl.adjustsFontSizeToFitWidth = YES;
+//        lbl.adjustsFontSizeToFitWidth = YES;
         self.viewTitleLabel = lbl;
         [self.topBarView addSubview:lbl];
     }
@@ -146,7 +146,7 @@
 - (void)initializeSubViews
 {
     UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 65, self.view.bounds.size.width, self.view.bounds.size.height-65)];
-    UIImageView *lImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,-5, 75, 33)];
+    UIImageView *lImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5,-5, 75, 33)];
     UIImageView *topBgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
     lImageView.image = [UIImage imageNamed:@"omnipos_logo"];
     UIView *tView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, 44)];

@@ -75,12 +75,12 @@
 }
 
 - (void)askToEnterPIN{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Setup Login PIN" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Setup", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Setup Login PIN (4 digits)" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Setup", nil];
     [alertView setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
     alertView.tag = 200;
     [alertView textFieldAtIndex:0].secureTextEntry = YES;
-    [alertView textFieldAtIndex:0].placeholder = @"Enter new pin";
-    [alertView textFieldAtIndex:1].placeholder = @"Confirm pin";
+    [alertView textFieldAtIndex:0].placeholder = @"Enter new pin (4 digits)";
+    [alertView textFieldAtIndex:1].placeholder = @"Confirm pin (4 digits)";
     [alertView textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
     [alertView textFieldAtIndex:1].keyboardType = UIKeyboardTypeNumberPad;
     
@@ -88,6 +88,9 @@
     [alertView textFieldAtIndex:0].font = [UIFont boldSystemFontOfSize:19];
     [alertView textFieldAtIndex:1].textAlignment = NSTextAlignmentCenter;
     [alertView textFieldAtIndex:1].font = [UIFont boldSystemFontOfSize:19];
+    
+    [alertView textFieldAtIndex:0].delegate = self;
+    [alertView textFieldAtIndex:1].delegate = self;
     [alertView show];
 }
 
@@ -306,6 +309,14 @@
 }
 
 #pragma mark - TextField delegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField.text.length>=4)
+        return NO;
+    
+    return YES;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

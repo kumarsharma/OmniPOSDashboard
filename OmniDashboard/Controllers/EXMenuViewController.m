@@ -141,14 +141,14 @@
     }
     else if([self.rangeType isEqualToString:@"This Week"])
     {
-        self.date1 = [KSDateUtil getNextWeekByCount:1 fromDate:self.date1];
+        self.date1 = [KSDateUtil getNextWeekByCount:7 fromDate:self.date1];
         self.date2 = [KSDateUtil getNextDayByCount:6 fromDate:self.date1];
     }
     else if([self.rangeType isEqualToString:@"This Month"])
     {
         self.date1 = [KSDateUtil getNextMonthByCount:1 fromDate:self.date1];
         NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.date1];
-        self.date2 = [KSDateUtil getNextDayByCount:days.length fromDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.date1];
     }
     else
     {
@@ -170,7 +170,7 @@
     }
     else if([self.rangeType isEqualToString:@"This Week"])
     {
-        self.date1 = [KSDateUtil getNextWeekByCount:-1 fromDate:self.date1];
+        self.date1 = [KSDateUtil getNextWeekByCount:-7 fromDate:self.date1];
         self.date2 = [KSDateUtil getNextDayByCount:6 fromDate:self.date1];
     }
     else if([self.rangeType isEqualToString:@"This Month"])
@@ -577,7 +577,8 @@
 - (void)fetchReports
 {    
     [self startAnimating];
-    if(self.saleSummary)
+    self.tableView.tableHeaderView=nil;
+    if(self.saleSummary && [self.tableView numberOfRowsInSection:0]>0)
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     [self performSelector:@selector(loadReportLately) withObject:nil afterDelay:0.1];
 }
@@ -690,14 +691,14 @@
     }
     else if([self.rangeType isEqualToString:@"This Week"])
     {
-        self.compareDate1 = [KSDateUtil getNextWeekByCount:-1 fromDate:self.date1];
-        self.compareDate2 = [KSDateUtil getNextDayByCount:6 fromDate:self.date1];
+        self.compareDate1 = [KSDateUtil getNextWeekByCount:-7 fromDate:self.date1];
+        self.compareDate2 = [KSDateUtil getNextDayByCount:6 fromDate:self.compareDate1];
     }
     else if([self.rangeType isEqualToString:@"This Month"])
     {
         self.compareDate1 = [KSDateUtil getNextMonthByCount:-1 fromDate:self.date1];
-        NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.date1];
-        self.compareDate2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.date1];
+        NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.compareDate1];
+        self.compareDate2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.compareDate1];
     }
     else
     {
@@ -758,6 +759,11 @@
                 isFirstTimeLoaded = YES;
                 [self performSelector:@selector(reloadTableForFirstTime) withObject:nil afterDelay:1];
             }
+        }
+        else{
+            self.saleSummary2 = nil;
+            [self.tableView reloadData];
+            self.tableView.tableHeaderView=nil;
         }
     }
     

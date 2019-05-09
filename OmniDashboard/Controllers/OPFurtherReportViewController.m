@@ -118,7 +118,7 @@
             if([self.rangeType isEqualToString:@"Today"])
             {
                 self.date1 = [NSDate date];
-                self.date2 = [NSDate date];
+                self.date2 = self.date1;
             }
             else if([self.rangeType isEqualToString:@"This Week"])
             {
@@ -143,16 +143,57 @@
 
 - (void)nextDatBtnAction
 {
-    self.date1 = [KSDateUtil getNextDayByCount:1 fromDate:self.date1];
-    self.date2 = [KSDateUtil getNextDayByCount:1 fromDate:self.date2];
+    if([self.rangeType isEqualToString:@"Today"])
+    {
+        self.date1 = [KSDateUtil getNextDayByCount:1 fromDate:self.date1];
+        self.date2 = self.date1;
+    }
+    else if([self.rangeType isEqualToString:@"This Week"])
+    {
+        self.date1 = [KSDateUtil getNextWeekByCount:7 fromDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:6 fromDate:self.date1];
+    }
+    else if([self.rangeType isEqualToString:@"This Month"])
+    {
+        self.date1 = [KSDateUtil getNextMonthByCount:1 fromDate:self.date1];
+        NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.date1];
+    }
+    else
+    {
+        int dayToAdd = (int)[KSDateUtil getDayDiffBetweenDate1:self.date1 andDate2:self.date2]+1;
+        self.date1 = [KSDateUtil getNextDayByCount:dayToAdd fromDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:dayToAdd fromDate:self.date2];
+    }
+    
     [self fetchReports];
     [self updateDateLabel];
 }
 
 - (void)prevDayBtnAction
 {
-    self.date1 = [KSDateUtil getNextDayByCount:-1 fromDate:self.date1];
-    self.date2 = [KSDateUtil getNextDayByCount:-1 fromDate:self.date2];
+    if([self.rangeType isEqualToString:@"Today"])
+    {
+        self.date1 = [KSDateUtil getNextDayByCount:-1 fromDate:self.date1];
+        self.date2 = self.date1;
+    }
+    else if([self.rangeType isEqualToString:@"This Week"])
+    {
+        self.date1 = [KSDateUtil getNextWeekByCount:-7 fromDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:6 fromDate:self.date1];
+    }
+    else if([self.rangeType isEqualToString:@"This Month"])
+    {
+        self.date1 = [KSDateUtil getNextMonthByCount:-1 fromDate:self.date1];
+        NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.date1];
+    }
+    else
+    {
+        int dayToReduce = (int)[KSDateUtil getDayDiffBetweenDate1:self.date1 andDate2:self.date2]+1;
+        self.date1 = [KSDateUtil getNextDayByCount:dayToReduce*-1 fromDate:self.date1];
+        self.date2 = [KSDateUtil getNextDayByCount:dayToReduce*-1 fromDate:self.date2];
+    }
     [self fetchReports];
     [self updateDateLabel];
 }
@@ -551,14 +592,14 @@
     }
     else if([self.rangeType isEqualToString:@"This Week"])
     {
-        self.compareDate1 = [KSDateUtil getNextWeekByCount:-1 fromDate:self.date1];
-        self.compareDate2 = [KSDateUtil getNextDayByCount:6 fromDate:self.date1];
+        self.compareDate1 = [KSDateUtil getNextWeekByCount:-7 fromDate:self.date1];
+        self.compareDate2 = [KSDateUtil getNextDayByCount:6 fromDate:self.compareDate1];
     }
     else if([self.rangeType isEqualToString:@"This Month"])
     {
         self.compareDate1 = [KSDateUtil getNextMonthByCount:-1 fromDate:self.date1];
-        NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.date1];
-        self.compareDate2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.date1];
+        NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.compareDate1];
+        self.compareDate2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.compareDate1];
     }
     else
     {
