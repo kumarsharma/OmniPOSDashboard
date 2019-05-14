@@ -240,20 +240,27 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 35;
+    return 30;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    if(self.isSaleSummaryMode)
+    {
+        if(section==0)
+            return @"Summary";
+        else
+            return @"Comparison";
+    }
     return @"";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(self.saleSummary && (self.isItemSaleMode || self.isCategorySaleMode || self.isComparisonMode))
+    if(self.saleSummary && (self.isItemSaleMode || self.isCategorySaleMode || self.isComparisonMode || self.isSaleSummaryMode))
     {
         if(self.isComparisonMode)
-            return 40;
+            return 50;
         else
             return 30;
     }
@@ -277,8 +284,15 @@
     }
     else if(self.saleSummary && self.isComparisonMode)
     {
-        OPReportComparisonItemCell *cell = [[OPReportComparisonItemCell alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 30)];
-        cell.titleLabel.text = @"";
+        UIView *secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 50)];
+        
+        OPReportComparisonItemCell *cell = [[OPReportComparisonItemCell alloc] initWithFrame:CGRectMake(0, 20, self.tableView.frame.size.width, 30)];
+        
+        if(section==0)
+            cell.titleLabel.text = @"Summary-";
+        else
+            cell.titleLabel.text = @"Time wise-";
+        cell.titleLabel.textAlignment=NSTextAlignmentLeft;
         
         NSString *firstDateTitle = nil;
         if([self.date1 compare:self.date2] == NSOrderedSame)
@@ -294,6 +308,30 @@
         
         cell.totalAmountLabel1.text = secondDateTitle;
         cell.totalAmountLabel2.text = firstDateTitle;
+        cell.totalAmountLabel1.font = [UIFont boldSystemFontOfSize:14.0];
+        cell.totalAmountLabel2.font = [UIFont boldSystemFontOfSize:14.0];
+        cell.frame=CGRectMake(0, 20, self.tableView.frame.size.width, 30);
+        [secView addSubview:cell];
+        return secView;
+    }
+    else if(self.saleSummary && self.isSaleSummaryMode)
+    {
+        OPReportComparisonItemCell *cell = [[OPReportComparisonItemCell alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 30)];
+        
+        if(section==0)
+        {
+            cell.titleLabel.text = @"Summary-";
+            cell.totalAmountLabel1.text = @"Desc";
+            cell.totalAmountLabel2.text = @"Amount";
+        }
+        else
+        {
+            cell.titleLabel.text = @"Time wise-";
+            cell.totalAmountLabel1.text = @"Time";
+            cell.totalAmountLabel2.text = @"Amount";
+        }
+        cell.titleLabel.textAlignment=NSTextAlignmentLeft;
+        cell.totalAmountLabel1.textAlignment=NSTextAlignmentLeft;
         cell.totalAmountLabel1.font = [UIFont boldSystemFontOfSize:14.0];
         cell.totalAmountLabel2.font = [UIFont boldSystemFontOfSize:14.0];
         return cell;
@@ -346,13 +384,21 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if(self.isSaleSummaryMode || self.isComparisonMode)
+        return 2;
+    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(self.isSaleSummaryMode || self.isComparisonMode)
-        return self.saleSummary.summaryBreakDown.rows.count;
+    {
+        if(section==0)
+            return self.saleSummary.summaryBreakDown.rows.count;
+        else
+            return 24;
+    }
     else if(self.isItemSaleMode)
         return self.saleSummary.itemBreakDown.rows.count;
     else if(self.isCategorySaleMode)
@@ -379,47 +425,93 @@
     if(self.isSaleSummaryMode)
     {
         OPReportItemCell *cell_d = (OPReportItemCell *)cell;
-        NSDictionary *dict = [self.saleSummary.summaryBreakDown.rows objectAtIndex:indexPath.row];
         
-        NSString *key = dict.allKeys.firstObject;
-        cell_d.titleLabel.text = key;
-        cell_d.countField.text = @"";
-        cell_d.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict valueForKey:key] floatValue]];
-        if([cell_d.titleLabel.text hasPrefix:@"GROSS TOTAL"])
+        if(indexPath.section==0)
         {
-            cell_d.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-            cell_d.countField.font = [UIFont boldSystemFontOfSize:14];
-            cell_d.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
+            NSDictionary *dict = [self.saleSummary.summaryBreakDown.rows objectAtIndex:indexPath.row]; 
+            NSString *key = dict.allKeys.firstObject;
+            cell_d.titleLabel.text = key;
+            cell_d.countField.text = @"";
+            cell_d.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict valueForKey:key] floatValue]];
+            if([cell_d.titleLabel.text hasPrefix:@"GROSS TOTAL"])
+            {
+                cell_d.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+                cell_d.countField.font = [UIFont boldSystemFontOfSize:14];
+                cell_d.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
+            }
+            else
+            {
+                cell_d.titleLabel.font = [UIFont systemFontOfSize:14];
+                cell_d.countField.font = [UIFont systemFontOfSize:14];
+                cell_d.totalAmountLabel.font = [UIFont systemFontOfSize:14];
+            }
         }
         else
-        {
-            cell_d.titleLabel.font = [UIFont systemFontOfSize:14];
-            cell_d.countField.font = [UIFont systemFontOfSize:14];
-            cell_d.totalAmountLabel.font = [UIFont systemFontOfSize:14];
+        { 
+            NSString *key = [NSString stringWithFormat:@"%d", (int)indexPath.row+1];
+            cell_d.titleLabel.text = [KSDateUtil chartTimeForTime:key];
+            cell_d.countField.text = @"";
+            cell_d.totalAmountLabel.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[self.saleSummary.timeWiseReports valueForKey:key] floatValue]];
+            if([cell_d.titleLabel.text hasPrefix:@"GROSS TOTAL"])
+            {
+                cell_d.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+                cell_d.countField.font = [UIFont boldSystemFontOfSize:14];
+                cell_d.totalAmountLabel.font = [UIFont boldSystemFontOfSize:14];
+            }
+            else
+            {
+                cell_d.titleLabel.font = [UIFont systemFontOfSize:14];
+                cell_d.countField.font = [UIFont systemFontOfSize:14];
+                cell_d.totalAmountLabel.font = [UIFont systemFontOfSize:14];
+            }
         }
     }
     else if(self.isComparisonMode)
     {
         OPReportComparisonItemCell *cell_d = (OPReportComparisonItemCell *)cell;
-        NSDictionary *dict = [self.saleSummary.summaryBreakDown.rows objectAtIndex:indexPath.row];
-        NSDictionary *dict2 = [self.saleSummary2.summaryBreakDown.rows objectAtIndex:indexPath.row];
         
-        NSString *key = dict.allKeys.firstObject;
-        cell_d.titleLabel.text = key;
-        
-        cell_d.totalAmountLabel1.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict2 valueForKey:key] floatValue]];
-        cell_d.totalAmountLabel2.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict valueForKey:key] floatValue]];
-        if([cell_d.titleLabel.text hasPrefix:@"GROSS TOTAL"])
+        if(indexPath.section==0)
         {
-            cell_d.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-            cell_d.totalAmountLabel1.font = [UIFont boldSystemFontOfSize:14];
-            cell_d.totalAmountLabel1.font = [UIFont boldSystemFontOfSize:14];
+            NSDictionary *dict = [self.saleSummary.summaryBreakDown.rows objectAtIndex:indexPath.row];
+            NSDictionary *dict2 = [self.saleSummary2.summaryBreakDown.rows objectAtIndex:indexPath.row];
+            
+            NSString *key = dict.allKeys.firstObject;
+            cell_d.titleLabel.text = key;
+            
+            cell_d.totalAmountLabel1.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict2 valueForKey:key] floatValue]];
+            cell_d.totalAmountLabel2.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[dict valueForKey:key] floatValue]];
+            if([cell_d.titleLabel.text hasPrefix:@"GROSS TOTAL"])
+            {
+                cell_d.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+                cell_d.totalAmountLabel1.font = [UIFont boldSystemFontOfSize:14];
+                cell_d.totalAmountLabel1.font = [UIFont boldSystemFontOfSize:14];
+            }
+            else
+            {
+                cell_d.titleLabel.font = [UIFont systemFontOfSize:14];
+                cell_d.totalAmountLabel1.font = [UIFont systemFontOfSize:14];
+                cell_d.totalAmountLabel1.font = [UIFont systemFontOfSize:14];
+            }
         }
         else
         {
-            cell_d.titleLabel.font = [UIFont systemFontOfSize:14];
-            cell_d.totalAmountLabel1.font = [UIFont systemFontOfSize:14];
-            cell_d.totalAmountLabel1.font = [UIFont systemFontOfSize:14];
+            NSString *key = [NSString stringWithFormat:@"%d", (int)indexPath.row+1];
+            cell_d.titleLabel.text = [KSDateUtil chartTimeForTime:key];
+            
+            cell_d.totalAmountLabel1.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[self.saleSummary.timeWiseReports valueForKey:key] floatValue]];
+            cell_d.totalAmountLabel2.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[self.saleSummary2.timeWiseReports valueForKey:key] floatValue]];
+            if([cell_d.titleLabel.text hasPrefix:@"GROSS TOTAL"])
+            {
+                cell_d.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+                cell_d.totalAmountLabel1.font = [UIFont boldSystemFontOfSize:14];
+                cell_d.totalAmountLabel1.font = [UIFont boldSystemFontOfSize:14];
+            }
+            else
+            {
+                cell_d.titleLabel.font = [UIFont systemFontOfSize:14];
+                cell_d.totalAmountLabel1.font = [UIFont systemFontOfSize:14];
+                cell_d.totalAmountLabel1.font = [UIFont systemFontOfSize:14];
+            }
         }
     }
     else if(self.isItemSaleMode || self.isCategorySaleMode)

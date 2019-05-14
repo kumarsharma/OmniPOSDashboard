@@ -45,7 +45,7 @@ static CWColors* _sharedColors = nil;
 - (CWColor*) pickColor {
 	NSArray* keys = self.colors.allKeys;
 	NSString* key = keys[[self random:keys.count]];
-	NSLog(@"Picking %@",key);
+//    NSLog(@"Picking %@",key);
 	return self.colors[key];
 }
 

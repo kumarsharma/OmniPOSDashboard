@@ -18,5 +18,6 @@
 @property (nonatomic, assign) int totalNoOfSale, totalGuestServed;
 
 @property (nonatomic, strong) OPReportSection *itemBreakDown, *categoryBreakDown, *summaryBreakDown;
+@property (nonatomic, strong) NSDictionary *timeWiseReports;
 - (void)parseFromRawItems:(NSArray *)items;
 @end

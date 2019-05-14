@@ -140,13 +140,14 @@
     return [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:10 toDate:[NSDate date] options:0];
 }
 
+/*
 - (NSString *)calendar:(FSCalendar *)calendar titleForDate:(NSDate *)date
 {
     if ([self.gregorian isDateInToday:date]) {
         return @"今";
     }
     return nil;
-}
+}*/
 
 - (FSCalendarCell *)calendar:(FSCalendar *)calendar cellForDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {

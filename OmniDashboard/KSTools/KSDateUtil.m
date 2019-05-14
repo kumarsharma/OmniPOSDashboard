@@ -254,4 +254,21 @@
     return stringFromDate;
 }
 
++ (NSDate *)getDateFromString:(NSString*)date
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/YYYY hh:mm:ss a"];
+    NSDate *d = [formatter dateFromString:date];
+    return d;
+}
+
++(NSString *)chartTimeForTime:(NSString *)time
+{
+    NSArray* keys = [NSMutableArray arrayWithArray:@[@"1",@"2",@"3",@"4", @"5",@"6",@"7",@"8",@"9", @"10", @"11",@"12",@"13",@"14", @"15",@"16",@"17",@"18",@"19", @"20",@"21",@"22",@"23",@"24"]];
+    
+    NSArray* labels = [NSMutableArray arrayWithArray:@[@"1-2 am",@"2-3 am",@"3-4 am",@"4-5 am", @"5-6 am",@"6-7 am",@"7-8 am",@"8-9 am",@"9-10 am", @"10-11 am", @"11-12 am",@"12-1 pm",@"1-2 pm",@"2-3 pm", @"3-4 pm",@"4-5 pm",@"5-6 pm",@"6-7 pm",@"7-8 pm", @"8-9 pm",@"9-10 pm",@"10-11 pm",@"11-12 pm",@"12-1 am"]];
+    
+    NSDictionary *dict = [NSDictionary dictionaryWithObjects:labels forKeys:keys];
+    return [dict valueForKey:time];
+}
 @end

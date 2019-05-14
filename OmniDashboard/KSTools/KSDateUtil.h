@@ -30,4 +30,6 @@
 + (NSDate *)getNextWeekByCount:(NSInteger)nextCount fromDate:(NSDate *)fromDate;
 + (NSDate *)getNextMonthByCount:(NSInteger)nextCount fromDate:(NSDate *)fromDate;
 + (NSDate *)getFirstDayOfMonthFromDate:(NSDate *)arbitraryDate;
++ (NSDate *)getDateFromString:(NSString*)date;
++(NSString *)chartTimeForTime:(NSString *)time;
 @end

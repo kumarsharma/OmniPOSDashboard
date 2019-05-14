@@ -9,12 +9,14 @@
 #import "OPSaleSummary.h"
 #import "OPReportSection.h"
 #import "OPCategoryItem.h"
+#import "KSDateUtil.h"
 
 @implementation OPSaleSummary
 @synthesize itemBreakDown, categoryBreakDown, summaryBreakDown;
 @synthesize grossSale, grossTax, grossDiscount, grossSurcharge, averageSale, totalRefunds, categoryTotals, itemTotals, categoryCountTotals, itemCountTotals;
 @synthesize totalNoOfSale, totalGuestServed;
 @synthesize totalCash, totalCard, totalVoucher, totalOnAccount, totalMix;
+@synthesize timeWiseReports;
 
 - (void)parseFromRawItems:(NSArray *)items
 {
@@ -133,22 +135,58 @@
     
     NSArray *trGroupIDs = [items valueForKeyPath:@"@distinctUnionOfObjects.OrderTransactionID"];
     self.totalNoOfSale = (int)trGroupIDs.count;
+    NSMutableDictionary *dateWiseSales = [NSMutableDictionary dictionaryWithCapacity:24];
+    for(int i = 1; i<=24; i++)
+    {
+        [dateWiseSales setValue:[NSNumber numberWithFloat:0] forKey:[NSString stringWithFormat:@"%d", i]];
+    }
+    
     for(NSString *trId in trGroupIDs)
     {
         NSArray *trGroups = [items filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"OrderTransactionID=%@", trId]];
+        NSDate *dateTime = nil;
+        float totalAmount = 0;
         for(NSDictionary *itemDict in trGroups)
         {
+            if(!dateTime)
+                dateTime = [KSDateUtil getDateFromString:[itemDict valueForKey:@"TransactionDate"]];
+            
             if([[itemDict valueForKey:@"WasRefunded"] isEqualToString:@"False"] && [[itemDict valueForKey:@"WasVoided"] isEqualToString:@"False"])
             {
                 self.grossSale+=[[itemDict valueForKey:@"Amount"] floatValue];
                 self.grossTax+=[[itemDict valueForKey:@"TaxAmount"] floatValue];
                 self.grossDiscount+=[[itemDict valueForKey:@"DiscountAmount"] floatValue];
                 self.grossSurcharge+=[[itemDict valueForKey:@"SurchargeAmount"] floatValue];
+                totalAmount+=[[itemDict valueForKey:@"Amount"] floatValue];
             }
             else if([[itemDict valueForKey:@"WasRefunded"] isEqualToString:@"True"])
             {
                 self.totalRefunds+=[[itemDict valueForKey:@"Amount"] floatValue]*-1;
                 self.totalNoOfSale--;
+            }
+        }
+        
+        
+        NSString *startTimeString = @"08:00 AM";
+        NSString *endTimeString = @"06:00 PM";
+        
+        for(NSString *key in dateWiseSales.allKeys)
+        {            
+            [self getStartTime:&startTimeString andEndTime:&endTimeString fromTime:key.intValue];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"hh:mm a"];
+            
+            NSString *nowTimeString = [formatter stringFromDate:dateTime];
+            
+            int startTime   = [self minutesSinceMidnight:[formatter dateFromString:startTimeString]];
+            int endTime  = [self minutesSinceMidnight:[formatter dateFromString:endTimeString]];
+            int nowTime     = [self minutesSinceMidnight:[formatter dateFromString:nowTimeString]];;
+
+            if (startTime <= nowTime && nowTime <= endTime)
+            {
+                NSNumber *value = [dateWiseSales valueForKey:key];
+                NSNumber *totalValue = [NSNumber numberWithFloat:value.floatValue+totalAmount];
+                [dateWiseSales setValue:totalValue forKey:key];
             }
         }
     }
@@ -192,8 +230,201 @@
     [summaries addObject:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%0.2f", self.grossTax] forKey:@"Tax"]];
     [summaries addObject:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%0.2f", self.grossSale] forKey:@"GROSS TOTAL"]];
     
+    NSMutableArray *toRemovekeys = [NSMutableArray arrayWithCapacity:24];
+    for(NSString *key in dateWiseSales)
+    {
+        NSNumber *val = [dateWiseSales valueForKey:key];
+        if(val.floatValue<=0)
+            [toRemovekeys addObject:key];
+    }
+    
+    if(toRemovekeys.count)
+        [dateWiseSales removeObjectsForKeys:toRemovekeys];
+    
     summarySection.rows = summaries;
     self.summaryBreakDown=summarySection;
+    self.timeWiseReports = dateWiseSales;
 }
 
+-(int) minutesSinceMidnight:(NSDate *)date
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:date];
+    return 60 * (int)[components hour] + (int)[components minute];        
+}
+
+- (void)getStartTime:(NSString **)startTime andEndTime:(NSString **)endTime fromTime:(int)time
+{
+    switch (time) {
+        case 1:
+            {
+                *startTime = @"01:00 AM";
+                *endTime = @"02:00 AM";
+            }
+            break;
+            
+        case 2:
+        {
+            *startTime = @"02:00 AM";
+            *endTime = @"03:00 AM";
+        }
+            break;
+            
+        case 3:
+        {
+            *startTime = @"03:00 AM";
+            *endTime = @"04:00 AM";
+        }
+            break;
+            
+        case 4:
+        {
+            *startTime = @"04:00 AM";
+            *endTime = @"05:00 AM";
+        }
+            break;
+            
+        case 5:
+        {
+            *startTime = @"05:00 AM";
+            *endTime = @"06:00 AM";
+        }
+            break;
+            
+        case 6:
+        {
+            *startTime = @"06:00 AM";
+            *endTime = @"07:00 AM";
+        }
+            break;
+            
+        case 7:
+        {
+            *startTime = @"07:00 AM";
+            *endTime = @"08:00 AM";
+        }
+            break;
+            
+        case 8:
+        {
+            *startTime = @"08:00 AM";
+            *endTime = @"09:00 AM";
+        }
+            break;
+            
+        case 9:
+        {
+            *startTime = @"09:00 AM";
+            *endTime = @"10:00 AM";
+        }
+            break;
+            
+        case 10:
+        {
+            *startTime = @"10:00 AM";
+            *endTime = @"11:00 AM";
+        }
+            break;
+            
+        case 11:
+        {
+            *startTime = @"11:00 AM";
+            *endTime = @"12:00 AM";
+        }
+            break;
+            
+        case 12:
+        {
+            *startTime = @"12:00 AM";
+            *endTime = @"01:00 PM";
+        }
+            break;
+            
+        case 13:
+        {
+            *startTime = @"01:00 PM";
+            *endTime = @"02:00 PM";
+        }
+            break;
+            
+        case 14:
+        {
+            *startTime = @"02:00 PM";
+            *endTime = @"03:00 PM";
+        }
+            break;
+            
+        case 15:
+        {
+            *startTime = @"03:00 PM";
+            *endTime = @"04:00 PM";
+        }
+            break;
+            
+        case 16:
+        {
+            *startTime = @"04:00 PM";
+            *endTime = @"05:00 PM";
+        }
+            break;
+            
+        case 17:
+        {
+            *startTime = @"05:00 PM";
+            *endTime = @"06:00 PM";
+        }
+            break;
+            
+        case 18:
+        {
+            *startTime = @"06:00 PM";
+            *endTime = @"07:00 PM";
+        }
+            break;
+            
+        case 19:
+        {
+            *startTime = @"07:00 PM";
+            *endTime = @"08:00 PM";
+        }
+            break;
+            
+        case 20:
+        {
+            *startTime = @"08:00 PM";
+            *endTime = @"09:00 PM";
+        }
+            break;
+            
+        case 21:
+        {
+            *startTime = @"09:00 PM";
+            *endTime = @"10:00 PM";
+        }
+            break;
+            
+        case 22:
+        {
+            *startTime = @"10:00 PM";
+            *endTime = @"11:00 PM";
+        }
+            break;
+            
+        case 23:
+        {
+            *startTime = @"11:00 PM";
+            *endTime = @"12:00 PM";
+        }
+            break;
+            
+        case 24:
+        {
+            *startTime = @"12:00 PM";
+            *endTime = @"01:00 AM";
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 @end

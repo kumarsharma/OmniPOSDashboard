@@ -210,15 +210,6 @@
     }
 }
 
-- (void)showDateView
-{
-    RangePickerViewController *vc = [[RangePickerViewController alloc] initWithDate1:self.date1 Date2:self.date2];
-    vc.delegate = self;
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    [self presentViewController:nav animated:YES completion:nil];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -229,6 +220,25 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.toolbarHidden = NO;
+}
+
+#pragma mark - Calendar UI
+
+- (void)showDateView
+{
+    RangePickerViewController *vc = [[RangePickerViewController alloc] initWithDate1:self.date1 Date2:self.date2];
+    vc.delegate = self;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)didSelectDate1:(NSDate *)date1 andDate2:(NSDate *)date2
+{
+    self.date1 = date1;
+    self.date2 = date2;
+    [self updateDateLabel];
+    [self fetchReports];
 }
 
 #pragma mark - Table view data source
@@ -564,14 +574,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)didSelectDate1:(NSDate *)date1 andDate2:(NSDate *)date2
-{
-    self.date1 = date1;
-    self.date2 = date2;
-    [self updateDateLabel];
-    [self fetchReports];
-}
-
 #pragma mark - Remote Reports
 
 - (void)fetchReports
@@ -698,7 +700,14 @@
     {
         self.compareDate1 = [KSDateUtil getNextMonthByCount:-1 fromDate:self.date1];
         NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.compareDate1];
-        self.compareDate2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.compareDate1];
+        
+        int dayToReduce = (int)[KSDateUtil getDayDiffBetweenDate1:self.date1 andDate2:self.date2];
+//        self.compareDate2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.compareDate1];
+        
+        if(dayToReduce<=28)
+            self.compareDate2 = [KSDateUtil getNextDayByCount:dayToReduce fromDate:self.compareDate1];
+        else
+            self.compareDate2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.compareDate1];
     }
     else
     {

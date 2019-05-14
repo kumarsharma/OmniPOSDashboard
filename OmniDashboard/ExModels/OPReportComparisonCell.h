@@ -23,5 +23,6 @@
 @property (nonatomic, strong) WKWebView *webview;
 @property  (nonatomic, strong) UIView *chartView;
 @property (nonatomic, strong) CWBarChart* barChart;
+@property (nonatomic, assign) BOOL showOnlyValuedBars;
 - (void)reloadViews;
 @end
