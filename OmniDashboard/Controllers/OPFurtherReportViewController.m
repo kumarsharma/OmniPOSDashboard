@@ -37,11 +37,11 @@
     if(isSaleSummaryMode)
         self.title = @"Sale Summary";
     else if(isItemSaleMode)
-        self.title = @"Item Sales";
+        self.title = @"By Item";
     else if(isCategorySaleMode)
-        self.title = @"Category Sales";
+        self.title = @"By Category";
     else if(isComparisonMode)
-        self.title = @"Sale Comparison";
+        self.title = @"Comparison";
     
     self.viewTitleLabel.text = self.title;
     self.date1 = self.parentController.date1;
@@ -286,12 +286,12 @@
     {
         UIView *secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 50)];
         
-        OPReportComparisonItemCell *cell = [[OPReportComparisonItemCell alloc] initWithFrame:CGRectMake(0, 20, self.tableView.frame.size.width, 30)];
+        OPReportComparisonItemCell *cell = [[OPReportComparisonItemCell alloc] initWithFrame:CGRectMake(0, 10, self.tableView.frame.size.width, 40)];
         
         if(section==0)
-            cell.titleLabel.text = @"Summary-";
+            cell.titleLabel.text = @"Sale by Tender";
         else
-            cell.titleLabel.text = @"Time wise-";
+            cell.titleLabel.text = @"Hourly Sale";
         cell.titleLabel.textAlignment=NSTextAlignmentLeft;
         
         NSString *firstDateTitle = nil;
@@ -320,13 +320,13 @@
         
         if(section==0)
         {
-            cell.titleLabel.text = @"Summary-";
+            cell.titleLabel.text = @"Sale by Tender";
             cell.totalAmountLabel1.text = @"Desc";
             cell.totalAmountLabel2.text = @"Amount";
         }
         else
         {
-            cell.titleLabel.text = @"Time wise-";
+            cell.titleLabel.text = @"Hourly Sale";
             cell.totalAmountLabel1.text = @"Time";
             cell.totalAmountLabel2.text = @"Amount";
         }

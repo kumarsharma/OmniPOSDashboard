@@ -40,7 +40,7 @@
     float labelHeight = 60;
     
     self.reportTitleLabel = [self  createUnderlinedLabelWithRect:CGRectMake(5, 2, self.frame.size.width-10, 19) text:@"" bgColor:[UIColor clearColor] font:[UIFont italicSystemFontOfSize:17.0]];
-    self.reportTitleLabel.text = @"Sale Summary  ▶";
+    self.reportTitleLabel.text = @"Hourly Sale  ▶";
     self.reportTitleLabel.textAlignment = NSTextAlignmentLeft;
     
     float nextY = 19;

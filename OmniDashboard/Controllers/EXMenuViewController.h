@@ -22,7 +22,8 @@
 @property (nonatomic, strong) NSDate *date1, *date2, *compareDate1, *compareDate2;
 @property (nonatomic, strong) OPSaleSummary *saleSummary, *saleSummary2;
 @property (nonatomic, strong) UIBarButtonItem *middleBarItem;
-@property (nonatomic, strong) NSString *rangeType; 
+@property (nonatomic, strong) NSString *rangeType;
+@property (nonatomic, assign) BOOL isHomePge;
 
 - (void)showErrorMessage;
 - (void)fetchReports;

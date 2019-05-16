@@ -104,6 +104,7 @@
     app.selectedLocationName = r.name;
     
     EXMenuViewController *mc = [[EXMenuViewController alloc] init];
+    mc.isHomePge=YES;
     self.navigationController.hidesBottomBarWhenPushed = NO;
     [self.navigationController pushViewController:mc animated:YES];
     

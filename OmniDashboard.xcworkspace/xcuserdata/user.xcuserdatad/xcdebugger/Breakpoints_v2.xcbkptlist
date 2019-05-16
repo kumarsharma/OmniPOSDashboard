@@ -10,28 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OmniDashboard/Controllers/EXMenuViewController.m"
-            timestampString = "579527757.670155"
+            timestampString = "579617995.999866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "-prevDayBtnAction"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "OmniDashboard/Controllers/EXMenuViewController.m"
-            timestampString = "579527757.670216"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "616"
-            endingLineNumber = "616"
-            landmarkName = "-didFetchReportsWithResponse:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -42,7 +42,7 @@
     
     self.reportTitleLabel = [self  createUnderlinedLabelWithRect:CGRectMake(5, 2, self.frame.size.width-10, 19) text:@"" bgColor:[UIColor clearColor] font:[UIFont italicSystemFontOfSize:17.0]];
     self.reportTitleLabel.textAlignment = NSTextAlignmentLeft;
-    self.reportTitleLabel.text = @"Sale Comparison  ▶";
+    self.reportTitleLabel.text = @"Comparison  ▶";
     float nextY = 21;
     self.titleLabel1 = [self  createLabelWithRect:CGRectMake(5, nextY+6, self.frame.size.width-10, 19) text:@"" bgColor:[UIColor clearColor] font:[UIFont systemFontOfSize:13.0]];
     

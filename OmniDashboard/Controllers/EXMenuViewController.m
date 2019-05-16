@@ -43,6 +43,7 @@
 @synthesize rangeType;
 @synthesize refreshController;
 @synthesize tableView;
+@synthesize isHomePge;
 
 - (void)viewDidLoad
 {
@@ -50,26 +51,78 @@
     self.viewTitleLabel.text = [EXAppDelegate sharedAppDelegate].selectedLocationName;
     isFirstTimeLoaded = NO;
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topBarView.frame.size.height+self.topBarView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-(self.topBarView.frame.size.height+self.topBarView.frame.origin.y)) style:UITableViewStyleGrouped];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.view addSubview:self.tableView];
-    self.tableView.backgroundColor = [UIColor clearColor];
+    if(self.isHomePge)
+    {
+        UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.topBarView.frame.size.height+self.topBarView.frame.origin.y, self.view.frame.size.width, 23)];
+        dateLabel.backgroundColor = [UIColor darkGrayColor];
+        dateLabel.font = [UIFont boldSystemFontOfSize:17];
+        dateLabel.textColor = [UIColor whiteColor];
+        dateLabel.text = [KSDateUtil getDayMonthYearString:[NSDate date]];
+        dateLabel.textAlignment = NSTextAlignmentCenter;
+        
+        [self.view addSubview:dateLabel];
+        
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, dateLabel.frame.size.height+dateLabel.frame.origin.y+2, self.view.frame.size.width, self.view.frame.size.height-(self.topBarView.frame.size.height+self.topBarView.frame.origin.y+dateLabel.frame.size.height+2)) style:UITableViewStyleGrouped];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        [self.view addSubview:self.tableView];
+        self.tableView.backgroundColor = [UIColor clearColor];
+    }
+    else
+    {
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topBarView.frame.size.height+self.topBarView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-(self.topBarView.frame.size.height+self.topBarView.frame.origin.y)) style:UITableViewStyleGrouped];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        [self.view addSubview:self.tableView];
+        self.tableView.backgroundColor = [UIColor clearColor];
+    }
     
     self.navigationController.toolbarHidden = NO;
     self.navigationController.toolbar.barStyle = UIBarStyleBlackOpaque;
     
-    UIBarButtonItem *prevDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left-arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(prevDayBtnAction)];
-    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *dateBtn = [[UIBarButtonItem alloc] initWithTitle:[KSDateUtil getDayMonthYearString:[NSDate date]] style:UIBarButtonItemStyleDone target:self action:@selector(dateBtnAction)];
+    if(self.isHomePge)
+    {
+        /*
+        UIBarButtonItem *prevDayBtn = [[UIBarButtonItem alloc] initWithTitle:@"Week" style:UIBarButtonItemStyleDone target:self action:@selector(thisWeekReportAction)];
+        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        UIBarButtonItem *dateBtn = [[UIBarButtonItem alloc] initWithTitle:@"Month" style:UIBarButtonItemStyleDone target:self action:@selector(thisMonthReportAction)];
+        
+        self.middleBarItem = dateBtn;
+        self.middleBarItem.tintColor = [UIColor whiteColor];
+        UIBarButtonItem *space2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        UIBarButtonItem *nextDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CalendarIcon"] style:UIBarButtonItemStyleDone target:self action:@selector(showDateView)];
+        self.toolbarItems = [NSArray arrayWithObjects:prevDayBtn, space, dateBtn, space2, nextDayBtn, nil];*/
+        
+        NSArray *segmentItem = [[NSArray alloc]initWithObjects:@"This Week",@"This Month", @"Custom", nil];
+        UISegmentedControl *segmentControll = [[UISegmentedControl alloc]initWithItems:segmentItem];
+        [segmentControll addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
+        segmentControll.frame = CGRectMake(0, 0, 320, 35);   
+        
+        //[self.toolBar addSubview:segmentControll];
+        
+        UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithCustomView:segmentControll];
+        self.toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
+//        [self.navigationController.toolbar addSubview:toolbarItem];
+    }
+    else
+    {
+        UIBarButtonItem *prevDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left-arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(prevDayBtnAction)];
+        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        UIBarButtonItem *dateBtn = [[UIBarButtonItem alloc] initWithTitle:[KSDateUtil getDayMonthYearString:[NSDate date]] style:UIBarButtonItemStyleDone target:self action:@selector(dateBtnAction)];
+        
+        self.middleBarItem = dateBtn;
+        self.middleBarItem.tintColor = [UIColor whiteColor];
+        UIBarButtonItem *space2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        UIBarButtonItem *nextDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"right-arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(nextDatBtnAction)];
+        self.toolbarItems = [NSArray arrayWithObjects:prevDayBtn, space, dateBtn, space2, nextDayBtn, nil];
+    }
     
-    self.middleBarItem = dateBtn;
-    self.middleBarItem.tintColor = [UIColor whiteColor];
-    UIBarButtonItem *space2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    UIBarButtonItem *nextDayBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"right-arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(nextDatBtnAction)];
-    self.toolbarItems = [NSArray arrayWithObjects:prevDayBtn, space, dateBtn, space2, nextDayBtn, nil];
-    self.date1 = [NSDate date];
-    self.date2 = self.date1;
+    if(!self.date1 && !self.date2)
+    {
+        self.date1 = [NSDate date];
+        self.date2 = self.date1;
+    }
+    [self updateDateLabel];
     
     EXAppDelegate *app = [EXAppDelegate sharedAppDelegate];
     if(app.company.allLocations.count<=1)
@@ -77,7 +130,11 @@
 //        UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"avatar"] style:UIBarButtonItemStyleDone target:self action:@selector(settingsAction)];
 //        self.navigationItem.rightBarButtonItem = settingsBtn;
     }   
-    [self fetchReports];
+    
+    if(self.isHomePge)
+        [self fetchTodayReports];
+    else
+        [self fetchReports];
     
     self.refreshController = [[UIRefreshControl alloc] init];
     [self.refreshController addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -86,21 +143,43 @@
 
 #pragma mark - Handle Refresh Method
 
+- (void)segmentedControlAction:(id)sender
+{
+    UISegmentedControl *seg = (UISegmentedControl *)sender;
+    if(seg.selectedSegmentIndex>=0)
+    {
+        if(seg.selectedSegmentIndex == 0)
+        {
+            self.rangeType = @"This Week";
+            [self thisWeekReportAction];
+        }
+        else if(seg.selectedSegmentIndex == 1)
+        {
+            self.rangeType = @"This Month";
+            [self thisMonthReportAction];
+        }
+        else if(seg.selectedSegmentIndex == 2)
+            [self showDateView];
+        
+        [seg setSelectedSegmentIndex:-1];
+    }
+}
+
 -(void)handleRefresh : (id)sender
 {
     [self.refreshController endRefreshing];
-    [self fetchReports];
+    [self fetchTodayReports];
 }
 
 - (void)dateBtnAction
 {
-    UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Today", @"This Week", @"This Month", @"Custom", nil];
+    UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"This Week", @"This Month", @"Custom", nil];
     [actionsheet showFromToolbar:self.navigationController.toolbar];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex<4)
+    if(buttonIndex<3)
     {
         NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
         self.rangeType = title;
@@ -189,23 +268,40 @@
     [self updateDateLabel];
 }
 
+- (void)thisWeekReportAction
+{
+    self.date1 = [KSDateUtil getCurrentWeeksBeginingDate];
+    self.date2 = [NSDate date];
+    [self fetchReports];
+}
+
+- (void)thisMonthReportAction
+{
+    self.date1 = [KSDateUtil getFirstDayOfCurrentMonth];
+    self.date2 = [NSDate date];
+    [self fetchReports];
+}
+
 - (void)updateDateLabel
 {
-    if([self.rangeType isEqualToString:@"Todayz"])
-        [self.middleBarItem setTitle:@"Today"];
-    else if([self.rangeType isEqualToString:@"This Weekz"])
-        [self.middleBarItem setTitle:@"This Week"];
-    else if([self.rangeType isEqualToString:@"This Monthz"])
-        [self.middleBarItem setTitle:@"This Month"];
-    else
+    if(!self.isHomePge)
     {
-        if([self.date1 compare:self.date2] == NSOrderedSame)
-        {
-            [self.middleBarItem setTitle:[KSDateUtil getDayMonthYearString:self.date1]];
-        }
+        if(self.isHomePge)
+            [self.middleBarItem setTitle:@"Today"];
+        else if([self.rangeType isEqualToString:@"This Weekz"])
+            [self.middleBarItem setTitle:@"This Week"];
+        else if([self.rangeType isEqualToString:@"This Monthz"])
+            [self.middleBarItem setTitle:@"This Month"];
         else
         {
-            [self.middleBarItem setTitle:[NSString stringWithFormat:@"%@-%@", [KSDateUtil getDayMonthYearString:self.date1], [KSDateUtil getDayMonthYearString:self.date2]]];
+            if([self.date1 compare:self.date2] == NSOrderedSame)
+            {
+                [self.middleBarItem setTitle:[KSDateUtil getDayMonthYearString:self.date1]];
+            }
+            else
+            {
+                [self.middleBarItem setTitle:[NSString stringWithFormat:@"%@-%@", [KSDateUtil getDayMonthYearString:self.date1], [KSDateUtil getDayMonthYearString:self.date2]]];
+            }
         }
     }
 }
@@ -237,6 +333,7 @@
 {
     self.date1 = date1;
     self.date2 = date2;
+    self.rangeType = @"Custom";
     [self updateDateLabel];
     [self fetchReports];
 }
@@ -304,12 +401,12 @@
             cell.totalAmountLabel.text = @"Amount";
             if(section == 2)
             {
-                label.text = @"Item Sales  ▶";
+                label.text = @"By Item  ▶";
                 cell.titleLabel.text = @"Item";
             }
             else
             {
-                label.text = @"Category Sales  ▶";
+                label.text = @"By Category  ▶";
                 cell.titleLabel.text = @"Category";
             }
 
@@ -578,6 +675,29 @@
 
 - (void)fetchReports
 {    
+    if(self.isHomePge)
+    {
+        EXMenuViewController *mc = [[EXMenuViewController alloc] init];
+        mc.isHomePge=NO;       
+        mc.date1=self.date1;
+        mc.date2=self.date2;
+        mc.rangeType = self.rangeType;
+        [self.navigationController pushViewController:mc animated:YES];
+        self.date1 = [NSDate date];
+        self.date2 = self.date1;
+    }
+    else
+    {
+        [self startAnimating];
+        self.tableView.tableHeaderView=nil;
+        if(self.saleSummary && [self.tableView numberOfRowsInSection:0]>0)
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        [self performSelector:@selector(loadReportLately) withObject:nil afterDelay:0.1];
+    }
+}
+
+- (void)fetchTodayReports
+{    
     [self startAnimating];
     self.tableView.tableHeaderView=nil;
     if(self.saleSummary && [self.tableView numberOfRowsInSection:0]>0)
@@ -587,7 +707,9 @@
 
 - (void)loadReportLately
 {
-    [OPDataFetchHelper fetchSalesSummaryItemWiseFromDate:self.date1 toDate:self.date2 withExecutionBlock:^(BOOL success, Response *response){
+    NSDate *firstDate = self.isHomePge ? [NSDate date] : self.date1;
+    NSDate *secondDate = self.isHomePge ? [NSDate date] : self.date2;
+    [OPDataFetchHelper fetchSalesSummaryItemWiseFromDate:firstDate toDate:secondDate withExecutionBlock:^(BOOL success, Response *response){
         
         if(success)
         {
@@ -679,29 +801,32 @@
 {
     if(buttonIndex==1)
     {
-        [self fetchReports];
+        [self fetchTodayReports];
     }
 }
 
 //report comparison
 - (void)updateReportComparisonDates
 {
+    NSDate *firstDate = self.isHomePge ? [NSDate date] : self.date1;
+    NSDate *secondDate = self.isHomePge ? [NSDate date] : self.date2;
+    
     if([self.rangeType isEqualToString:@"Today"])
     {
-        self.compareDate1 = [KSDateUtil getNextDayByCount:-1 fromDate:self.date1];
-        self.compareDate2 = self.date1;
+        self.compareDate1 = [KSDateUtil getNextDayByCount:-1 fromDate:firstDate];
+        self.compareDate2 = firstDate;
     }
     else if([self.rangeType isEqualToString:@"This Week"])
     {
-        self.compareDate1 = [KSDateUtil getNextWeekByCount:-7 fromDate:self.date1];
+        self.compareDate1 = [KSDateUtil getNextWeekByCount:-7 fromDate:firstDate];
         self.compareDate2 = [KSDateUtil getNextDayByCount:6 fromDate:self.compareDate1];
     }
     else if([self.rangeType isEqualToString:@"This Month"])
     {
-        self.compareDate1 = [KSDateUtil getNextMonthByCount:-1 fromDate:self.date1];
+        self.compareDate1 = [KSDateUtil getNextMonthByCount:-1 fromDate:firstDate];
         NSRange days = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.compareDate1];
         
-        int dayToReduce = (int)[KSDateUtil getDayDiffBetweenDate1:self.date1 andDate2:self.date2];
+        int dayToReduce = (int)[KSDateUtil getDayDiffBetweenDate1:self.date1 andDate2:secondDate];
 //        self.compareDate2 = [KSDateUtil getNextDayByCount:days.length-1 fromDate:self.compareDate1];
         
         if(dayToReduce<=28)
@@ -711,9 +836,9 @@
     }
     else
     {
-        int dayToReduce = (int)[KSDateUtil getDayDiffBetweenDate1:self.date1 andDate2:self.date2]+1;
-        self.compareDate1 = [KSDateUtil getNextDayByCount:dayToReduce*-1 fromDate:self.date1];
-        self.compareDate2 = [KSDateUtil getNextDayByCount:dayToReduce*-1 fromDate:self.date2];
+        int dayToReduce = (int)[KSDateUtil getDayDiffBetweenDate1:self.date1 andDate2:secondDate]+1;
+        self.compareDate1 = [KSDateUtil getNextDayByCount:dayToReduce*-1 fromDate:firstDate];
+        self.compareDate2 = [KSDateUtil getNextDayByCount:dayToReduce*-1 fromDate:secondDate];
     }
 }
 - (void)fetchComparisonReports

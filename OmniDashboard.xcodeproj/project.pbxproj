@@ -299,6 +299,8 @@
 		CE7F25E2227C66E100EF0F89 /* CWRadarChartOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25DF227C66E100EF0F89 /* CWRadarChartOptions.m */; };
 		CEB517202278B470003AE3C9 /* OPReportSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB5171F2278B470003AE3C9 /* OPReportSummaryCell.m */; };
 		CEB517272278C992003AE3C9 /* OPFurtherReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB517262278C992003AE3C9 /* OPFurtherReportViewController.m */; };
+		CEE14DF2228C269E00970E33 /* CalendarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE14DF0228C269D00970E33 /* CalendarIcon.png */; };
+		CEE14DF3228C269E00970E33 /* ThisMonth.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE14DF1228C269D00970E33 /* ThisMonth.png */; };
 		CEE72FF5227DA04B008FECC9 /* OPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE72FF3227DA04A008FECC9 /* OPViewController.m */; };
 		CEE72FF9227DA18E008FECC9 /* bg_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE72FF6227DA18C008FECC9 /* bg_iphone@2x.png */; };
 		CEE72FFA227DA18E008FECC9 /* bg_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE72FF7227DA18C008FECC9 /* bg_iphone.png */; };
@@ -785,6 +787,8 @@
 		CEB5171F2278B470003AE3C9 /* OPReportSummaryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPReportSummaryCell.m; sourceTree = "<group>"; };
 		CEB517252278C992003AE3C9 /* OPFurtherReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPFurtherReportViewController.h; sourceTree = "<group>"; };
 		CEB517262278C992003AE3C9 /* OPFurtherReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPFurtherReportViewController.m; sourceTree = "<group>"; };
+		CEE14DF0228C269D00970E33 /* CalendarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalendarIcon.png; sourceTree = "<group>"; };
+		CEE14DF1228C269D00970E33 /* ThisMonth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThisMonth.png; sourceTree = "<group>"; };
 		CEE72FF3227DA04A008FECC9 /* OPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPViewController.m; sourceTree = "<group>"; };
 		CEE72FF4227DA04B008FECC9 /* OPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPViewController.h; sourceTree = "<group>"; };
 		CEE72FF6227DA18C008FECC9 /* bg_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_iphone@2x.png"; sourceTree = "<group>"; };
@@ -945,6 +949,8 @@
 				CE5F3B65227F2C1800C57F93 /* cancel_iphone.png */,
 				CE5F3B67227F2C1800C57F93 /* cancel_iphone@2x.png */,
 				CE5F3B68227F2C1800C57F93 /* cancel_iphone@3x.png */,
+				CEE14DF0228C269D00970E33 /* CalendarIcon.png */,
+				CEE14DF1228C269D00970E33 /* ThisMonth.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1796,6 +1802,7 @@
 				CE5F3B46227F23E200C57F93 /* logo_iphone.png in Resources */,
 				CE5F3B37227F23E200C57F93 /* 3_hl_iphone.png in Resources */,
 				CE5F3AF5227F23E200C57F93 /* border_iphone.png in Resources */,
+				CEE14DF3228C269E00970E33 /* ThisMonth.png in Resources */,
 				CE5F3B10227F23E200C57F93 /* button_blue_iphone@2x.png in Resources */,
 				CE5F3B01227F23E200C57F93 /* 3_iphone.png in Resources */,
 				CE5F3B49227F23E200C57F93 /* 9_hl_iphone@2x.png in Resources */,
@@ -1839,6 +1846,7 @@
 				CE5F3B60227F2C0300C57F93 /* done_iphone.png in Resources */,
 				CE5F3B15227F23E200C57F93 /* 1_iphone@2x.png in Resources */,
 				CE5F3AFF227F23E200C57F93 /* 0_hl_iphone.png in Resources */,
+				CEE14DF2228C269E00970E33 /* CalendarIcon.png in Resources */,
 				CEE73010227DA59B008FECC9 /* back_iphone_hl@3x.png in Resources */,
 				CE5F3B2B227F23E200C57F93 /* 2_hl_iphone@3x.png in Resources */,
 				CE5F3B17227F23E200C57F93 /* button_blue_hl_iphone@2x.png in Resources */,

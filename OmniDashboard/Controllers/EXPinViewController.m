@@ -213,6 +213,7 @@
             app.restaurant = r;
             app.selectedLocationName = r.name;   
             EXMenuViewController *mc = [[EXMenuViewController alloc] init];
+            mc.isHomePge=YES;
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mc];    
             [navController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
             navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
