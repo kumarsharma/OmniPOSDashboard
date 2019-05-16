@@ -1,5 +1,5 @@
 //
-//  OPFurtherReportViewController.h
+//  OPReportDetailController.h
 //  OmniDashboard
 //
 //  Created by Kumar Sharma on 30/04/19.
@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "OPSaleSummary.h"
-#import "EXMenuViewController.h"
+#import "OPReportViewController.h"
 #import "OPViewController.h"
 
-@interface OPFurtherReportViewController : OPViewController<RangeDatePickerDelegate, UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface OPReportDetailController : OPViewController<OPDateSelectionDelegate, UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     
 }
 
-@property (nonatomic, weak) EXMenuViewController *parentController;
+@property (nonatomic, weak) OPReportViewController *parentController;
 @property (nonatomic, assign) BOOL isSaleSummaryMode, isItemSaleMode, isCategorySaleMode, isComparisonMode;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) LoadingIndicatorView *indicatorView;

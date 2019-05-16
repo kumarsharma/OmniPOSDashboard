@@ -269,9 +269,9 @@
         
         if(comp && comp.companyName)
         {
-            [[EXAppDelegate sharedAppDelegate] storeCompany:comp];
+            [[OPDashboardAppDelegate sharedAppDelegate] storeCompany:comp];
             
-            [[EXAppDelegate sharedAppDelegate] storeUser:comp.user];
+            [[OPDashboardAppDelegate sharedAppDelegate] storeUser:comp.user];
             
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadingInitialData:) name:kDidFinishActiveNetworkOperations object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishActiveNetworkOperations object:nil];

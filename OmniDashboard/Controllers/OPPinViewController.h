@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OPViewController.h"
 
-@interface EXPinViewController : OPViewController<UITextFieldDelegate>
+@interface OPPinViewController : OPViewController<UITextFieldDelegate>
 {
     IBOutlet UIView *loginBgView;
     IBOutlet UITextField *txtPIN;

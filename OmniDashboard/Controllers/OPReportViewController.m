@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 OmniSyems. All rights reserved.
 //
 
-#import "EXMenuViewController.h"
+#import "OPReportViewController.h"
 #import "RestaurantInfo.h"
 #import "KSConstants.h"
 #import "KSDateUtil.h"
@@ -15,14 +15,14 @@
 #import "NSString+SBJSON.h"
 #import "OPReportItemCell.h"
 #import "OPReportSummaryCell.h"
-#import "OPFurtherReportViewController.h"
-#import "ODSettingsTableViewController.h"
+#import "OPReportDetailController.h"
+#import "OPSettingsViewController.h"
 #import "CompanyInfo.h"
 #import "OPCategoryItem.h"
 #import "OPReportComparisonCell.h"
 #import "UnderLineLabel.h"
 
-@interface EXMenuViewController ()
+@interface OPReportViewController ()
 {
     BOOL isFirstTimeLoaded;
 }
@@ -34,7 +34,7 @@
 #define kExListen @"View Report"
 #define kExTune @"eXTunes"
 
-@implementation EXMenuViewController
+@implementation OPReportViewController
 @synthesize exList;
 @synthesize indicatorView;
 @synthesize date1, date2;
@@ -48,7 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.viewTitleLabel.text = [EXAppDelegate sharedAppDelegate].selectedLocationName;
+    self.viewTitleLabel.text = [OPDashboardAppDelegate sharedAppDelegate].selectedLocationName;
     isFirstTimeLoaded = NO;
     
     if(self.isHomePge)
@@ -124,7 +124,7 @@
     }
     [self updateDateLabel];
     
-    EXAppDelegate *app = [EXAppDelegate sharedAppDelegate];
+    OPDashboardAppDelegate *app = [OPDashboardAppDelegate sharedAppDelegate];
     if(app.company.allLocations.count<=1)
     {
 //        UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"avatar"] style:UIBarButtonItemStyleDone target:self action:@selector(settingsAction)];
@@ -322,7 +322,7 @@
 
 - (void)showDateView
 {
-    RangePickerViewController *vc = [[RangePickerViewController alloc] initWithDate1:self.date1 Date2:self.date2];
+    OPCalendarViewController *vc = [[OPCalendarViewController alloc] initWithDate1:self.date1 Date2:self.date2];
     vc.delegate = self;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
@@ -619,7 +619,7 @@
 - (void)didTapOnHeaderView:(id)sender
 {
     UITapGestureRecognizer *tap = (UITapGestureRecognizer *)sender;
-    OPFurtherReportViewController *frvc = [[OPFurtherReportViewController alloc] init];
+    OPReportDetailController *frvc = [[OPReportDetailController alloc] init];
     if(tap.view.tag == 3)
     {
         frvc.isSaleSummaryMode = NO;
@@ -639,7 +639,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    OPFurtherReportViewController *frvc = [[OPFurtherReportViewController alloc] init];
+    OPReportDetailController *frvc = [[OPReportDetailController alloc] init];
     if(indexPath.section==0)
     {
         frvc.isSaleSummaryMode = YES;
@@ -677,7 +677,7 @@
 {    
     if(self.isHomePge)
     {
-        EXMenuViewController *mc = [[EXMenuViewController alloc] init];
+        OPReportViewController *mc = [[OPReportViewController alloc] init];
         mc.isHomePge=NO;       
         mc.date1=self.date1;
         mc.date2=self.date2;

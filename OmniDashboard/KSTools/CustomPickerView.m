@@ -82,7 +82,7 @@
 		[toolbar setTintColor:[UIColor colorWithRed:(99.0f/255.0f) green:(150.0f/255.0f) blue:(161.0f/255.0f) alpha:1.0f]];
 //		UIBarButtonItem *cancelBarBtn = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered																		target:self action:@selector(cancelBtnAction)];
 		
-		UIBarButtonItem *doneBarBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered
+		UIBarButtonItem *doneBarBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone
 																	  target:self action:@selector(doneBtnAction)];
 		
 		UIBarButtonItem *fxble = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 

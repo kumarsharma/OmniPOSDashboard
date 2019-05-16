@@ -43,8 +43,8 @@
             
             if(thisUser)
             {
-                [[EXAppDelegate sharedAppDelegate] storeUser:thisUser];
-                [[EXAppDelegate sharedAppDelegate] setUser:thisUser];
+                [[OPDashboardAppDelegate sharedAppDelegate] storeUser:thisUser];
+                [[OPDashboardAppDelegate sharedAppDelegate] setUser:thisUser];
             }
         }
         
@@ -63,7 +63,7 @@
     NSString *remoteFetchPath = @"/webservices/RestaurantSalesService.asmx/getBasicAndCategorySalesReport";
     NSString *urlString = [NSString stringWithFormat:@"http://%@%@", [NetworkConfig getBaseBaseURL], remoteFetchPath];
     
-    NSString *params = [NSString stringWithFormat:@"fromdate=%@&tilldate=%@&rest_Id=%@", [KSDateUtil getShortSlashSepDateOnlyString:fromDate], [KSDateUtil getShortSlashSepDateOnlyString:toDate], ([EXAppDelegate sharedAppDelegate]).currentRestaurantId];
+    NSString *params = [NSString stringWithFormat:@"fromdate=%@&tilldate=%@&rest_Id=%@", [KSDateUtil getShortSlashSepDateOnlyString:fromDate], [KSDateUtil getShortSlashSepDateOnlyString:toDate], ([OPDashboardAppDelegate sharedAppDelegate]).currentRestaurantId];
     
     [OPConnection postWithBody:params withUrlString:urlString compBlock:complBlock];
 }
@@ -76,7 +76,7 @@
     NSString *remoteFetchPath = @"/webservices/RestaurantSalesService.asmx/getBasicSalesReport";
     NSString *urlString = [NSString stringWithFormat:@"http://%@%@", [NetworkConfig getBaseBaseURL], remoteFetchPath];
     
-    NSString *params = [NSString stringWithFormat:@"fromdate=%@&tilldate=%@&rest_Id=%@", [KSDateUtil getShortSlashSepDateOnlyString:fromDate], [KSDateUtil getShortSlashSepDateOnlyString:toDate], ([EXAppDelegate sharedAppDelegate]).currentRestaurantId];
+    NSString *params = [NSString stringWithFormat:@"fromdate=%@&tilldate=%@&rest_Id=%@", [KSDateUtil getShortSlashSepDateOnlyString:fromDate], [KSDateUtil getShortSlashSepDateOnlyString:toDate], ([OPDashboardAppDelegate sharedAppDelegate]).currentRestaurantId];
     
     [OPConnection postWithBody:params withUrlString:urlString compBlock:complBlock];
 }
@@ -85,7 +85,7 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", [NetworkConfig getBaseURL], @"/getXReportInfo.asmx/getXReportDetails"];
     
-    NSString *params = [NSString stringWithFormat:@"param=Rest_ID&val=%@", ([EXAppDelegate sharedAppDelegate]).currentRestaurantId];
+    NSString *params = [NSString stringWithFormat:@"param=Rest_ID&val=%@", ([OPDashboardAppDelegate sharedAppDelegate]).currentRestaurantId];
     
     [OPConnection postWithBody:params withUrlString:urlString compBlock:complBlock];
 }
@@ -94,7 +94,7 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", [NetworkConfig getBaseURL], @"/RestaurantSaleServices.asmx/GetCurrentSaleALLJSON"];
     
-    NSString *params = [NSString stringWithFormat:@"companycode=%@", ([EXAppDelegate sharedAppDelegate]).company.companyCode];
+    NSString *params = [NSString stringWithFormat:@"companycode=%@", ([OPDashboardAppDelegate sharedAppDelegate]).company.companyCode];
     
     [OPConnection postWithBody:params withUrlString:urlString compBlock:complBlock];
 }
@@ -103,7 +103,7 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", [NetworkConfig getBaseURL], @"/RestaurantSaleServices.asmx/GetCurrentSaleSummaryByDevice"];
     
-    NSString *body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&deviceId=0", ([EXAppDelegate sharedAppDelegate]).company.companyCode, ([EXAppDelegate sharedAppDelegate]).currentRestaurantId];
+    NSString *body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&deviceId=0", ([OPDashboardAppDelegate sharedAppDelegate]).company.companyCode, ([OPDashboardAppDelegate sharedAppDelegate]).currentRestaurantId];
     
     [OPConnection postWithBody:body withUrlString:urlString compBlock:complBlock];
 }
@@ -112,7 +112,7 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", [NetworkConfig getBaseURL], @"/RestaurantSaleServices.asmx/GetSalesSummary"];
     
-    NSString *body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&fromdate=%@&tilldate=%@&userId=%@&deviceId=%@&categoryId=%@&subcategoryId=%@", ([EXAppDelegate sharedAppDelegate]).company.companyCode, ([EXAppDelegate sharedAppDelegate]).currentRestaurantId, [ADUtils getShortDateOnlyStringInMMddYYYY:fromDate], [ADUtils getShortDateOnlyStringInMMddYYYY:toDate], @"0", @"0", @"0", @"0"];
+    NSString *body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&fromdate=%@&tilldate=%@&userId=%@&deviceId=%@&categoryId=%@&subcategoryId=%@", ([OPDashboardAppDelegate sharedAppDelegate]).company.companyCode, ([OPDashboardAppDelegate sharedAppDelegate]).currentRestaurantId, [ADUtils getShortDateOnlyStringInMMddYYYY:fromDate], [ADUtils getShortDateOnlyStringInMMddYYYY:toDate], @"0", @"0", @"0", @"0"];
     [OPConnection postWithBody:body withUrlString:urlString compBlock:complBlock];
 }
 
@@ -120,7 +120,7 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", [NetworkConfig getBaseURL], @"/RestaurantSaleServices.asmx/GetHourlySaleSummary"];
     
-    NSString *body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&fromdate=%@&tilldate=%@&userId=%@&deviceId=%@&categoryId=%@&subcategoryId=%@", ([EXAppDelegate sharedAppDelegate]).company.companyCode, ([EXAppDelegate sharedAppDelegate]).currentRestaurantId, [ADUtils getShortDateOnlyStringInMMddYYYY:fromDate], [ADUtils getShortDateOnlyStringInMMddYYYY:toDate], @"0", @"0", @"0", @"0"];
+    NSString *body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&fromdate=%@&tilldate=%@&userId=%@&deviceId=%@&categoryId=%@&subcategoryId=%@", ([OPDashboardAppDelegate sharedAppDelegate]).company.companyCode, ([OPDashboardAppDelegate sharedAppDelegate]).currentRestaurantId, [ADUtils getShortDateOnlyStringInMMddYYYY:fromDate], [ADUtils getShortDateOnlyStringInMMddYYYY:toDate], @"0", @"0", @"0", @"0"];
     [OPConnection postWithBody:body withUrlString:urlString compBlock:complBlock];
 }
 
@@ -128,7 +128,7 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", [NetworkConfig getBaseURL], @"/RestaurantSaleServices.asmx/GetItemSoldSaleSummaryJsonFormat"];
     
-    NSString *body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&fromdate=%@&tilldate=%@&categoryId=%@&subcategoryId=%@&userId=%@&deviceId=%@&reportType=1", ([EXAppDelegate sharedAppDelegate]).company.companyCode, ([EXAppDelegate sharedAppDelegate]).currentRestaurantId, [ADUtils getShortDateOnlyStringInMMddYYYY:fromDate], [ADUtils getShortDateOnlyStringInMMddYYYY:toDate], @"0", @"0", @"0", @"0"];
+    NSString *body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&fromdate=%@&tilldate=%@&categoryId=%@&subcategoryId=%@&userId=%@&deviceId=%@&reportType=1", ([OPDashboardAppDelegate sharedAppDelegate]).company.companyCode, ([OPDashboardAppDelegate sharedAppDelegate]).currentRestaurantId, [ADUtils getShortDateOnlyStringInMMddYYYY:fromDate], [ADUtils getShortDateOnlyStringInMMddYYYY:toDate], @"0", @"0", @"0", @"0"];
     [OPConnection postWithBody:body withUrlString:urlString compBlock:complBlock];
 }
 
@@ -136,7 +136,7 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", [NetworkConfig getBaseURL], @"/RestaurantSaleServices.asmx/GetSaleSummaryItemWise"];
     toDate = [KSDateUtil getNextDayByCount:1 fromDate:toDate];
-    NSString *body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&date1=%@&date2=%@", ([EXAppDelegate sharedAppDelegate]).company.companyCode, ([EXAppDelegate sharedAppDelegate]).currentRestaurantId, [ADUtils getDateOnlyInYYYYMMDDFormat:fromDate], [ADUtils getDateOnlyInYYYYMMDDFormat:toDate]];
+    NSString *body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&date1=%@&date2=%@", ([OPDashboardAppDelegate sharedAppDelegate]).company.companyCode, ([OPDashboardAppDelegate sharedAppDelegate]).currentRestaurantId, [ADUtils getDateOnlyInYYYYMMDDFormat:fromDate], [ADUtils getDateOnlyInYYYYMMDDFormat:toDate]];
     [OPConnection postWithBody:body withUrlString:urlString compBlock:complBlock];
 }
 
@@ -146,12 +146,12 @@
     if(deviceId.intValue>0)
     {
         urlString = [NSString stringWithFormat:@"%@%@", [NetworkConfig getBaseURL], @"/RestaurantSaleServices.asmx/GetCurrentSaleSummaryByDevice"];
-        body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&deviceId=%@", ([EXAppDelegate sharedAppDelegate]).company.companyCode, ([EXAppDelegate sharedAppDelegate]).currentRestaurantId, deviceId];
+        body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&deviceId=%@", ([OPDashboardAppDelegate sharedAppDelegate]).company.companyCode, ([OPDashboardAppDelegate sharedAppDelegate]).currentRestaurantId, deviceId];
     }
     else
     {
         urlString = [NSString stringWithFormat:@"%@%@", [NetworkConfig getBaseURL], @"/RestaurantSaleServices.asmx/GetCurrentSaleSummary"];
-        body = [NSString stringWithFormat:@"companycode=%@&locationId=%@", ([EXAppDelegate sharedAppDelegate]).company.companyCode, ([EXAppDelegate sharedAppDelegate]).currentRestaurantId];
+        body = [NSString stringWithFormat:@"companycode=%@&locationId=%@", ([OPDashboardAppDelegate sharedAppDelegate]).company.companyCode, ([OPDashboardAppDelegate sharedAppDelegate]).currentRestaurantId];
     }
     
     [OPConnection postWithBody:body withUrlString:urlString compBlock:complBlock];
@@ -162,7 +162,7 @@
     NSString *urlString = nil, *body = nil;
     
     urlString = [NSString stringWithFormat:@"%@%@", [NetworkConfig getBaseURL], @"/RestaurantSaleServices.asmx/GetCurrentSaleSummaryByALL"];
-    body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&deviceId=%@&userId=%@&categoryId=%@&subcategoryId=%@", ([EXAppDelegate sharedAppDelegate]).company.companyCode, ([EXAppDelegate sharedAppDelegate]).currentRestaurantId, @"0", @"0", @"0", @"0"];
+    body = [NSString stringWithFormat:@"companycode=%@&locationId=%@&deviceId=%@&userId=%@&categoryId=%@&subcategoryId=%@", ([OPDashboardAppDelegate sharedAppDelegate]).company.companyCode, ([OPDashboardAppDelegate sharedAppDelegate]).currentRestaurantId, @"0", @"0", @"0", @"0"];
     
     [OPConnection postWithBody:body withUrlString:urlString compBlock:complBlock];
 }

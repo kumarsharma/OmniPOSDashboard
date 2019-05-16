@@ -6,23 +6,23 @@
 //  Copyright (c) 2013 OmniSyems. All rights reserved.
 //
 
-#import "EXPinViewController.h"
+#import "OPPinViewController.h"
 #import "OPServerLoginViewController.h"
 #import "UserInfo.h"
 #import "StatusView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "RestaurantInfo.h"
 #import "CompanyInfo.h"
-#import "EXLocationListViewController.h"
-#import "EXMenuViewController.h"
+#import "OPLocationListController.h"
+#import "OPReportViewController.h"
 #import "OPViewSupplier.h"
 #import <AudioToolbox/AudioToolbox.h>
 
-@interface EXPinViewController ()
+@interface OPPinViewController ()
 
 @end
 
-@implementation EXPinViewController
+@implementation OPPinViewController
 
 - (void)viewDidLoad
 {
@@ -50,11 +50,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    if(![[EXAppDelegate sharedAppDelegate] hasCompanyObject] || ![[EXAppDelegate sharedAppDelegate] hasUserObject])
+    if(![[OPDashboardAppDelegate sharedAppDelegate] hasCompanyObject] || ![[OPDashboardAppDelegate sharedAppDelegate] hasUserObject])
         [self presentServiceLoginVc];
     else
     {
-        EXAppDelegate *app = [EXAppDelegate sharedAppDelegate];
+        OPDashboardAppDelegate *app = [OPDashboardAppDelegate sharedAppDelegate];
         if(![app storedLoginPIN]){
             
             [self askToEnterPIN];
@@ -101,7 +101,7 @@
         if(buttonIndex == 1){
             
             UITextField *t1 = [alertView textFieldAtIndex:0];
-            NSString *ccode = ([EXAppDelegate sharedAppDelegate]).company.companyCode;
+            NSString *ccode = ([OPDashboardAppDelegate sharedAppDelegate]).company.companyCode;
             if([t1.text isEqualToString:ccode]){
                 
                 [self askToEnterPIN];
@@ -116,7 +116,7 @@
     {
         if(buttonIndex == 0)
         {
-            if(![[EXAppDelegate sharedAppDelegate] storedLoginPIN])
+            if(![[OPDashboardAppDelegate sharedAppDelegate] storedLoginPIN])
                 [self askToEnterPIN];
         }
         else{
@@ -127,7 +127,7 @@
                 
                 if([t1.text isEqualToString:t2.text]){
                     
-                    [[EXAppDelegate sharedAppDelegate] storeLoginPIN:t1.text];
+                    [[OPDashboardAppDelegate sharedAppDelegate] storeLoginPIN:t1.text];
                     [StatusView showPopupWithMessage:@"Login PIN Setup Complete! You can login now." timeToStay:2 onView:self.navigationController.view];
                 }
                 else{
@@ -150,7 +150,7 @@
     [super viewDidAppear:animated];
     
     [txtPIN becomeFirstResponder];
-    self.title = [[EXAppDelegate sharedAppDelegate] company].companyName;
+    self.title = [[OPDashboardAppDelegate sharedAppDelegate] company].companyName;
     loginBgView.layer.cornerRadius = 3;
     self.viewTitleLabel.text = self.title;
 }
@@ -180,9 +180,9 @@
 
 - (IBAction)loginBtnAction:(id)sender
 {
-    if([txtPIN.text isEqualToString:[EXAppDelegate sharedAppDelegate].storedLoginPIN] || [txtPIN.text isEqualToString:@"19681968"])
+    if([txtPIN.text isEqualToString:[OPDashboardAppDelegate sharedAppDelegate].storedLoginPIN] || [txtPIN.text isEqualToString:@"19681968"])
     {
-        [EXAppDelegate sharedAppDelegate].isUserLoggedIn = YES;
+        [OPDashboardAppDelegate sharedAppDelegate].isUserLoggedIn = YES;
         [self showExList];
     }
     else
@@ -194,13 +194,13 @@
 
 - (void)showExList
 {
-    EXAppDelegate *app = [EXAppDelegate sharedAppDelegate];
+    OPDashboardAppDelegate *app = [OPDashboardAppDelegate sharedAppDelegate];
     
     if(app.company.allLocations.count>0)
     {
         if(app.company.allLocations.count>1)
         {
-            EXLocationListViewController *lst = [[EXLocationListViewController alloc] init];
+            OPLocationListController *lst = [[OPLocationListController alloc] init];
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lst]; //[[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"ExNavController"];    
             [navController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
             navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -212,7 +212,7 @@
             app.currentRestaurantId = r.restaurantId;
             app.restaurant = r;
             app.selectedLocationName = r.name;   
-            EXMenuViewController *mc = [[EXMenuViewController alloc] init];
+            OPReportViewController *mc = [[OPReportViewController alloc] init];
             mc.isHomePge=YES;
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mc];    
             [navController.navigationBar setBarStyle:UIBarStyleBlackOpaque];

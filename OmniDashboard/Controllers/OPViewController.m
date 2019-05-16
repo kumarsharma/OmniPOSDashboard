@@ -7,7 +7,7 @@
 //
 
 #import "OPViewController.h"
-#import "ODSettingsTableViewController.h"
+#import "OPSettingsViewController.h"
 
 @interface OPViewController ()
 
@@ -137,7 +137,7 @@
 
 - (void)settingsAction
 {
-    ODSettingsTableViewController *setVc = [[ODSettingsTableViewController alloc] init];
+    OPSettingsViewController *setVc = [[OPSettingsViewController alloc] init];
     [self.navigationController pushViewController:setVc animated:YES];
 }
 

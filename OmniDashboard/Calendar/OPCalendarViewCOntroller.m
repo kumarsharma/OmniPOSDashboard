@@ -6,12 +6,12 @@
 //  Copyright © 2016 Wenchao Ding. All rights reserved.
 //
 
-#import "RangePickerViewController.h"
+#import "OPCalendarViewController.h"
 #import "FSCalendar.h"
 #import "RangePickerCell.h"
 #import "FSCalendarExtensions.h"
 
-@interface RangePickerViewController () <FSCalendarDataSource,FSCalendarDelegate,FSCalendarDelegateAppearance>
+@interface OPCalendarViewController () <FSCalendarDataSource,FSCalendarDelegate,FSCalendarDelegateAppearance>
 
 @property (weak, nonatomic) FSCalendar *calendar;
 
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation RangePickerViewController
+@implementation OPCalendarViewController
 @synthesize delegate;
 
 - (id)initWithDate1:(NSDate *)date_1 Date2:(NSDate *)date_2

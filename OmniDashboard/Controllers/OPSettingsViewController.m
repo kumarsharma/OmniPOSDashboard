@@ -6,16 +6,16 @@
 //  Copyright © 2018 OmniSyems. All rights reserved.
 //
 
-#import "ODSettingsTableViewController.h"
+#import "OPSettingsViewController.h"
 #import "StatusView.h"
 #import "OPTermsViewController.h"
 #import "OPViewSupplier.h"
 
-@interface ODSettingsTableViewController ()
+@interface OPSettingsViewController ()
 
 @end
 
-@implementation ODSettingsTableViewController
+@implementation OPSettingsViewController
 @synthesize tableView;
 
 - (void)viewDidLoad {
@@ -145,7 +145,7 @@
         if(buttonIndex == 1){
         
             UITextField *t1 = [alertView textFieldAtIndex:0];
-            if([t1.text isEqualToString:[EXAppDelegate sharedAppDelegate].storedLoginPIN] || [t1.text isEqualToString:@"19681968"]){
+            if([t1.text isEqualToString:[OPDashboardAppDelegate sharedAppDelegate].storedLoginPIN] || [t1.text isEqualToString:@"19681968"]){
 
                 [self askToEnterPIN];
             }
@@ -165,7 +165,7 @@
                 
                 if([t1.text isEqualToString:t2.text]){
                     
-                    [[EXAppDelegate sharedAppDelegate] storeLoginPIN:t1.text];
+                    [[OPDashboardAppDelegate sharedAppDelegate] storeLoginPIN:t1.text];
                     [StatusView showPopupWithMessage:@"Login PIN Changed Successfully!" timeToStay:2 onView:self.navigationController.view];
                 }
                 else{

@@ -9,17 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "OPViewController.h"
 
-@protocol  RangeDatePickerDelegate<NSObject>
+@protocol  OPDateSelectionDelegate<NSObject>
 
 @optional
 - (void)didSelectDate1:(NSDate *)date1 andDate2:(NSDate *)date2;
 
 @end
-@interface RangePickerViewController : OPViewController
+@interface OPCalendarViewController : OPViewController
 {
-    __weak id<RangeDatePickerDelegate> delegate_;
+    __weak id<OPDateSelectionDelegate> delegate_;
 }
 
-@property (nonatomic, weak) id<RangeDatePickerDelegate> delegate;
+@property (nonatomic, weak) id<OPDateSelectionDelegate> delegate;
 - (id)initWithDate1:(NSDate *)date_1 Date2:(NSDate *)date_2;
 @end

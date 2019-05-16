@@ -18,7 +18,7 @@
     if (self) {
         
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 128, 30)];
-        lbl.textAlignment = UITextAlignmentRight;
+        lbl.textAlignment = NSTextAlignmentRight;
         lbl.backgroundColor = [UIColor clearColor];
         lbl.font = [UIFont systemFontOfSize:16];
         lbl.textColor = [UIColor whiteColor];
@@ -26,7 +26,7 @@
         self.textSaleLabel = lbl;
         
         lbl = [[UILabel alloc] initWithFrame:CGRectMake(136, 0, 66, 30)];
-        lbl.textAlignment = UITextAlignmentCenter;
+        lbl.textAlignment = NSTextAlignmentCenter;
         lbl.backgroundColor = [UIColor clearColor];
         lbl.textColor = [UIColor whiteColor];
         lbl.font = [UIFont systemFontOfSize:16];
@@ -34,7 +34,7 @@
         self.totalSaleLabel = lbl;
         
         lbl = [[UILabel alloc] initWithFrame:CGRectMake(216, 0, 66, 30)];
-        lbl.textAlignment = UITextAlignmentCenter;
+        lbl.textAlignment = NSTextAlignmentCenter;
         lbl.backgroundColor = [UIColor clearColor];
         lbl.font = [UIFont systemFontOfSize:16];
         lbl.textColor = [UIColor whiteColor];

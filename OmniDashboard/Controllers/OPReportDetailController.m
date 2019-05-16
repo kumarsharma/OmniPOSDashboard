@@ -6,7 +6,7 @@
 //  Copyright © 2019 OmniSyems. All rights reserved.
 //
 
-#import "OPFurtherReportViewController.h"
+#import "OPReportDetailController.h"
 #import "KSDateUtil.h"
 #import "OPReportItemCell.h"
 #import "OPDataFetchHelper.h"
@@ -14,12 +14,12 @@
 #import "OPCategoryItem.h"
 #import "OPReportComparisonItemCell.h"
 
-@interface OPFurtherReportViewController ()
+@interface OPReportDetailController ()
 @property (nonatomic, strong) UIRefreshControl *refreshController;
 
 @end
 
-@implementation OPFurtherReportViewController
+@implementation OPReportDetailController
 @synthesize isSaleSummaryMode, isItemSaleMode, isCategorySaleMode, isComparisonMode;
 @synthesize parentController;
 @synthesize indicatorView;
@@ -221,7 +221,7 @@
 
 - (void)showDateView
 {
-    RangePickerViewController *vc = [[RangePickerViewController alloc] init];
+    OPCalendarViewController *vc = [[OPCalendarViewController alloc] init];
     vc.delegate = self;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];

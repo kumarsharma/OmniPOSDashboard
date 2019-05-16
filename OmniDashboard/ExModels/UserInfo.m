@@ -62,7 +62,7 @@
 
 + (NSString *)getParamString
 {
-    NSString *body = [NSString stringWithFormat:@"param=Rest_ID&val=%@", ([EXAppDelegate sharedAppDelegate]).currentRestaurantId];
+    NSString *body = [NSString stringWithFormat:@"param=Rest_ID&val=%@", ([OPDashboardAppDelegate sharedAppDelegate]).currentRestaurantId];
     return body;
 }
 

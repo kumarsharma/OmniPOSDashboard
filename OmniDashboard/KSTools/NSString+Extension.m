@@ -33,7 +33,7 @@
         NSString  *skipString = startTag;
         
         [scanner scanUpToString:startTag intoString:nil];
-        int skipLen = [scanner scanLocation] + [skipString length];
+        int skipLen = (int)[scanner scanLocation] + (int)[skipString length];
         [scanner setScanLocation:skipLen];
         [scanner scanUpToString:endTag intoString:&content];
 	}
@@ -204,7 +204,7 @@
                              @"%28", @"%29", @"%2A",
                              @"%20", nil];
     
-    int len = [escapeChars count];
+    int len = (int)[escapeChars count];
     
     NSMutableString *temp = [self mutableCopy];
     

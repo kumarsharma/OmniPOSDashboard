@@ -44,6 +44,7 @@
 #define AADetailLog(...)
 #endif
 
+API_AVAILABLE(ios(8.0))
 @interface AAChartView()<WKNavigationDelegate,UIWebViewDelegate> {
     UIWebView *_uiWebView;
     WKWebView *_wkWebView;
@@ -64,7 +65,11 @@
 
 - (void)setUpBasicWebView {
     if (AASYSTEM_VERSION >= 9.0) {
-        _wkWebView = [[WKWebView alloc] init];
+        if (@available(iOS 8.0, *)) {
+            _wkWebView = [[WKWebView alloc] init];
+        } else {
+            // Fallback on earlier versions
+        }
         _wkWebView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
         _wkWebView.navigationDelegate = self;
         _wkWebView.backgroundColor = [UIColor whiteColor];
@@ -149,7 +154,7 @@
 }
 
 ///WKWebView did finish load
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation  API_AVAILABLE(ios(8.0)){
     [self drawChart];
     [self.delegate AAChartViewDidFinishLoad];
 }

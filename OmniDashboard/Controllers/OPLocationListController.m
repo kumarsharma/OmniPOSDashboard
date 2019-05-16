@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 OmniSyems. All rights reserved.
 //
 
-#import "EXLocationListViewController.h"
+#import "OPLocationListController.h"
 #import "CompanyInfo.h"
 #import "RestaurantInfo.h"
-#import "EXMenuViewController.h"
-#import "ODSettingsTableViewController.h"
+#import "OPReportViewController.h"
+#import "OPSettingsViewController.h"
 #import "OPViewSupplier.h"
 
-@interface EXLocationListViewController ()
+@interface OPLocationListController ()
 
 @end
 
-@implementation EXLocationListViewController
+@implementation OPLocationListController
 
 - (void)viewDidLoad
 {
@@ -51,7 +51,7 @@
 
 - (void)settingsAction
 {
-    ODSettingsTableViewController *setVc = [[ODSettingsTableViewController alloc] init];
+    OPSettingsViewController *setVc = [[OPSettingsViewController alloc] init];
 //    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:setVc];
 //    [self presentViewController:navController animated:YES completion:nil];
     [self.navigationController pushViewController:setVc animated:YES];
@@ -59,7 +59,7 @@
 
 - (void)logoutBtnAction
 {
-    [[EXAppDelegate sharedAppDelegate] logoutUser];
+    [[OPDashboardAppDelegate sharedAppDelegate] logoutUser];
 }
 
 #pragma mark - Table view data source
@@ -71,7 +71,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    EXAppDelegate *app = [EXAppDelegate sharedAppDelegate];
+    OPDashboardAppDelegate *app = [OPDashboardAppDelegate sharedAppDelegate];
     return app.company.allLocations.count;
 }
 
@@ -87,7 +87,7 @@
     }
 
 
-    EXAppDelegate *app = [EXAppDelegate sharedAppDelegate];
+    OPDashboardAppDelegate *app = [OPDashboardAppDelegate sharedAppDelegate];
     RestaurantInfo *r = [app.company.allLocations objectAtIndex:indexPath.row];
     cell.textLabel.text = r.name;
     return cell;
@@ -97,13 +97,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EXAppDelegate *app = [EXAppDelegate sharedAppDelegate];
+    OPDashboardAppDelegate *app = [OPDashboardAppDelegate sharedAppDelegate];
     RestaurantInfo *r = [app.company.allLocations objectAtIndex:indexPath.row];
     app.currentRestaurantId = r.restaurantId;
     app.restaurant = r;
     app.selectedLocationName = r.name;
     
-    EXMenuViewController *mc = [[EXMenuViewController alloc] init];
+    OPReportViewController *mc = [[OPReportViewController alloc] init];
     mc.isHomePge=YES;
     self.navigationController.hidesBottomBarWhenPushed = NO;
     [self.navigationController pushViewController:mc animated:YES];

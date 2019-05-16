@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 OmniSyems. All rights reserved.
 //
 
-#import "EXAppDelegate.h"
+#import "OPDashboardAppDelegate.h"
 #import "KSObjectStore.h"
 #import "RestaurantInfo.h"
 #import "CompanyInfo.h"
 
-@implementation EXAppDelegate
+@implementation OPDashboardAppDelegate
 @synthesize currentRestaurantId;
 @synthesize restaurant;
 @synthesize user;
@@ -20,9 +20,9 @@
 @synthesize currentCompanyCode;
 @synthesize selectedLocationName;
 
-+ (EXAppDelegate *)sharedAppDelegate
++ (OPDashboardAppDelegate *)sharedAppDelegate
 {
-    return (EXAppDelegate *)[[UIApplication sharedApplication] delegate];
+    return (OPDashboardAppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

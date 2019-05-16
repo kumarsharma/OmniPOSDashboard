@@ -10,7 +10,7 @@
 
 @class RestaurantInfo;
 @class UserInfo, CompanyInfo;
-@interface EXAppDelegate : UIResponder <UIApplicationDelegate>
+@interface OPDashboardAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -21,7 +21,7 @@
 @property (nonatomic, assign) BOOL isUserLoggedIn;
 
 
-+ (EXAppDelegate *)sharedAppDelegate;
++ (OPDashboardAppDelegate *)sharedAppDelegate;
 - (BOOL)hasRestaurantObject;
 - (void)storeRestaurant:(RestaurantInfo *)rest;
 - (BOOL)hasUserObject;

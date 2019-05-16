@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RangePickerViewController.h"
+#import "OPCalendarViewController.h"
 #import "OPSaleSummary.h"
 #import "LoadingIndicatorView.h"
 #import "OPViewController.h"
 
-@interface EXMenuViewController : OPViewController<RangeDatePickerDelegate, UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface OPReportViewController : OPViewController<OPDateSelectionDelegate, UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource>
 {
     
 }

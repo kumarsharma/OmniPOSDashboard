@@ -13,7 +13,7 @@
 //returns the date as string in desired format
 + (NSString *)getDateString:(NSString *)dateFormat
 {    
-	NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:dateFormat];
     [formatter setCalendar:cal];
@@ -206,10 +206,10 @@
 + (int)daysBetweenFirstDate:(NSDate *)dt1 secndDate:(NSDate *)dt2
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger unitFlags = NSDayCalendarUnit;
+    NSUInteger unitFlags = NSCalendarUnitDay;
     
     NSDateComponents *components = [calendar components:unitFlags fromDate:dt1 toDate:dt2 options:0];
-    return [components day]+1;
+    return (int)[components day]+1;
 }
 
 + (NSDate *)getCurrentWeeksBeginingDate

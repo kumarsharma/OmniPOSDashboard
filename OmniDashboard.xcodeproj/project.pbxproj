@@ -32,7 +32,7 @@
 		18BFD8181742A378009822B7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BFD8171742A378009822B7 /* SystemConfiguration.framework */; };
 		18BFD8291742AAFC009822B7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BFD8281742AAFB009822B7 /* MessageUI.framework */; };
 		18BFD82C1742AC55009822B7 /* NSMutableString+Spaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BFD82B1742AC55009822B7 /* NSMutableString+Spaces.m */; };
-		18BFD8301742AE6D009822B7 /* EXMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BFD82F1742AE6D009822B7 /* EXMenuViewController.m */; };
+		18BFD8301742AE6D009822B7 /* OPReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BFD82F1742AE6D009822B7 /* OPReportViewController.m */; };
 		18C8761417A3ED5E0066BEF0 /* EXSaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C8761317A3ED5E0066BEF0 /* EXSaleView.m */; };
 		18E0402717A225E30021B77E /* KSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E0402617A225E30021B77E /* KSTextField.m */; };
 		18E4EFBA1740CD3D004AAF7D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E4EFB91740CD3D004AAF7D /* UIKit.framework */; };
@@ -40,12 +40,12 @@
 		18E4EFBE1740CD3D004AAF7D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E4EFBD1740CD3D004AAF7D /* CoreGraphics.framework */; };
 		18E4EFC41740CD3D004AAF7D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18E4EFC21740CD3D004AAF7D /* InfoPlist.strings */; };
 		18E4EFC61740CD3D004AAF7D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4EFC51740CD3D004AAF7D /* main.m */; };
-		18E4EFCA1740CD3D004AAF7D /* EXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4EFC91740CD3D004AAF7D /* EXAppDelegate.m */; };
+		18E4EFCA1740CD3D004AAF7D /* OPDashboardAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4EFC91740CD3D004AAF7D /* OPDashboardAppDelegate.m */; };
 		18E4EFCC1740CD3D004AAF7D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4EFCB1740CD3D004AAF7D /* Default.png */; };
 		18E4EFCE1740CD3D004AAF7D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4EFCD1740CD3D004AAF7D /* Default@2x.png */; };
 		18E4EFD01740CD3D004AAF7D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4EFCF1740CD3D004AAF7D /* Default-568h@2x.png */; };
 		18E4EFD31740CD3D004AAF7D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18E4EFD11740CD3D004AAF7D /* MainStoryboard.storyboard */; };
-		18E4EFD61740CD3D004AAF7D /* EXPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4EFD51740CD3D004AAF7D /* EXPinViewController.m */; };
+		18E4EFD61740CD3D004AAF7D /* OPPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4EFD51740CD3D004AAF7D /* OPPinViewController.m */; };
 		18E4EFE51740CFB1004AAF7D /* OPServerLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4EFE21740CFB1004AAF7D /* OPServerLoginViewController.m */; };
 		18E4F05B1740CFC3004AAF7D /* OPDataFetchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4EFE91740CFC3004AAF7D /* OPDataFetchHelper.m */; };
 		18E4F05F1740CFC3004AAF7D /* OPReportHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4EFF11740CFC3004AAF7D /* OPReportHolder.m */; };
@@ -96,7 +96,7 @@
 		18F4ED131743B72F0088ACC7 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4ED121743B72F0088ACC7 /* UserInfo.m */; };
 		18F4ED161743B9380088ACC7 /* OPManagedObjectHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4ED151743B9380088ACC7 /* OPManagedObjectHolder.m */; };
 		18FB1D0918F4395E00EF914E /* CompanyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FB1D0818F4395E00EF914E /* CompanyInfo.m */; };
-		18FB1D0C18F440CC00EF914E /* EXLocationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FB1D0B18F440CC00EF914E /* EXLocationListViewController.m */; };
+		18FB1D0C18F440CC00EF914E /* OPLocationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FB1D0B18F440CC00EF914E /* OPLocationListController.m */; };
 		1A26BB43AB941F65CBC2C544 /* libPods-OmniDashboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FBCC84890BE1CB8D9763EAE /* libPods-OmniDashboard.a */; };
 		CE2EA8F422795014001DB320 /* AAChartView.html in Resources */ = {isa = PBXBuildFile; fileRef = CE2EA8F322795014001DB320 /* AAChartView.html */; };
 		CE2EA8FB22798EA7001DB320 /* omnipos_logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2EA8FA22798EA6001DB320 /* omnipos_logo2.png */; };
@@ -232,7 +232,7 @@
 		CE5F3B6E227F2C1800C57F93 /* cancel_iphone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5F3B68227F2C1800C57F93 /* cancel_iphone@3x.png */; };
 		CE7030BC22754FA200381474 /* OPSaleSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7030BB22754FA200381474 /* OPSaleSummary.m */; };
 		CE7030BF227552D200381474 /* OPReportSection.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7030BE227552D200381474 /* OPReportSection.m */; };
-		CE782B28227690CA00C39913 /* RangePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B24227690C900C39913 /* RangePickerViewController.m */; };
+		CE782B28227690CA00C39913 /* OPCalendarViewCOntroller.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B24227690C900C39913 /* OPCalendarViewCOntroller.m */; };
 		CE782B29227690CA00C39913 /* RangePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B27227690CA00C39913 /* RangePickerCell.m */; };
 		CE782B2C227690EF00C39913 /* FSCalendarExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B2B227690EF00C39913 /* FSCalendarExtensions.m */; };
 		CE782B31227716A400C39913 /* OPReportItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE782B30227716A400C39913 /* OPReportItemCell.m */; };
@@ -298,7 +298,7 @@
 		CE7F25E1227C66E100EF0F89 /* CWRadarChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25DC227C66E000EF0F89 /* CWRadarChartData.m */; };
 		CE7F25E2227C66E100EF0F89 /* CWRadarChartOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F25DF227C66E100EF0F89 /* CWRadarChartOptions.m */; };
 		CEB517202278B470003AE3C9 /* OPReportSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB5171F2278B470003AE3C9 /* OPReportSummaryCell.m */; };
-		CEB517272278C992003AE3C9 /* OPFurtherReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB517262278C992003AE3C9 /* OPFurtherReportViewController.m */; };
+		CEB517272278C992003AE3C9 /* OPReportDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB517262278C992003AE3C9 /* OPReportDetailController.m */; };
 		CEE14DF2228C269E00970E33 /* CalendarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE14DF0228C269D00970E33 /* CalendarIcon.png */; };
 		CEE14DF3228C269E00970E33 /* ThisMonth.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE14DF1228C269D00970E33 /* ThisMonth.png */; };
 		CEE72FF5227DA04B008FECC9 /* OPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE72FF3227DA04A008FECC9 /* OPViewController.m */; };
@@ -327,7 +327,7 @@
 		CEFB386820930421004CAFE0 /* ADUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFB386720930421004CAFE0 /* ADUtils.m */; };
 		CEFB386B2093044F004CAFE0 /* OPXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFB38692093044E004CAFE0 /* OPXMLReader.m */; };
 		CEFB3873209366D1004CAFE0 /* setting-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFB3872209366D0004CAFE0 /* setting-icon.png */; };
-		CEFB387620936C55004CAFE0 /* ODSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFB387520936C55004CAFE0 /* ODSettingsTableViewController.m */; };
+		CEFB387620936C55004CAFE0 /* OPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFB387520936C55004CAFE0 /* OPSettingsViewController.m */; };
 		CEFB387820937A66004CAFE0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFB387720937A66004CAFE0 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -375,8 +375,8 @@
 		18BFD8281742AAFB009822B7 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		18BFD82A1742AC54009822B7 /* NSMutableString+Spaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Spaces.h"; sourceTree = "<group>"; };
 		18BFD82B1742AC55009822B7 /* NSMutableString+Spaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Spaces.m"; sourceTree = "<group>"; };
-		18BFD82E1742AE6D009822B7 /* EXMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXMenuViewController.h; sourceTree = "<group>"; };
-		18BFD82F1742AE6D009822B7 /* EXMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXMenuViewController.m; sourceTree = "<group>"; };
+		18BFD82E1742AE6D009822B7 /* OPReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPReportViewController.h; sourceTree = "<group>"; };
+		18BFD82F1742AE6D009822B7 /* OPReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPReportViewController.m; sourceTree = "<group>"; };
 		18C8761217A3ED5E0066BEF0 /* EXSaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXSaleView.h; sourceTree = "<group>"; };
 		18C8761317A3ED5E0066BEF0 /* EXSaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXSaleView.m; sourceTree = "<group>"; };
 		18E0402517A225E30021B77E /* KSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSTextField.h; sourceTree = "<group>"; };
@@ -389,14 +389,14 @@
 		18E4EFC31740CD3D004AAF7D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18E4EFC51740CD3D004AAF7D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18E4EFC71740CD3D004AAF7D /* OmniDashboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OmniDashboard-Prefix.pch"; sourceTree = "<group>"; };
-		18E4EFC81740CD3D004AAF7D /* EXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EXAppDelegate.h; sourceTree = "<group>"; };
-		18E4EFC91740CD3D004AAF7D /* EXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EXAppDelegate.m; sourceTree = "<group>"; };
+		18E4EFC81740CD3D004AAF7D /* OPDashboardAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPDashboardAppDelegate.h; sourceTree = "<group>"; };
+		18E4EFC91740CD3D004AAF7D /* OPDashboardAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPDashboardAppDelegate.m; sourceTree = "<group>"; };
 		18E4EFCB1740CD3D004AAF7D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		18E4EFCD1740CD3D004AAF7D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		18E4EFCF1740CD3D004AAF7D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		18E4EFD21740CD3D004AAF7D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		18E4EFD41740CD3D004AAF7D /* EXPinViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EXPinViewController.h; sourceTree = "<group>"; };
-		18E4EFD51740CD3D004AAF7D /* EXPinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EXPinViewController.m; sourceTree = "<group>"; };
+		18E4EFD41740CD3D004AAF7D /* OPPinViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPPinViewController.h; sourceTree = "<group>"; };
+		18E4EFD51740CD3D004AAF7D /* OPPinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPPinViewController.m; sourceTree = "<group>"; };
 		18E4EFE11740CFB1004AAF7D /* OPServerLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPServerLoginViewController.h; sourceTree = "<group>"; };
 		18E4EFE21740CFB1004AAF7D /* OPServerLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPServerLoginViewController.m; sourceTree = "<group>"; };
 		18E4EFE81740CFC3004AAF7D /* OPDataFetchHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPDataFetchHelper.h; sourceTree = "<group>"; };
@@ -506,8 +506,8 @@
 		18F4ED151743B9380088ACC7 /* OPManagedObjectHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPManagedObjectHolder.m; sourceTree = "<group>"; };
 		18FB1D0718F4395E00EF914E /* CompanyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyInfo.h; sourceTree = "<group>"; };
 		18FB1D0818F4395E00EF914E /* CompanyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyInfo.m; sourceTree = "<group>"; };
-		18FB1D0A18F440CC00EF914E /* EXLocationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXLocationListViewController.h; sourceTree = "<group>"; };
-		18FB1D0B18F440CC00EF914E /* EXLocationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXLocationListViewController.m; sourceTree = "<group>"; };
+		18FB1D0A18F440CC00EF914E /* OPLocationListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPLocationListController.h; sourceTree = "<group>"; };
+		18FB1D0B18F440CC00EF914E /* OPLocationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPLocationListController.m; sourceTree = "<group>"; };
 		CE2EA8F322795014001DB320 /* AAChartView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AAChartView.html; sourceTree = "<group>"; };
 		CE2EA8FA22798EA6001DB320 /* omnipos_logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = omnipos_logo2.png; sourceTree = "<group>"; };
 		CE2EA8FC227991D9001DB320 /* OPViewSupplier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPViewSupplier.h; sourceTree = "<group>"; };
@@ -650,8 +650,8 @@
 		CE7030BB22754FA200381474 /* OPSaleSummary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPSaleSummary.m; sourceTree = "<group>"; };
 		CE7030BD227552D200381474 /* OPReportSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPReportSection.h; sourceTree = "<group>"; };
 		CE7030BE227552D200381474 /* OPReportSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPReportSection.m; sourceTree = "<group>"; };
-		CE782B24227690C900C39913 /* RangePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangePickerViewController.m; sourceTree = "<group>"; };
-		CE782B25227690CA00C39913 /* RangePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangePickerViewController.h; sourceTree = "<group>"; };
+		CE782B24227690C900C39913 /* OPCalendarViewCOntroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPCalendarViewCOntroller.m; sourceTree = "<group>"; };
+		CE782B25227690CA00C39913 /* OPCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPCalendarViewController.h; sourceTree = "<group>"; };
 		CE782B26227690CA00C39913 /* RangePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangePickerCell.h; sourceTree = "<group>"; };
 		CE782B27227690CA00C39913 /* RangePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangePickerCell.m; sourceTree = "<group>"; };
 		CE782B2A227690EF00C39913 /* FSCalendarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarConstants.h; sourceTree = "<group>"; };
@@ -785,8 +785,8 @@
 		CE7F25DF227C66E100EF0F89 /* CWRadarChartOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWRadarChartOptions.m; sourceTree = "<group>"; };
 		CEB5171E2278B470003AE3C9 /* OPReportSummaryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPReportSummaryCell.h; sourceTree = "<group>"; };
 		CEB5171F2278B470003AE3C9 /* OPReportSummaryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPReportSummaryCell.m; sourceTree = "<group>"; };
-		CEB517252278C992003AE3C9 /* OPFurtherReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPFurtherReportViewController.h; sourceTree = "<group>"; };
-		CEB517262278C992003AE3C9 /* OPFurtherReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPFurtherReportViewController.m; sourceTree = "<group>"; };
+		CEB517252278C992003AE3C9 /* OPReportDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPReportDetailController.h; sourceTree = "<group>"; };
+		CEB517262278C992003AE3C9 /* OPReportDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPReportDetailController.m; sourceTree = "<group>"; };
 		CEE14DF0228C269D00970E33 /* CalendarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalendarIcon.png; sourceTree = "<group>"; };
 		CEE14DF1228C269D00970E33 /* ThisMonth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThisMonth.png; sourceTree = "<group>"; };
 		CEE72FF3227DA04A008FECC9 /* OPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPViewController.m; sourceTree = "<group>"; };
@@ -818,8 +818,8 @@
 		CEFB38692093044E004CAFE0 /* OPXMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPXMLReader.m; sourceTree = "<group>"; };
 		CEFB386A2093044E004CAFE0 /* OPXMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPXMLReader.h; sourceTree = "<group>"; };
 		CEFB3872209366D0004CAFE0 /* setting-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-icon.png"; sourceTree = "<group>"; };
-		CEFB387420936C55004CAFE0 /* ODSettingsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODSettingsTableViewController.h; sourceTree = "<group>"; };
-		CEFB387520936C55004CAFE0 /* ODSettingsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ODSettingsTableViewController.m; sourceTree = "<group>"; };
+		CEFB387420936C55004CAFE0 /* OPSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPSettingsViewController.h; sourceTree = "<group>"; };
+		CEFB387520936C55004CAFE0 /* OPSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPSettingsViewController.m; sourceTree = "<group>"; };
 		CEFB387720937A66004CAFE0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -879,8 +879,8 @@
 			children = (
 				188863F91A49CDFB0068DCD0 /* CKCalendarView.h */,
 				188863FA1A49CDFB0068DCD0 /* CKCalendarView.m */,
-				CE782B25227690CA00C39913 /* RangePickerViewController.h */,
-				CE782B24227690C900C39913 /* RangePickerViewController.m */,
+				CE782B25227690CA00C39913 /* OPCalendarViewController.h */,
+				CE782B24227690C900C39913 /* OPCalendarViewCOntroller.m */,
 				CE782B26227690CA00C39913 /* RangePickerCell.h */,
 				CE782B27227690CA00C39913 /* RangePickerCell.m */,
 				CE782B2A227690EF00C39913 /* FSCalendarConstants.h */,
@@ -995,16 +995,16 @@
 				CEE72FF3227DA04A008FECC9 /* OPViewController.m */,
 				18E4EFE11740CFB1004AAF7D /* OPServerLoginViewController.h */,
 				18E4EFE21740CFB1004AAF7D /* OPServerLoginViewController.m */,
-				18E4EFD41740CD3D004AAF7D /* EXPinViewController.h */,
-				18E4EFD51740CD3D004AAF7D /* EXPinViewController.m */,
-				18FB1D0A18F440CC00EF914E /* EXLocationListViewController.h */,
-				18FB1D0B18F440CC00EF914E /* EXLocationListViewController.m */,
-				18BFD82E1742AE6D009822B7 /* EXMenuViewController.h */,
-				18BFD82F1742AE6D009822B7 /* EXMenuViewController.m */,
-				CEB517252278C992003AE3C9 /* OPFurtherReportViewController.h */,
-				CEB517262278C992003AE3C9 /* OPFurtherReportViewController.m */,
-				CEFB387420936C55004CAFE0 /* ODSettingsTableViewController.h */,
-				CEFB387520936C55004CAFE0 /* ODSettingsTableViewController.m */,
+				18E4EFD41740CD3D004AAF7D /* OPPinViewController.h */,
+				18E4EFD51740CD3D004AAF7D /* OPPinViewController.m */,
+				18FB1D0A18F440CC00EF914E /* OPLocationListController.h */,
+				18FB1D0B18F440CC00EF914E /* OPLocationListController.m */,
+				18BFD82E1742AE6D009822B7 /* OPReportViewController.h */,
+				18BFD82F1742AE6D009822B7 /* OPReportViewController.m */,
+				CEB517252278C992003AE3C9 /* OPReportDetailController.h */,
+				CEB517262278C992003AE3C9 /* OPReportDetailController.m */,
+				CEFB387420936C55004CAFE0 /* OPSettingsViewController.h */,
+				CEFB387520936C55004CAFE0 /* OPSettingsViewController.m */,
 				CE782B3422772D0100C39913 /* OPTermsViewController.h */,
 				CE782B3522772D0100C39913 /* OPTermsViewController.m */,
 			);
@@ -1052,8 +1052,8 @@
 				CEB517212278B631003AE3C9 /* Charts */,
 				188863F81A49CDFB0068DCD0 /* Calendar */,
 				18BFD82D1742AE39009822B7 /* Controllers */,
-				18E4EFC81740CD3D004AAF7D /* EXAppDelegate.h */,
-				18E4EFC91740CD3D004AAF7D /* EXAppDelegate.m */,
+				18E4EFC81740CD3D004AAF7D /* OPDashboardAppDelegate.h */,
+				18E4EFC91740CD3D004AAF7D /* OPDashboardAppDelegate.m */,
 				18BFD8201742A9F1009822B7 /* ExModels */,
 				18BFD8191742A62C009822B7 /* Images */,
 				18E4F08C1740CFE4004AAF7D /* KSTools */,
@@ -1915,14 +1915,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				18E4EFC61740CD3D004AAF7D /* main.m in Sources */,
-				18E4EFCA1740CD3D004AAF7D /* EXAppDelegate.m in Sources */,
-				18E4EFD61740CD3D004AAF7D /* EXPinViewController.m in Sources */,
+				18E4EFCA1740CD3D004AAF7D /* OPDashboardAppDelegate.m in Sources */,
+				18E4EFD61740CD3D004AAF7D /* OPPinViewController.m in Sources */,
 				CE7F25E0227C66E100EF0F89 /* CWRadarChart.m in Sources */,
 				18E4EFE51740CFB1004AAF7D /* OPServerLoginViewController.m in Sources */,
 				1848DD1E1965A96800E14F29 /* DDAbstractDatabaseLogger.m in Sources */,
 				CE782B9622773B5200C39913 /* DGActivityIndicatorBallPulseAnimation.m in Sources */,
 				18E4F05B1740CFC3004AAF7D /* OPDataFetchHelper.m in Sources */,
-				CE782B28227690CA00C39913 /* RangePickerViewController.m in Sources */,
+				CE782B28227690CA00C39913 /* OPCalendarViewCOntroller.m in Sources */,
 				18E4F05F1740CFC3004AAF7D /* OPReportHolder.m in Sources */,
 				18E4F0601740CFC3004AAF7D /* OPReportInfo.m in Sources */,
 				1848DD231965A96800E14F29 /* ContextFilterLogFormatter.m in Sources */,
@@ -1959,7 +1959,7 @@
 				1848DD211965A96800E14F29 /* DDLog.m in Sources */,
 				18E4F06E1740CFC3004AAF7D /* NSObject+SBJSON.m in Sources */,
 				18E4F06F1740CFC3004AAF7D /* NSString+SBJSON.m in Sources */,
-				18FB1D0C18F440CC00EF914E /* EXLocationListViewController.m in Sources */,
+				18FB1D0C18F440CC00EF914E /* OPLocationListController.m in Sources */,
 				CE782B9C22773B5200C39913 /* DGActivityIndicatorBallScaleRippleMultipleAnimation.m in Sources */,
 				CE782B9022773B5200C39913 /* DGActivityIndicatorBallGridPulseAnimation.m in Sources */,
 				CE782B9D22773B5200C39913 /* DGActivityIndicatorNineDotsAnimation.m in Sources */,
@@ -1988,7 +1988,7 @@
 				18E4F0741740CFC3004AAF7D /* NSDate+Serialize.m in Sources */,
 				CE782BA222773B5200C39913 /* DGActivityIndicatorBallScaleMultipleAnimation.m in Sources */,
 				CE782BA722773B5200C39913 /* DGActivityIndicatorBallTrianglePathAnimation.m in Sources */,
-				CEB517272278C992003AE3C9 /* OPFurtherReportViewController.m in Sources */,
+				CEB517272278C992003AE3C9 /* OPReportDetailController.m in Sources */,
 				18E4F0751740CFC3004AAF7D /* NSDictionary+KeyTranslation.m in Sources */,
 				18E4F0761740CFC3004AAF7D /* NSObject+Serialize.m in Sources */,
 				CE41708A228008D900DBF866 /* OPReportComparisonCell.m in Sources */,
@@ -2042,7 +2042,7 @@
 				18BFD81417429A0D009822B7 /* Reachability.m in Sources */,
 				18BFD82C1742AC55009822B7 /* NSMutableString+Spaces.m in Sources */,
 				CE782B29227690CA00C39913 /* RangePickerCell.m in Sources */,
-				18BFD8301742AE6D009822B7 /* EXMenuViewController.m in Sources */,
+				18BFD8301742AE6D009822B7 /* OPReportViewController.m in Sources */,
 				18F4ED131743B72F0088ACC7 /* UserInfo.m in Sources */,
 				CE2EA9012279E965001DB320 /* OPCategoryItem.m in Sources */,
 				18F4ED161743B9380088ACC7 /* OPManagedObjectHolder.m in Sources */,
@@ -2050,7 +2050,7 @@
 				CE7F25CF227C65AF00EF0F89 /* CWPieChartOptions.m in Sources */,
 				187C265517A0F0A1002FF6E3 /* ItemSoldReport.m in Sources */,
 				1848DD221965A96800E14F29 /* DDTTYLogger.m in Sources */,
-				CEFB387620936C55004CAFE0 /* ODSettingsTableViewController.m in Sources */,
+				CEFB387620936C55004CAFE0 /* OPSettingsViewController.m in Sources */,
 				CE7F25AF227C656900EF0F89 /* CWDataSet.m in Sources */,
 				CE782B9722773B5200C39913 /* DGActivityIndicatorDoubleBounceAnimation.m in Sources */,
 				187C265817A0F0DE002FF6E3 /* SubCategory.m in Sources */,

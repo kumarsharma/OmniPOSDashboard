@@ -28,7 +28,7 @@
         <!--Pin View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController id="2" customClass="EXPinViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="OPPinViewController" sceneMemberID="viewController">
                     <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -249,7 +249,7 @@
         <!--Root View Controller-->
         <scene sceneID="lyy-lf-NJU">
             <objects>
-                <tableViewController storyboardIdentifier="TabBarController" id="3Zc-Sb-r2x" customClass="EXMenuViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TabBarController" id="3Zc-Sb-r2x" customClass="OPReportViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="9PA-C3-8cg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -285,91 +285,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ms4-PE-doz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1674" y="-40"/>
-        </scene>
-        <!--Locations-->
-        <scene sceneID="MZv-lA-CVv">
-            <objects>
-                <tableViewController title="Locations" id="Ldl-nC-P58" customClass="EXLocationListViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="73k-po-KiK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="erl-qc-eti">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="erl-qc-eti" id="ieh-04-z5t">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Ldl-nC-P58" id="KG0-WG-GbI"/>
-                            <outlet property="delegate" destination="Ldl-nC-P58" id="cPM-Kc-Z63"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Locations" image="f-branch_256-512.png" id="dqM-BC-pC9"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cDf-5u-koi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3254" y="313"/>
-        </scene>
-        <!--Running Totals-->
-        <scene sceneID="hXb-LI-Mq4">
-            <objects>
-                <viewController id="V1J-Qr-PEH" customClass="ODCurrentSaleAllViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hXW-FD-hcm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" id="B78-GP-r9m">
-                                <rect key="frame" x="0.0" y="64" width="368" height="490"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Running Totals" image="report-icon-768x768.png" id="OsM-rX-CJe"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
-                    <connections>
-                        <outlet property="web_view" destination="B78-GP-r9m" id="Pbd-FB-r5o"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hW1-8P-EbH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3254" y="-394"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="DK3-Dl-C0V">
-            <objects>
-                <tableViewController id="h8G-Gf-veX" customClass="ODSettingsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="WM2-dL-l2x">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0W6-fF-sFZ">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0W6-fF-sFZ" id="HwC-cv-rwK">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="h8G-Gf-veX" id="3be-IE-qdy"/>
-                            <outlet property="delegate" destination="h8G-Gf-veX" id="EXc-uT-erO"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Settings" image="setting-icon" id="hwN-2h-L4k"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sCN-xP-m4T" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2436" y="692"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="s54-G6-bSo">
@@ -413,9 +328,6 @@
         <image name="clear_hl_iphone.png" width="86" height="60"/>
         <image name="clear_iphone.png" width="86" height="60"/>
         <image name="display_iphone.png" width="258" height="60"/>
-        <image name="f-branch_256-512.png" width="35" height="27"/>
         <image name="login_iphone.png" width="86" height="60"/>
-        <image name="report-icon-768x768.png" width="35" height="35"/>
-        <image name="setting-icon" width="16" height="16"/>
     </resources>
 </document>
