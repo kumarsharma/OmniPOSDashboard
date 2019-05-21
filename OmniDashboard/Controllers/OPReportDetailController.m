@@ -498,8 +498,8 @@
             NSString *key = [NSString stringWithFormat:@"%d", (int)indexPath.row+1];
             cell_d.titleLabel.text = [KSDateUtil chartTimeForTime:key];
             
-            cell_d.totalAmountLabel1.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[self.saleSummary.timeWiseReports valueForKey:key] floatValue]];
-            cell_d.totalAmountLabel2.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[self.saleSummary2.timeWiseReports valueForKey:key] floatValue]];
+            cell_d.totalAmountLabel1.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[self.saleSummary2.timeWiseReports valueForKey:key] floatValue]];
+            cell_d.totalAmountLabel2.text = [NSString stringWithFormat:@"%@%0.2f", @"$", [[self.saleSummary.timeWiseReports valueForKey:key] floatValue]];
             if([cell_d.titleLabel.text hasPrefix:@"GROSS TOTAL"])
             {
                 cell_d.titleLabel.font = [UIFont boldSystemFontOfSize:14];

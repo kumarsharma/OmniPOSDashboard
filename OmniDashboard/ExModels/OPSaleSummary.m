@@ -33,10 +33,15 @@
     {
         for(NSString *itemId in itemGroupIDs)
         {
-            NSPredicate *p = [NSPredicate predicateWithFormat:@"ItemID=%@", itemId];
+            NSPredicate *p = [NSPredicate predicateWithFormat:@"(ItemID=%@) AND (WasRefunded = 'False') AND (WasVoided = 'False')", itemId];
             NSArray *itemGroup = [items filteredArrayUsingPredicate:p];
-            NSString *itemName = [[itemGroup firstObject] valueForKey:@"ProductName"];
-            [itemGroups setValue:itemGroup forKey:itemName];
+            if(itemGroup.count)
+            {
+                NSString *itemName = [[itemGroup firstObject] valueForKey:@"ProductName"];
+                if([itemId isEqualToString:@"-1"])
+                    itemName = @"Open Item(s)";
+                [itemGroups setValue:itemGroup forKey:itemName];
+            }
         }
     }
     
@@ -44,18 +49,25 @@
     {
         for(NSString *catId in categoryGroupIDs)
         {
-            NSPredicate *p = [NSPredicate predicateWithFormat:@"CategoryID=%@", catId];
+            NSPredicate *p = [NSPredicate predicateWithFormat:@"(CategoryID=%@) AND (WasRefunded='False') AND (WasVoided = 'False')                                                                                                                                                                                                                                                                                       ", catId];
             NSArray *catGroup = [items filteredArrayUsingPredicate:p];
-            NSString *catName = [[catGroup firstObject] valueForKey:@"CategoryName"];
-            [categoryGroups setValue:catGroup forKey:catName];
+            
+            if(catGroup.count)
+            {
+                NSString *catName = [[catGroup firstObject] valueForKey:@"CategoryName"];
+                if(catId.length<=0)
+                    catName = @"Open Item(s)";
+                [categoryGroups setValue:catGroup forKey:catName];
+            }
         }
     }
     
     //for open items;
+    /*
     NSPredicate *p = [NSPredicate predicateWithFormat:@"ItemID=%@", @"-1"];
     NSArray *itemGroup = [items filteredArrayUsingPredicate:p];
     if(itemGroup.count)
-        [itemGroups setValue:itemGroup forKey:@"Open Items"];
+        [itemGroups setValue:itemGroup forKey:@"Open Items"];*/
     
     OPReportSection *itemSection = [[OPReportSection alloc] init];
     itemSection.sectionTitle = @"Items";
@@ -165,24 +177,10 @@
                 self.totalNoOfSale--;
             }
         }
-        
-        
-        NSString *startTimeString = @"08:00 AM";
-        NSString *endTimeString = @"06:00 PM";
-        
+  
         for(NSString *key in dateWiseSales.allKeys)
         {            
-            [self getStartTime:&startTimeString andEndTime:&endTimeString fromTime:key.intValue];
-            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-            [formatter setDateFormat:@"hh:mm a"];
-            
-            NSString *nowTimeString = [formatter stringFromDate:dateTime];
-            
-            int startTime   = [self minutesSinceMidnight:[formatter dateFromString:startTimeString]];
-            int endTime  = [self minutesSinceMidnight:[formatter dateFromString:endTimeString]];
-            int nowTime     = [self minutesSinceMidnight:[formatter dateFromString:nowTimeString]];;
-
-            if (startTime <= nowTime && nowTime <= endTime)
+            if ([self ifTime:dateTime inBetweenForKey:key.intValue])
             {
                 NSNumber *value = [dateWiseSales valueForKey:key];
                 NSNumber *totalValue = [NSNumber numberWithFloat:value.floatValue+totalAmount];
@@ -244,6 +242,55 @@
     summarySection.rows = summaries;
     self.summaryBreakDown=summarySection;
     self.timeWiseReports = dateWiseSales;
+}
+
+- (BOOL)ifTime:(NSDate *)time inBetweenForKey:(int)key
+{
+    NSDateComponents *openingTime = [[NSDateComponents alloc] init];
+    openingTime.hour = key;
+    openingTime.minute = 0;
+    
+    NSDateComponents *closingTime = [[NSDateComponents alloc] init];
+    closingTime.hour = key+1;
+    closingTime.minute = 0;
+    
+    NSDateComponents *currentTime = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:time];
+    
+    NSMutableArray *times = [@[openingTime, closingTime, currentTime] mutableCopy];
+    [times sortUsingComparator:^NSComparisonResult(NSDateComponents *t1, NSDateComponents *t2) {
+        if (t1.hour > t2.hour) {
+            return NSOrderedDescending;
+        }
+        
+        if (t1.hour < t2.hour) {
+            return NSOrderedAscending;
+        }
+        // hour is the same
+        if (t1.minute > t2.minute) {
+            return NSOrderedDescending;
+        }
+        
+        if (t1.minute < t2.minute) {
+            return NSOrderedAscending;
+        }
+        // hour and minute are the same
+        if (t1.second > t2.second) {
+            return NSOrderedDescending;
+        }
+        
+        if (t1.second < t2.second) {
+            return NSOrderedAscending;
+        }
+        return NSOrderedSame;
+        
+    }];
+    
+    if ([times indexOfObject:currentTime] == 1) {
+        return YES;
+    } else {
+        
+        return NO;
+    }
 }
 
 -(int) minutesSinceMidnight:(NSDate *)date
