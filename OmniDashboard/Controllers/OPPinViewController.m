@@ -198,7 +198,9 @@
     
     if(app.company.allLocations.count>0)
     {
-        if(app.company.allLocations.count>1)
+        NSArray *menuIDs = [app.user.permittedMenuIDs componentsSeparatedByString:@"|"];
+//        if(app.company.allLocations.count>1)
+        if([menuIDs containsObject:@"25"])
         {
             OPLocationListController *lst = [[OPLocationListController alloc] init];
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lst]; //[[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"ExNavController"];    

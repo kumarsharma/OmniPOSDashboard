@@ -22,7 +22,7 @@ static NSMutableArray *activeConnections;
     
         NSURL *url = [NSURL URLWithString:urlString];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithUrl:url andMethod:@"POST"];
-        [request setTimeoutInterval:10];
+        [request setTimeoutInterval:20];
         [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
         
         [self sendRequest:request compBlock:completionBlck];

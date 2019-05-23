@@ -21,11 +21,14 @@
 #import "NSString+Extension.h"
 #import "CompanyInfo.h"
 #import "OPViewSupplier.h"
+#import "UserInfo.h"
+#import "OPXMLReader.h"
 
 @interface OPServerLoginViewController ()
 
 @property (nonatomic, strong) UITextField *userNameTxtField, *passwordTxtField, *baseURLTxtField;
 @property (nonatomic, strong) LoadingIndicatorView *indicatorView;
+@property (nonatomic, strong) CompanyInfo *currentFetchedCompany;
 
 @end
 
@@ -35,6 +38,7 @@
 @synthesize isSignIn;
 @synthesize buttonColor;
 @synthesize tableView;
+@synthesize currentFetchedCompany;
 
 - (void)viewDidLoad
 {
@@ -266,15 +270,17 @@
     {
         CompanyInfo *comp = (CompanyInfo *)[CompanyInfo parseXml:response.responseData];
         comp.companyCode = self.baseURLTxtField.text;
+        self.currentFetchedCompany = comp;
         
         if(comp && comp.companyName)
         {
-            [[OPDashboardAppDelegate sharedAppDelegate] storeCompany:comp];
+//            [[OPDashboardAppDelegate sharedAppDelegate] storeCompany:comp];            
+//            [[OPDashboardAppDelegate sharedAppDelegate] storeUser:comp.user];
             
-            [[OPDashboardAppDelegate sharedAppDelegate] storeUser:comp.user];
+            [self loadGroupPermissions];
             
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadingInitialData:) name:kDidFinishActiveNetworkOperations object:nil];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishActiveNetworkOperations object:nil];
+//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadingInitialData:) name:kDidFinishActiveNetworkOperations object:nil];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishActiveNetworkOperations object:nil];
         }
         else
         {
@@ -311,6 +317,67 @@
     [alertView show];
 }
 
+- (void)loadGroupPermissions
+{
+    __weak OPServerLoginViewController *loginView = self;
+    self.indicatorView = [LoadingIndicatorView showLoadingIndicatorInView:self.view withMessage:@""];
+    
+    [CompanyInfo loadGroupPermissions:self.currentFetchedCompany.user.userGroupId withCompanyCode:self.baseURLTxtField.text withExecutionBlock:^(BOOL success, Response *response)
+       {
+             if(success)
+             {
+                 [loginView finishedLoadingGroupPermissionsWithResponse:response];
+             }
+             else
+             {
+                 [loginView errorAlertWithReason:response.failureMessage];
+             }
+       }
+     ];
+}
+
+- (void)finishedLoadingGroupPermissionsWithResponse:(Response *)response
+{
+    NSLog(@"Login Response: %@", response.responseString);
+    [NetworkConfig setUserName:self.userNameTxtField.text withPassword:self.passwordTxtField.text];    
+    NSString *failedReason = [response.responseString contentForTag:@"RestInfo"];
+    [LoadingIndicatorView removeLoadingIndicator:self.indicatorView];
+    if(failedReason == nil)
+    {
+        NSError *error; 
+        NSMutableString *menuIDs = [NSMutableString string];
+        NSDictionary *xmlDictionary = [OPXMLReader dictionaryForXMLString:response.responseString error:&error];
+        NSArray *dicts = [[xmlDictionary valueForKey:@"CustomerObjects"] valueForKey:@"CustomerInfo"];
+        for(NSDictionary *dict in dicts)
+        {
+            NSDictionary *menuDict = [dict valueForKey:@"MenuID"];
+            NSString *menuId = [menuDict valueForKey:@"text"];
+            
+            if(menuIDs.length>0)
+                [menuIDs appendFormat:@"|%@", menuId];
+            else
+                [menuIDs appendString:menuId];
+        }
+
+        if(self.currentFetchedCompany && self.currentFetchedCompany.companyName)
+        {
+            [[OPDashboardAppDelegate sharedAppDelegate] storeCompany:self.currentFetchedCompany];   
+            self.currentFetchedCompany.user.permittedMenuIDs = menuIDs;
+            [[OPDashboardAppDelegate sharedAppDelegate] storeUser:self.currentFetchedCompany.user];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadingInitialData:) name:kDidFinishActiveNetworkOperations object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishActiveNetworkOperations object:nil];
+        }
+        else
+        {
+            [self errorAlertWithReason:response.responseString];
+        }
+    }
+    else
+    {
+        NSString *reason = [response.responseString contentForTag:@"RestInfo"];
+        [self errorAlertWithReason:reason];
+    }
+}
 
 #pragma mark Indicator View
 #pragma mark -

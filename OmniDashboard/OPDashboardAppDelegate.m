@@ -82,6 +82,7 @@
 
 - (void)storeCompany:(CompanyInfo *)c
 {
+    self.company = c;
     [KSObjectStore storeObject:c forKey:kCompanyObject];
 }
 
@@ -99,6 +100,7 @@
 
 - (void)storeUser:(UserInfo *)usr
 {
+    self.user = usr;
     [KSObjectStore storeObject:usr forKey:kUserObject];
 }
 

@@ -21,7 +21,7 @@
 @synthesize startDate;
 @synthesize userID;
 @synthesize userType;
-@synthesize userName;
+@synthesize userName, userGroupId, userGroupCode, permittedMenuIDs;
 
 -(id)initWithCoder:(NSCoder *)decoder
 {
@@ -38,6 +38,9 @@
     userType = [decoder decodeObjectForKey:@"userType"];
     
     userName = [decoder decodeObjectForKey:@"userName"];
+    userGroupId = [decoder decodeObjectForKey:@"userGroupId"];
+    userGroupCode = [decoder decodeObjectForKey:@"userGroupCode"];
+    permittedMenuIDs = [decoder decodeObjectForKey:@"permittedMenuIDs"];
     
 	return self;
 }
@@ -56,6 +59,9 @@
     [encoder encodeObject:userID forKey:@"userID"];
     [encoder encodeObject:userType forKey:@"userType"];
     [encoder encodeObject:userName forKey:@"userName"];
+    [encoder encodeObject:userGroupId forKey:@"userGroupId"];
+    [encoder encodeObject:userGroupCode forKey:@"userGroupCode"];
+    [encoder encodeObject:permittedMenuIDs forKey:@"permittedMenuIDs"];
 }
 
 
@@ -85,9 +91,9 @@
 
 + (NSDictionary *)mappingsFromObjectToXML
 {
-    NSArray *objects = [NSArray arrayWithObjects:@"email", @"firstName", @"lastName", @"loginPin", @"phone", @"startDate", @"userID", @"userName", @"userType", nil];
+    NSArray *objects = [NSArray arrayWithObjects:@"email", @"firstName", @"lastName", @"loginPin", @"phone", @"startDate", @"userID", @"userName", @"userType", @"userGroupCode", @"userGroupId", nil];
     
-    NSArray *keys = [NSArray arrayWithObjects:@"UserEmail", @"FirstName", @"LastName", @"UserPin", @"UserPHone", @"StartDate", @"UserID", @"UserName", @"userType", nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"UserEmail", @"FirstName", @"LastName", @"UserPin", @"UserPHone", @"StartDate", @"UserID", @"UserName", @"userType", @"UserGroupCode", @"UserGroupID", nil];
     
     NSDictionary *mappings = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     

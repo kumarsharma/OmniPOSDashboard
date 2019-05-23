@@ -43,7 +43,7 @@
 
 + (NSString *)remoteFetchPath
 {
-    return @"/companydataservices.asmx/GetAllLocation";
+    return @"/companydataservices.asmx/GetLocationsAll";
 }
 
 + (void)signInUsingUsername:(NSString *)userName andPassword:(NSString *)password withExecutionBlock:(endRequestCompletionBlk_t)complBlock
@@ -58,6 +58,13 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@%@", [NetworkConfig getBaseURL], [self remoteFetchPath]];
     NSString *body = [NSString stringWithFormat:@"companycode=%@&param1=UserName&val1=%@&param2=UserPassword&val2=%@", companyCode, userName, password];
+    [OPConnection postWithBody:body withUrlString:urlString compBlock:complBlock];
+}
+
++ (void)loadGroupPermissions:(NSString *)userGroupId withCompanyCode:(NSString *)companyCode withExecutionBlock:(endRequestCompletionBlk_t)complBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", [NetworkConfig getBaseURL], @"/companydataservices.asmx/GetGroupPermissionsForUserGroupID"];
+    NSString *body = [NSString stringWithFormat:@"companycode=%@&userGroupID=%@", companyCode, userGroupId];
     [OPConnection postWithBody:body withUrlString:urlString compBlock:complBlock];
 }
 

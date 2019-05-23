@@ -25,4 +25,5 @@
 
 + (CompanyInfo *)parseXml:(NSData *)xmlData;
 + (void)signInUsingUsername:(NSString *)userName andPassword:(NSString *)password withCompanyCode:(NSString *)companyCode withExecutionBlock:(endRequestCompletionBlk_t)complBlock;
++ (void)loadGroupPermissions:(NSString *)userGroupId withCompanyCode:(NSString *)companyCode withExecutionBlock:(endRequestCompletionBlk_t)complBlock;
 @end

@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString * userID;
 @property (nonatomic, strong) NSString * userType;
 @property (nonatomic, strong) NSString * userName;
+@property (nonatomic, strong) NSString * userGroupId, * userGroupCode, *permittedMenuIDs;
 
 + (NSDictionary *)mappingsFromObjectToXML;
 
