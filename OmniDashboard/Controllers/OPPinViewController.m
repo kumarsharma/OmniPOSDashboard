@@ -210,16 +210,21 @@
         }
         else
         {
-            RestaurantInfo *r = [app.company.allLocations objectAtIndex:0];
-            app.currentRestaurantId = r.restaurantId;
-            app.restaurant = r;
-            app.selectedLocationName = r.name;   
-            OPReportViewController *mc = [[OPReportViewController alloc] init];
-            mc.isHomePge=YES;
-            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mc];    
-            [navController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
-            navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-            [self presentViewController:navController animated:YES completion:nil];
+            NSArray *locations = [app.company.allLocations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"restaurantId=%@", app.user.locationId]];
+            
+            if(locations.count)
+            {
+                RestaurantInfo *r = [locations objectAtIndex:0];
+                app.currentRestaurantId = r.restaurantId;
+                app.restaurant = r;
+                app.selectedLocationName = r.name;   
+                OPReportViewController *mc = [[OPReportViewController alloc] init];
+                mc.isHomePge=YES;
+                UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mc];    
+                [navController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
+                navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+                [self presentViewController:navController animated:YES completion:nil];
+            }
         }
     }
 }

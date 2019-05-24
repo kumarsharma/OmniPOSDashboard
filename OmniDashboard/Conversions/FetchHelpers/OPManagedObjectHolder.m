@@ -40,8 +40,6 @@
 }
 
 
-
-
 #pragma mark Parsing
 
 + (OPManagedObjectHolder *)parseXml:(NSData *)xmlData rootElementName:(NSString *)rootElementName objectHoldersElementName:(NSString *)objectHoldersElName targetClassName:(NSString *)className
