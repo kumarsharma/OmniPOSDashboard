@@ -215,6 +215,9 @@
 + (NSDate *)getCurrentWeeksBeginingDate
 {
     NSDate *today = [NSDate date];
+    NSString *dayName = [self getDayNameFromDate:today];
+    if([dayName isEqualToString:@"Sunday"])
+        today = [self getNextDayByCount:-1 fromDate:today];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *weekdayComponents = [gregorian components:NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:today];
     NSDateComponents *componentsToSubtract  = [[NSDateComponents alloc] init];
