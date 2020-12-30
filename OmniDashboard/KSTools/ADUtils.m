@@ -17,7 +17,7 @@
 + (NSString *)getRequiredDateString:(NSDate*)date {
     
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/YYYY, HH:mm:ss"];
+    [formatter setDateFormat:@"dd/MM/yyyy, HH:mm:ss"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     return stringFromDate;
 }
@@ -28,7 +28,7 @@
         return nil;
     
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM/dd/YYYY HH:mm:ss Z"];
+    [formatter setDateFormat:@"MM/dd/yyyy HH:mm:ss Z"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     
     char ch = [stringFromDate characterAtIndex:stringFromDate.length-2];
@@ -48,7 +48,7 @@
 + (NSString *)getShortDateString:(NSDate*)date 
 {    
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"hh:mm a, (dd/MM/YYYY)"];
+    [formatter setDateFormat:@"hh:mm a, (dd/MM/yyyy)"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     return stringFromDate;
 }
@@ -56,7 +56,7 @@
 + (NSString *)getShortDateTimeString:(NSDate*)date 
 {    
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/YYYY, hh:mm a"];
+    [formatter setDateFormat:@"dd/MM/yyyy, hh:mm a"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     return stringFromDate;
 }
@@ -64,7 +64,7 @@
 + (NSString *)getShortDateOnlyString:(NSDate*)date 
 {    
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/YYYY"];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     return stringFromDate;
 }
@@ -73,7 +73,7 @@
 + (NSString *)getDateOnlyInYYYYMMDDFormat:(NSDate*)date 
 {    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY-MM-dd"];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     return stringFromDate;
 }
@@ -81,7 +81,7 @@
 + (NSString *)getShortDateOnlyStringInMMddYYYY:(NSDate*)date 
 {    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM/dd/YYYY"];
+    [formatter setDateFormat:@"MM/dd/yyyy"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     return stringFromDate;
 }
@@ -402,7 +402,7 @@
 + (NSDate *)getDateFromString:(NSString*)date
 {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/YYYY, hh:mm a"];
+    [formatter setDateFormat:@"dd/MM/yyyy, hh:mm a"];
     NSDate *d = [formatter dateFromString:date];
     return d;
 }
@@ -434,7 +434,7 @@
 + (NSString *)getMonthDayYear:(NSDate *)date
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMMM dd, YYYY"];
+    [formatter setDateFormat:@"MMMM dd, yyyy"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     return stringFromDate;
 }

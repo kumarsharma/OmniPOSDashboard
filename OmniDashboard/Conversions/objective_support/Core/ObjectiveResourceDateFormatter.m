@@ -13,7 +13,7 @@
 
 static NSString *dateTimeFormatString = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
 static NSString *dateTimeZoneFormatString = @"yyyy-MM-dd HH:mm:ss ZZZ";
-static NSString *dateFormatString = @"dd-MM-YYYY";
+static NSString *dateFormatString = @"dd-MM-yyyy";
 static ORSDateFormat _dateFormat;
 
 + (void)setSerializeFormat:(ORSDateFormat)dateFormat {

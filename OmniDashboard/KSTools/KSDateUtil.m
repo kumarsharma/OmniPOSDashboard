@@ -26,7 +26,7 @@
 + (NSString *)getShortDateTimeString:(NSDate*)date
 {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM/dd/YYYY hh:mm:ss a"];
+    [formatter setDateFormat:@"MM/dd/yyyy hh:mm:ss a"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     return stringFromDate;
 }
@@ -35,7 +35,7 @@
 + (NSString *)getShortDateOnlyString:(NSDate*)date
 {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/YYYY"];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     return stringFromDate;
 }
@@ -44,7 +44,7 @@
 + (NSString *)getShortSlashSepDateOnlyString:(NSDate*)date
 {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM/dd/YYYY"];
+    [formatter setDateFormat:@"MM/dd/yyyy"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     return stringFromDate;
 }
@@ -53,7 +53,7 @@
 + (NSString *)getYYYyMmDdDateFormat:(NSDate*)date
 {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY-MM-dd"];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     return stringFromDate;
 }
@@ -65,7 +65,7 @@
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     
-    [formatter setDateFormat:@"dd MMM YYYY"];
+    [formatter setDateFormat:@"dd MMM yyyy"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     return stringFromDate;
 }
@@ -113,7 +113,7 @@
         return nil;
     
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM/dd/YYYY HH:mm:ss Z"];
+    [formatter setDateFormat:@"MM/dd/yyyy HH:mm:ss Z"];
     NSString *stringFromDate = [formatter stringFromDate:date];
     
     char ch = [stringFromDate characterAtIndex:stringFromDate.length-2];
@@ -260,7 +260,7 @@
 + (NSDate *)getDateFromString:(NSString*)date
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/YYYY hh:mm:ss a"];
+    [formatter setDateFormat:@"dd/MM/yyyy hh:mm:ss a"];
     NSDate *d = [formatter dateFromString:date];
     return d;
 }
