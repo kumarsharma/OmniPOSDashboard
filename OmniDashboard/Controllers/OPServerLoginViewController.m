@@ -39,6 +39,7 @@
 @synthesize buttonColor;
 @synthesize tableView;
 @synthesize currentFetchedCompany;
+@synthesize delegate = delegate_;
 
 - (void)viewDidLoad
 {
@@ -414,7 +415,15 @@
 {
     [self removeIndicatorView];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if([self.delegate respondsToSelector:@selector(didFinishSignInProcess)])
+    {
+        [self.delegate didFinishSignInProcess];
+    }
+    else
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kDidFinishActiveNetworkOperations object:nil];
 }
 

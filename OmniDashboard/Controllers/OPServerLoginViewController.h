@@ -8,13 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "OPViewController.h"
+
+@protocol OPServerLoginDelegate <NSObject>
+
+- (void)didFinishSignInProcess;
+
+@end
+
 @interface OPServerLoginViewController : OPViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 {
-    
+    __weak id<OPServerLoginDelegate> delegate_;
 }
 
 @property (nonatomic, assign) BOOL isSignIn;
 @property (nonatomic, strong) UIColor *buttonColor;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, weak) id<OPServerLoginDelegate> delegate;
 
 @end

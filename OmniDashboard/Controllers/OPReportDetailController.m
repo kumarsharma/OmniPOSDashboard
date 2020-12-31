@@ -224,6 +224,7 @@
     OPCalendarViewController *vc = [[OPCalendarViewController alloc] init];
     vc.delegate = self;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [nav setModalPresentationStyle:UIModalPresentationFullScreen];
     [self presentViewController:nav animated:YES completion:nil];
 }
 

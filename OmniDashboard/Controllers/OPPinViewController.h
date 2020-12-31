@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "OPViewController.h"
+#import "OPServerLoginViewController.h"
 
-@interface OPPinViewController : OPViewController<UITextFieldDelegate>
+@interface OPPinViewController : OPViewController<UITextFieldDelegate, OPServerLoginDelegate>
 {
     IBOutlet UIView *loginBgView;
     IBOutlet UITextField *txtPIN;

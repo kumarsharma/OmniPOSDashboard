@@ -326,6 +326,7 @@
     vc.delegate = self;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    [nav setModalPresentationStyle:UIModalPresentationFullScreen];
     [self presentViewController:nav animated:YES completion:nil];
 }
 

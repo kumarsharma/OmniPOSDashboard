@@ -7,7 +7,6 @@
 //
 
 #import "OPPinViewController.h"
-#import "OPServerLoginViewController.h"
 #import "UserInfo.h"
 #import "StatusView.h"
 #import <QuartzCore/QuartzCore.h>
@@ -54,11 +53,16 @@
         [self presentServiceLoginVc];
     else
     {
-        OPDashboardAppDelegate *app = [OPDashboardAppDelegate sharedAppDelegate];
-        if(![app storedLoginPIN]){
-            
-            [self askToEnterPIN];
-        }
+        [self createPinIfRequired];
+    }
+}
+
+- (void)createPinIfRequired
+{
+    OPDashboardAppDelegate *app = [OPDashboardAppDelegate sharedAppDelegate];
+    if(![app storedLoginPIN]){
+        
+        [self askToEnterPIN];
     }
 }
 
@@ -169,11 +173,21 @@
     //Generally it appears only once after the first installation of the app
     OPServerLoginViewController *serverLoginVc = [[OPServerLoginViewController alloc] init];
     serverLoginVc.isSignIn = YES;
+    serverLoginVc.delegate = self;
     serverLoginVc.buttonColor = [loginBtn titleColorForState:UIControlStateNormal];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:serverLoginVc];
     [navController.navigationBar setBarStyle:UIBarStyleBlack];
-    [navController setModalPresentationStyle:UIModalPresentationFormSheet];
+    [navController setModalPresentationStyle:UIModalPresentationFullScreen];
     [self presentViewController:navController animated:NO completion:nil];
+}
+
+- (void)didFinishSignInProcess
+{
+//    __block OPPinViewController *this = self;
+    [self dismissViewControllerAnimated:YES completion:^{
+       
+//        [this performSelectorOnMainThread:@selector(createPinIfRequired) withObject:nil waitUntilDone:NO];
+    }];
 }
 
 #pragma mark - Login
@@ -206,6 +220,7 @@
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:lst]; //[[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"ExNavController"];    
             [navController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
             navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+            [navController setModalPresentationStyle:UIModalPresentationFullScreen];
             [self presentViewController:navController animated:YES completion:nil];
         }
         else
@@ -223,6 +238,7 @@
                 UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mc];    
                 [navController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
                 navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+                [navController setModalPresentationStyle:UIModalPresentationFullScreen];
                 [self presentViewController:navController animated:YES completion:nil];
             }
         }
@@ -240,7 +256,7 @@
     serverLoginVc.isSignIn = NO;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:serverLoginVc];
     [navController.navigationBar setBarStyle:UIBarStyleBlack];
-    [navController setModalPresentationStyle:UIModalPresentationFormSheet];
+    [navController setModalPresentationStyle:UIModalPresentationFullScreen];
     [self presentViewController:navController animated:YES completion:nil];
 }
 
