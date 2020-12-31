@@ -98,6 +98,8 @@
 		18FB1D0918F4395E00EF914E /* CompanyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FB1D0818F4395E00EF914E /* CompanyInfo.m */; };
 		18FB1D0C18F440CC00EF914E /* OPLocationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FB1D0B18F440CC00EF914E /* OPLocationListController.m */; };
 		1A26BB43AB941F65CBC2C544 /* libPods-OmniDashboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FBCC84890BE1CB8D9763EAE /* libPods-OmniDashboard.a */; };
+		CE2DB9FC259E212A00AFCD6C /* ATAppUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2DB9FB259E212A00AFCD6C /* ATAppUpdater.m */; };
+		CE2DB9FF259E219200AFCD6C /* NSObject+MBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2DB9FE259E219200AFCD6C /* NSObject+MBExtensions.m */; };
 		CE2EA8F422795014001DB320 /* AAChartView.html in Resources */ = {isa = PBXBuildFile; fileRef = CE2EA8F322795014001DB320 /* AAChartView.html */; };
 		CE2EA8FB22798EA7001DB320 /* omnipos_logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2EA8FA22798EA6001DB320 /* omnipos_logo2.png */; };
 		CE2EA8FE227991D9001DB320 /* OPViewSupplier.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2EA8FD227991D9001DB320 /* OPViewSupplier.m */; };
@@ -508,6 +510,10 @@
 		18FB1D0818F4395E00EF914E /* CompanyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyInfo.m; sourceTree = "<group>"; };
 		18FB1D0A18F440CC00EF914E /* OPLocationListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPLocationListController.h; sourceTree = "<group>"; };
 		18FB1D0B18F440CC00EF914E /* OPLocationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPLocationListController.m; sourceTree = "<group>"; };
+		CE2DB9FA259E212A00AFCD6C /* ATAppUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAppUpdater.h; sourceTree = "<group>"; };
+		CE2DB9FB259E212A00AFCD6C /* ATAppUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAppUpdater.m; sourceTree = "<group>"; };
+		CE2DB9FD259E219200AFCD6C /* NSObject+MBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MBExtensions.h"; sourceTree = "<group>"; };
+		CE2DB9FE259E219200AFCD6C /* NSObject+MBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MBExtensions.m"; sourceTree = "<group>"; };
 		CE2EA8F322795014001DB320 /* AAChartView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AAChartView.html; sourceTree = "<group>"; };
 		CE2EA8FA22798EA6001DB320 /* omnipos_logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = omnipos_logo2.png; sourceTree = "<group>"; };
 		CE2EA8FC227991D9001DB320 /* OPViewSupplier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPViewSupplier.h; sourceTree = "<group>"; };
@@ -1049,6 +1055,7 @@
 		18E4EFBF1740CD3D004AAF7D /* OmniDashboard */ = {
 			isa = PBXGroup;
 			children = (
+				CE2DB9F9259E211700AFCD6C /* Updater */,
 				CEB517212278B631003AE3C9 /* Charts */,
 				188863F81A49CDFB0068DCD0 /* Calendar */,
 				18BFD82D1742AE39009822B7 /* Controllers */,
@@ -1290,8 +1297,19 @@
 				CEFB38692093044E004CAFE0 /* OPXMLReader.m */,
 				CE2EA8FC227991D9001DB320 /* OPViewSupplier.h */,
 				CE2EA8FD227991D9001DB320 /* OPViewSupplier.m */,
+				CE2DB9FD259E219200AFCD6C /* NSObject+MBExtensions.h */,
+				CE2DB9FE259E219200AFCD6C /* NSObject+MBExtensions.m */,
 			);
 			path = KSTools;
+			sourceTree = "<group>";
+		};
+		CE2DB9F9259E211700AFCD6C /* Updater */ = {
+			isa = PBXGroup;
+			children = (
+				CE2DB9FA259E212A00AFCD6C /* ATAppUpdater.h */,
+				CE2DB9FB259E212A00AFCD6C /* ATAppUpdater.m */,
+			);
+			path = Updater;
 			sourceTree = "<group>";
 		};
 		CE5F3A8C227F23CD00C57F93 /* Login */ = {
@@ -1951,6 +1969,7 @@
 				CE7F25B8227C658100EF0F89 /* CWLineChartData.m in Sources */,
 				18E4F0691740CFC3004AAF7D /* NSObject+PropertySupport.m in Sources */,
 				18E4F06A1740CFC3004AAF7D /* NSString+InflectionSupport.m in Sources */,
+				CE2DB9FF259E219200AFCD6C /* NSObject+MBExtensions.m in Sources */,
 				CE782BA022773B5200C39913 /* DGActivityIndicatorBallScaleRippleAnimation.m in Sources */,
 				CE782B4A22773B3E00C39913 /* DGActivityIndicatorView.m in Sources */,
 				CE7F25A0227C655200EF0F89 /* CWData.m in Sources */,
@@ -2033,6 +2052,7 @@
 				18E4F0B81740CFE4004AAF7D /* StatusView.m in Sources */,
 				CE7F25C7227C659700EF0F89 /* CWBarChartOptions.m in Sources */,
 				CE782BB122773B5200C39913 /* DGActivityIndicatorLineScalePartyAnimation.m in Sources */,
+				CE2DB9FC259E212A00AFCD6C /* ATAppUpdater.m in Sources */,
 				CE782B9A22773B5200C39913 /* DGActivityIndicatorBallZigZagDeflectAnimation.m in Sources */,
 				CE7F25B9227C658100EF0F89 /* CWLineChart.m in Sources */,
 				CEFB386820930421004CAFE0 /* ADUtils.m in Sources */,

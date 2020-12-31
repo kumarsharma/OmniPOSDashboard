@@ -16,6 +16,7 @@
 #import "OPReportViewController.h"
 #import "OPViewSupplier.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "ATAppUpdater.h"
 
 @interface OPPinViewController ()
 
@@ -157,6 +158,7 @@
     self.title = [[OPDashboardAppDelegate sharedAppDelegate] company].companyName;
     loginBgView.layer.cornerRadius = 3;
     self.viewTitleLabel.text = self.title;
+    [[ATAppUpdater sharedUpdater] showUpdateWithForce];
 }
 
 - (void)didReceiveMemoryWarning
